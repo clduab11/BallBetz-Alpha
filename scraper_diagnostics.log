@@ -1,0 +1,186 @@
+2025-03-09 14:46:07,197 - utils.data_processor - INFO - === DataProcessor Diagnostic Logs ===
+2025-03-09 14:46:14,685 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-09 14:46:14,702 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-09 14:46:14,702 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-09 14:46:14,702 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-09 14:46:14,702 - __main__ - INFO - === BallBetz Diagnostic Logs ===
+2025-03-09 14:46:14,702 - __main__ - INFO - PuLP dependency check: FOUND
+2025-03-09 14:46:14,702 - __main__ - INFO - Python version: 3.11.11 (main, Dec  3 2024, 17:20:40) [Clang 16.0.0 (clang-1600.0.26.4)]
+2025-03-09 14:46:14,703 - models.predictor - INFO - Model path provided: models/ufl_predictor.joblib
+2025-03-09 14:46:14,703 - models.predictor - INFO - Model file exists: False
+2025-03-09 14:46:14,703 - models.predictor - WARNING - Model file not found at models/ufl_predictor.joblib
+2025-03-09 14:46:14,703 - models.predictor - INFO - Initializing new model instead
+2025-03-09 14:46:14,703 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-09 14:46:14,703 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-09 14:46:14,703 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: fanduel
+2025-03-09 14:46:14,703 - __main__ - INFO - All components initialized successfully
+2025-03-09 14:46:14,703 - __main__ - INFO - Model file exists: False
+2025-03-09 14:46:14,704 - __main__ - INFO - BallBetz application starting
+2025-03-09 14:46:17,524 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-09 14:46:17,524 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-09 14:46:17,527 - werkzeug - INFO -  * Restarting with stat
+2025-03-09 14:46:17,978 - utils.data_processor - INFO - === DataProcessor Diagnostic Logs ===
+2025-03-09 14:46:18,415 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-09 14:46:18,422 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-09 14:46:18,423 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-09 14:46:18,423 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-09 14:46:18,423 - __main__ - INFO - === BallBetz Diagnostic Logs ===
+2025-03-09 14:46:18,423 - __main__ - INFO - PuLP dependency check: FOUND
+2025-03-09 14:46:18,423 - __main__ - INFO - Python version: 3.11.11 (main, Dec  3 2024, 17:20:40) [Clang 16.0.0 (clang-1600.0.26.4)]
+2025-03-09 14:46:18,423 - models.predictor - INFO - Model path provided: models/ufl_predictor.joblib
+2025-03-09 14:46:18,423 - models.predictor - INFO - Model file exists: False
+2025-03-09 14:46:18,423 - models.predictor - WARNING - Model file not found at models/ufl_predictor.joblib
+2025-03-09 14:46:18,423 - models.predictor - INFO - Initializing new model instead
+2025-03-09 14:46:18,423 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-09 14:46:18,423 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-09 14:46:18,424 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: fanduel
+2025-03-09 14:46:18,424 - __main__ - INFO - All components initialized successfully
+2025-03-09 14:46:18,424 - __main__ - INFO - Model file exists: False
+2025-03-09 14:46:18,424 - __main__ - INFO - BallBetz application starting
+2025-03-09 14:46:18,442 - werkzeug - WARNING -  * Debugger is active!
+2025-03-09 14:46:18,452 - werkzeug - INFO -  * Debugger PIN: 772-749-371
+2025-03-09 14:47:05,509 - werkzeug - INFO - 127.0.0.1 - - [09/Mar/2025 14:47:05] "GET / HTTP/1.1" 200 -
+2025-03-09 14:47:05,543 - werkzeug - INFO - 127.0.0.1 - - [09/Mar/2025 14:47:05] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-03-09 14:47:20,157 - scrapers.ufl_scraper - ERROR - Request failed with status code 404: https://www.theufl.com/stats/players
+2025-03-09 14:47:20,162 - __main__ - ERROR - Error in update_data: No player data retrieved
+2025-03-09 14:47:20,164 - werkzeug - INFO - 127.0.0.1 - - [09/Mar/2025 14:47:20] "[35m[1mPOST /update_data HTTP/1.1[0m" 500 -
+2025-03-09 14:47:34,259 - __main__ - INFO - === Generating Lineup - Parameter Diagnostics ===
+2025-03-09 14:47:34,261 - __main__ - INFO - Received parameters - platform: draftkings, max_lineups: 1, min_salary: 0.0
+2025-03-09 14:47:34,262 - __main__ - ERROR - Error in generate_lineup: No player data available. Please update data first.
+2025-03-09 14:47:34,262 - werkzeug - INFO - 127.0.0.1 - - [09/Mar/2025 14:47:34] "[35m[1mPOST /generate_lineup HTTP/1.1[0m" 500 -
+2025-03-09 15:00:41,080 - werkzeug - INFO -  * Detected change in '/Users/chrisdukes/Desktop/BallBetz/scrapers/ufl_scraper.py', reloading
+2025-03-09 15:00:41,205 - werkzeug - INFO -  * Restarting with stat
+2025-03-09 15:00:41,620 - utils.data_processor - INFO - === DataProcessor Diagnostic Logs ===
+2025-03-09 15:00:42,044 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-09 15:00:42,057 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-09 15:00:42,057 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-09 15:00:42,057 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-09 15:00:42,057 - __main__ - INFO - === BallBetz Diagnostic Logs ===
+2025-03-09 15:00:42,057 - __main__ - INFO - PuLP dependency check: FOUND
+2025-03-09 15:00:42,057 - __main__ - INFO - Python version: 3.11.11 (main, Dec  3 2024, 17:20:40) [Clang 16.0.0 (clang-1600.0.26.4)]
+2025-03-09 15:00:42,058 - models.predictor - INFO - Model path provided: models/ufl_predictor.joblib
+2025-03-09 15:00:42,058 - models.predictor - INFO - Model file exists: False
+2025-03-09 15:00:42,058 - models.predictor - WARNING - Model file not found at models/ufl_predictor.joblib
+2025-03-09 15:00:42,058 - models.predictor - INFO - Initializing new model instead
+2025-03-09 15:00:42,058 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-09 15:00:42,058 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-09 15:00:42,058 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: fanduel
+2025-03-09 15:00:42,058 - __main__ - INFO - All components initialized successfully
+2025-03-09 15:00:42,058 - __main__ - INFO - Model file exists: False
+2025-03-09 15:00:42,058 - __main__ - INFO - BallBetz application starting
+2025-03-09 15:00:42,074 - werkzeug - WARNING -  * Debugger is active!
+2025-03-09 15:00:42,082 - werkzeug - INFO -  * Debugger PIN: 772-749-371
+2025-03-09 15:01:09,131 - werkzeug - INFO -  * Detected change in '/Users/chrisdukes/Desktop/BallBetz/optimizers/lineup_optimizer.py', reloading
+2025-03-09 15:01:09,245 - werkzeug - INFO -  * Restarting with stat
+2025-03-09 15:01:09,649 - utils.data_processor - INFO - === DataProcessor Diagnostic Logs ===
+2025-03-09 15:01:09,979 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-09 15:01:09,988 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-09 15:01:09,988 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-09 15:01:09,989 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-09 15:01:09,989 - __main__ - INFO - === BallBetz Diagnostic Logs ===
+2025-03-09 15:01:09,989 - __main__ - INFO - PuLP dependency check: FOUND
+2025-03-09 15:01:09,989 - __main__ - INFO - Python version: 3.11.11 (main, Dec  3 2024, 17:20:40) [Clang 16.0.0 (clang-1600.0.26.4)]
+2025-03-09 15:01:09,989 - models.predictor - INFO - Model path provided: models/ufl_predictor.joblib
+2025-03-09 15:01:09,989 - models.predictor - INFO - Model file exists: False
+2025-03-09 15:01:09,989 - models.predictor - WARNING - Model file not found at models/ufl_predictor.joblib
+2025-03-09 15:01:09,989 - models.predictor - INFO - Initializing new model instead
+2025-03-09 15:01:09,989 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-09 15:01:09,989 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-09 15:01:09,989 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: fanduel
+2025-03-09 15:01:09,989 - __main__ - INFO - All components initialized successfully
+2025-03-09 15:01:09,989 - __main__ - INFO - Model file exists: False
+2025-03-09 15:01:09,990 - __main__ - INFO - BallBetz application starting
+2025-03-09 15:01:10,027 - werkzeug - WARNING -  * Debugger is active!
+2025-03-09 15:01:10,036 - werkzeug - INFO -  * Debugger PIN: 772-749-371
+2025-03-09 15:01:48,281 - werkzeug - INFO -  * Detected change in '/Users/chrisdukes/Desktop/BallBetz/utils/data_processor.py', reloading
+2025-03-09 15:01:48,391 - werkzeug - INFO -  * Restarting with stat
+2025-03-09 15:01:48,781 - utils.data_processor - INFO - === DataProcessor Diagnostic Logs ===
+2025-03-09 15:01:49,123 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-09 15:01:49,132 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-09 15:01:49,133 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-09 15:01:49,133 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-09 15:01:49,133 - __main__ - INFO - === BallBetz Diagnostic Logs ===
+2025-03-09 15:01:49,133 - __main__ - INFO - PuLP dependency check: FOUND
+2025-03-09 15:01:49,133 - __main__ - INFO - Python version: 3.11.11 (main, Dec  3 2024, 17:20:40) [Clang 16.0.0 (clang-1600.0.26.4)]
+2025-03-09 15:01:49,133 - models.predictor - INFO - Model path provided: models/ufl_predictor.joblib
+2025-03-09 15:01:49,133 - models.predictor - INFO - Model file exists: False
+2025-03-09 15:01:49,133 - models.predictor - WARNING - Model file not found at models/ufl_predictor.joblib
+2025-03-09 15:01:49,133 - models.predictor - INFO - Initializing new model instead
+2025-03-09 15:01:49,133 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-09 15:01:49,133 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-09 15:01:49,133 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: fanduel
+2025-03-09 15:01:49,133 - __main__ - INFO - All components initialized successfully
+2025-03-09 15:01:49,134 - __main__ - INFO - Model file exists: False
+2025-03-09 15:01:49,134 - __main__ - INFO - BallBetz application starting
+2025-03-09 15:01:49,148 - werkzeug - WARNING -  * Debugger is active!
+2025-03-09 15:01:49,155 - werkzeug - INFO -  * Debugger PIN: 772-749-371
+2025-03-09 15:07:57,657 - werkzeug - INFO -  * Detected change in '/Users/chrisdukes/Desktop/BallBetz/models/config.py', reloading
+2025-03-09 15:07:57,776 - werkzeug - INFO -  * Restarting with stat
+2025-03-09 15:07:58,172 - utils.data_processor - INFO - === DataProcessor Diagnostic Logs ===
+2025-03-09 15:07:58,519 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-09 15:07:58,528 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-09 15:07:58,528 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-09 15:07:58,528 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-09 15:07:58,528 - __main__ - INFO - === BallBetz Diagnostic Logs ===
+2025-03-09 15:07:58,528 - __main__ - INFO - PuLP dependency check: FOUND
+2025-03-09 15:07:58,528 - __main__ - INFO - Python version: 3.11.11 (main, Dec  3 2024, 17:20:40) [Clang 16.0.0 (clang-1600.0.26.4)]
+2025-03-09 15:07:58,528 - models.predictor - INFO - Model path provided: models/ufl_predictor.joblib
+2025-03-09 15:07:58,528 - models.predictor - INFO - Model file exists: False
+2025-03-09 15:07:58,529 - models.predictor - WARNING - Model file not found at models/ufl_predictor.joblib
+2025-03-09 15:07:58,529 - models.predictor - INFO - Initializing new model instead
+2025-03-09 15:07:58,529 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-09 15:07:58,529 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-09 15:07:58,529 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: fanduel
+2025-03-09 15:07:58,529 - __main__ - INFO - All components initialized successfully
+2025-03-09 15:07:58,529 - __main__ - INFO - Model file exists: False
+2025-03-09 15:07:58,529 - __main__ - INFO - BallBetz application starting
+2025-03-09 15:07:58,542 - werkzeug - WARNING -  * Debugger is active!
+2025-03-09 15:07:58,548 - werkzeug - INFO -  * Debugger PIN: 772-749-371
+2025-03-09 15:09:57,997 - werkzeug - INFO -  * Detected change in '/Users/chrisdukes/Desktop/BallBetz/models/config.py', reloading
+2025-03-09 15:09:58,142 - werkzeug - INFO -  * Restarting with stat
+2025-03-09 15:09:58,610 - utils.data_processor - INFO - === DataProcessor Diagnostic Logs ===
+2025-03-09 15:09:59,030 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-09 15:09:59,043 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-09 15:09:59,043 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-09 15:09:59,043 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-09 15:09:59,043 - __main__ - INFO - === BallBetz Diagnostic Logs ===
+2025-03-09 15:09:59,043 - __main__ - INFO - PuLP dependency check: FOUND
+2025-03-09 15:09:59,044 - __main__ - INFO - Python version: 3.11.11 (main, Dec  3 2024, 17:20:40) [Clang 16.0.0 (clang-1600.0.26.4)]
+2025-03-09 15:09:59,044 - models.predictor - INFO - Model path provided: models/ufl_predictor.joblib
+2025-03-09 15:09:59,044 - models.predictor - INFO - Model file exists: False
+2025-03-09 15:09:59,044 - models.predictor - WARNING - Model file not found at models/ufl_predictor.joblib
+2025-03-09 15:09:59,044 - models.predictor - INFO - Initializing new model instead
+2025-03-09 15:09:59,044 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-09 15:09:59,044 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-09 15:09:59,044 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: fanduel
+2025-03-09 15:09:59,044 - __main__ - INFO - All components initialized successfully
+2025-03-09 15:09:59,044 - __main__ - INFO - Model file exists: False
+2025-03-09 15:09:59,045 - __main__ - INFO - BallBetz application starting
+2025-03-09 15:09:59,063 - werkzeug - WARNING -  * Debugger is active!
+2025-03-09 15:09:59,070 - werkzeug - INFO -  * Debugger PIN: 772-749-371
+2025-03-09 15:11:19,288 - werkzeug - INFO -  * Detected change in '/Users/chrisdukes/Desktop/BallBetz/models/model_interface.py', reloading
+2025-03-09 15:11:19,421 - werkzeug - INFO -  * Restarting with stat
+2025-03-09 15:11:19,835 - utils.data_processor - INFO - === DataProcessor Diagnostic Logs ===
+2025-03-09 15:11:20,259 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-09 15:11:20,272 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-09 15:11:20,272 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-09 15:11:20,272 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-09 15:11:20,272 - __main__ - INFO - === BallBetz Diagnostic Logs ===
+2025-03-09 15:11:20,272 - __main__ - INFO - PuLP dependency check: FOUND
+2025-03-09 15:11:20,272 - __main__ - INFO - Python version: 3.11.11 (main, Dec  3 2024, 17:20:40) [Clang 16.0.0 (clang-1600.0.26.4)]
+2025-03-09 15:11:20,273 - models.predictor - INFO - Model path provided: models/ufl_predictor.joblib
+2025-03-09 15:11:20,273 - models.predictor - INFO - Model file exists: False
+2025-03-09 15:11:20,273 - models.predictor - WARNING - Model file not found at models/ufl_predictor.joblib
+2025-03-09 15:11:20,273 - models.predictor - INFO - Initializing new model instead
+2025-03-09 15:11:20,273 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-09 15:11:20,273 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-09 15:11:20,273 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: fanduel
+2025-03-09 15:11:20,273 - __main__ - INFO - All components initialized successfully
+2025-03-09 15:11:20,273 - __main__ - INFO - Model file exists: False
+2025-03-09 15:11:20,274 - __main__ - INFO - BallBetz application starting
+2025-03-09 15:11:20,290 - werkzeug - WARNING -  * Debugger is active!
+2025-03-09 15:11:20,297 - werkzeug - INFO -  * Debugger PIN: 772-749-371
+2025-03-09 15:12:32,056 - werkzeug - INFO -  * Detected change in '/Users/chrisdukes/Desktop/BallBetz/models/predictor.py', reloading
+2025-03-09 15:12:32,166 - werkzeug - INFO -  * Restarting with stat
+2025-03-09 15:12:32,587 - utils.data_processor - INFO - === DataProcessor Diagnostic Logs ===

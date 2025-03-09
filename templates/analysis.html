@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+
+{% block title %}Performance Analysis{% endblock %}
+
+{% block content %}
+<div class="alerts mb-3"></div>
+
+<!-- Overview Card -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-chart-pie me-2"></i>Overall Performance</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="text-center mb-3">
+                            <h6 class="text-muted mb-2">Total Invested</h6>
+                            <h4>{{ "${:,.2f}".format(total_invested) }}</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center mb-3">
+                            <h6 class="text-muted mb-2">Total Won</h6>
+                            <h4>{{ "${:,.2f}".format(total_won) }}</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center mb-3">
+                            <h6 class="text-muted mb-2">Total Profit</h6>
+                            <h4 class="{{ 'profit-positive' if total_profit > 0 else 'profit-negative' }}">
+                                {{ "${:,.2f}".format(total_profit) }}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center mb-3">
+                            <h6 class="text-muted mb-2">ROI</h6>
+                            <h4 class="{{ 'profit-positive' if roi > 0 else 'profit-negative' }}">
+                                {{ "{:.1f}%".format(roi) }}
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Platform Performance -->
+<div class="row mt-4">
+    {% for platform, stats in platform_stats.items() %}
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-gamepad me-2"></i>
+                    {{ platform.title() }} Performance
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="text-center mb-3">
+                            <h6 class="text-muted mb-2">Contests</h6>
+                            <h4>{{ stats.total_contests }}</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center mb-3">
+                            <h6 class="text-muted mb-2">Total Profit</h6>
+                            <h4 class="{{ 'profit-positive' if stats.total_profit > 0 else 'profit-negative' }}">
+                                {{ "${:,.2f}".format(stats.total_profit) }}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center mb-3">
+                            <h6 class="text-muted mb-2">Avg ROI</h6>
+                            <h4 class="{{ 'profit-positive' if stats.avg_roi > 0 else 'profit-negative' }}">
+                                {{ "{:.1f}%".format(stats.avg_roi) }}
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Performance History -->
+<div class="card mt-4">
+    <div class="card-header">
+        <h5 class="mb-0"><i class="fas fa-history me-2"></i>Contest History</h5>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Platform</th>
+                        <th>Entry Fee</th>
+                        <th>Winnings</th>
+                        <th>Profit</th>
+                        <th>ROI</th>
+                        <th>Balance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in bankroll.history|reverse %}
+                    <tr>
+                        <td>{{ entry.date }}</td>
+                        <td>{{ entry.platform.title() }}</td>
+                        <td>${{ "{:,.2f}".format(entry.entry_fee) }}</td>
+                        <td>${{ "{:,.2f}".format(entry.winnings) }}</td>
+                        <td class="{{ 'profit-positive' if entry.profit > 0 else 'profit-negative' }}">
+                            ${{ "{:,.2f}".format(entry.profit) }}
+                        </td>
+                        <td class="{{ 'profit-positive' if entry.roi > 0 else 'profit-negative' }}">
+                            {{ "{:.1f}%".format(entry.roi) }}
+                        </td>
+                        <td>${{ "{:,.2f}".format(entry.balance) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Profit Trend Chart -->
+<div class="card mt-4">
+    <div class="card-header">
+        <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Profit Trend</h5>
+    </div>
+    <div class="card-body">
+        <canvas id="profitTrendChart"></canvas>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const historyData = JSON.parse('{{ bankroll.history|tojson|safe }}');
+    const ctx = document.getElementById('profitTrendChart').getContext('2d');
+    
+    if (historyData && historyData.length > 0) {
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: historyData.map(entry => entry.date),
+                datasets: [
+                    {
+                        label: 'Balance',
+                        data: historyData.map(entry => entry.balance),
+                        borderColor: '#2c3e50',
+                        backgroundColor: 'rgba(44, 62, 80, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        yAxisID: 'balance'
+                    },
+                    {
+                        label: 'Profit/Loss',
+                        data: historyData.map(entry => entry.profit),
+                        type: 'bar',
+                        backgroundColor: historyData.map(entry => 
+                            entry.profit < 0 ? '#e74c3c' : '#27ae60'
+                        ),
+                        yAxisID: 'profit'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    balance: {
+                        type: 'linear',
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Balance ($)'
+                        }
+                    },
+                    profit: {
+                        type: 'linear',
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: 'Profit/Loss ($)'
+                        },
+                        grid: {
+                            drawOnChartArea: false
+                        }
+                    }
+                }
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BallBetz - UFL Fantasy Optimizer</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f7;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1 {
+            color: #0066cc;
+            text-align: center;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .bankroll {
+            text-align: center;
+            padding: 15px;
+            background-color: #e6f7ff;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .bankroll h2 {
+            margin-top: 0;
+        }
+        .bankroll .amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0066cc;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #0055aa;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        select, input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 10px;
+            color: #666;
+        }
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .profit-positive {
+            color: #28a745;
+        }
+        .profit-negative {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BallBetz - UFL Fantasy Optimizer</h1>
+        
+        <div class="bankroll">
+            <h2>Bankroll</h2>
+            <p>Initial: $<span id="initial">{{ bankroll.initial|round(2) }}</span></p>
+            <p>Current: $<span id="current" class="amount">{{ bankroll.current|round(2) }}</span></p>
+            <p>Profit: $<span id="profit" class="amount {{ 'profit-positive' if bankroll.current > bankroll.initial else 'profit-negative' }}">
+                {{ (bankroll.current - bankroll.initial)|round(2) }}
+            </span></p>
+        </div>
+        
+        <div class="section">
+            <h2>Update Data</h2>
+            <p>Fetch the latest UFL player data and statistics.</p>
+            <button id="updateDataBtn">Update Data</button>
+            <div id="updateStatus" class="loading">Updating data...</div>
+        </div>
+        
+        <div class="section">
+            <h2>Generate Lineup</h2>
+            <div class="form-group">
+                <label for="platform">Platform:</label>
+                <select id="platform">
+                    <option value="draftkings">DraftKings</option>
+                    <option value="fanduel">FanDuel</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="maxLineups">Number of Lineups:</label>
+                <input type="number" id="maxLineups" min="1" max="20" value="1">
+            </div>
+            <button id="generateLineupBtn">Generate Optimal Lineup</button>
+            <div id="generateStatus" class="loading">Generating lineup...</div>
+            
+            <div id="lineupResults" style="display: none; margin-top: 20px;">
+                <h3>Optimal Lineup</h3>
+                <table id="lineupTable">
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Player</th>
+                            <th>Team</th>
+                            <th>Salary</th>
+                            <th>Projected Points</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lineupBody"></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Update Bankroll</h2>
+            <div class="form-group">
+                <label for="contestDate">Contest Date:</label>
+                <input type="date" id="contestDate">
+            </div>
+            <div class="form-group">
+                <label for="contestPlatform">Platform:</label>
+                <select id="contestPlatform">
+                    <option value="draftkings">DraftKings</option>
+                    <option value="fanduel">FanDuel</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="entryFee">Entry Fee ($):</label>
+                <input type="number" id="entryFee" step="0.01" min="0" value="0">
+            </div>
+            <div class="form-group">
+                <label for="winnings">Winnings ($):</label>
+                <input type="number" id="winnings" step="0.01" min="0" value="0">
+            </div>
+            <button id="updateBankrollBtn">Update Bankroll</button>
+            <div id="bankrollStatus" class="loading">Updating bankroll...</div>
+        </div>
+        
+        <div class="section">
+            <h2>Bankroll History</h2>
+            <table id="historyTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Platform</th>
+                        <th>Entry Fee</th>
+                        <th>Winnings</th>
+                        <th>Profit</th>
+                        <th>Balance</th>
+                    </tr>
+                </thead>
+                <tbody id="historyBody">
+                    {% for entry in bankroll.history|reverse %}
+                    <tr>
+                        <td>{{ entry.date }}</td>
+                        <td>{{ entry.platform }}</td>
+                        <td>${{ entry.entry_fee|round(2) }}</td>
+                        <td>${{ entry.winnings|round(2) }}</td>
+                        <td class="{{ 'profit-positive' if entry.profit > 0 else 'profit-negative' }}">
+                            ${{ entry.profit|round(2) }}
+                        </td>
+                        <td>${{ entry.balance|round(2) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        // Helper functions
+        function showLoading(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.style.display = 'block';
+                element.classList.remove('success', 'error');
+                element.textContent = element.textContent.replace(' - ', '') + '...';
+            }
+        }
+
+        function hideLoading(id, message = '', type = '') {
+            const element = document.getElementById(id);
+            if (element) {
+                if (message) {
+                    element.textContent = message;
+                    element.classList.add(type);
+                    setTimeout(() => {
+                        element.style.display = 'none';
+                    }, 3000);
+                } else {
+                    element.style.display = 'none';
+                }
+            }
+        }
+
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 2
+            }).format(amount);
+        }
+
+        // Set today's date as default for contest date
+        document.getElementById('contestDate').valueAsDate = new Date();
+        
+        // Update Data button
+        document.getElementById('updateDataBtn').addEventListener('click', function() {
+            const btn = this;
+            btn.disabled = true;
+            showLoading('updateStatus');
+            
+            fetch('/update_data', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                hideLoading('updateStatus', `${data.message} - ${data.player_count} players updated`, 'success');
+            })
+            .catch(error => {
+                hideLoading('updateStatus', 'Error updating data', 'error');
+            })
+            .finally(() => {
+                btn.disabled = false;
+            });
+        });
+        
+        // Generate Lineup button
+        document.getElementById('generateLineupBtn').addEventListener('click', function() {
+            const btn = this;
+            btn.disabled = true;
+            showLoading('generateStatus');
+            
+            const platform = document.getElementById('platform').value;
+            const maxLineups = document.getElementById('maxLineups').value;
+            
+            fetch('/generate_lineup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `platform=${platform}&max_lineups=${maxLineups}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('lineupResults').style.display = 'block';
+                    const lineupBody = document.getElementById('lineupBody');
+                    lineupBody.innerHTML = '';
+                    
+                    data.lineup.forEach(player => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${player.position}</td>
+                            <td>${player.name}</td>
+                            <td>${player.team}</td>
+                            <td>${formatCurrency(player.salary)}</td>
+                            <td>${player.predicted_points.toFixed(2)}</td>
+                        `;
+                        lineupBody.appendChild(row);
+                    });
+                    hideLoading('generateStatus', 'Lineup generated successfully', 'success');
+                } else {
+                    hideLoading('generateStatus', data.message, 'error');
+                }
+            })
+            .catch(error => {
+                hideLoading('generateStatus', 'Error generating lineup', 'error');
+            })
+            .finally(() => {
+                btn.disabled = false;
+            });
+        });
+        
+        // Update Bankroll button
+        document.getElementById('updateBankrollBtn').addEventListener('click', function() {
+            const btn = this;
+            btn.disabled = true;
+            showLoading('bankrollStatus');
+            
+            const date = document.getElementById('contestDate').value;
+            const platform = document.getElementById('contestPlatform').value;
+            const entryFee = document.getElementById('entryFee').value;
+            const winnings = document.getElementById('winnings').value;
+            
+            fetch('/update_bankroll', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `date=${date}&platform=${platform}&entry_fee=${entryFee}&winnings=${winnings}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('current').textContent = formatCurrency(data.bankroll.current).replace('$', '');
+                    const profit = data.bankroll.current - data.bankroll.initial;
+                    const profitElement = document.getElementById('profit');
+                    profitElement.textContent = formatCurrency(profit).replace('$', '');
+                    profitElement.className = `amount ${profit >= 0 ? 'profit-positive' : 'profit-negative'}`;
+                    
+                    document.getElementById('entryFee').value = 0;
+                    document.getElementById('winnings').value = 0;
+                    
+                    hideLoading('bankrollStatus', 'Bankroll updated successfully', 'success');
+                    setTimeout(() => location.reload(), 1500);
+                } else {
+                    hideLoading('bankrollStatus', data.message, 'error');
+                }
+            })
+            .catch(error => {
+                hideLoading('bankrollStatus', 'Error updating bankroll', 'error');
+            })
+            .finally(() => {
+                btn.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>

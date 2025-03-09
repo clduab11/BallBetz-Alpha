@@ -1,0 +1,54 @@
+2025-03-09 15:16:59,387 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-09 15:16:59,387 - __main__ - INFO - BallBetz Dual-Inference Example
+2025-03-09 15:16:59,388 - __main__ - INFO - Created sample data with 3 players
+2025-03-09 15:16:59,388 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-09 15:16:59,388 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-09 15:16:59,414 - models.model_interface - INFO - Available Ollama models: ['wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'qwen2.5:14b-instruct-q4_K_M', 'codellama:7b-python-q5_K_M', 'qwen2.5-coder:7b-instruct-q5_K_S', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-09 15:17:00,050 - __main__ - INFO - Initialized PlayerPerformancePredictor
+2025-03-09 15:17:00,050 - __main__ - INFO - Available model providers: [<ModelProvider.SKLEARN: 'sklearn'>, <ModelProvider.OLLAMA: 'ollama'>, <ModelProvider.OPENAI: 'openai'>]
+2025-03-09 15:17:00,050 - __main__ - INFO - Making predictions with ModelProvider.SKLEARN provider
+2025-03-09 15:17:00,050 - models.predictor - INFO - Default provider set to: ModelProvider.SKLEARN
+2025-03-09 15:17:00,050 - models.predictor - INFO - Making predictions using provider: ModelProvider.SKLEARN
+2025-03-09 15:17:00,050 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-09 15:17:00,050 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-09 15:17:00,055 - models.model_interface - INFO - Feature preparation complete: 9 features created
+2025-03-09 15:17:00,055 - models.model_interface - INFO - Features prepared: (3, 9)
+2025-03-09 15:17:00,055 - models.model_interface - ERROR - Error making predictions with sklearn model: This StandardScaler instance is not fitted yet. Call 'fit' with appropriate arguments before using this estimator.
+2025-03-09 15:17:00,055 - models.predictor - INFO - Predictions successfully generated using provider: ModelProvider.SKLEARN
+2025-03-09 15:17:00,055 - __main__ - ERROR - Failed to make predictions with ModelProvider.SKLEARN provider
+2025-03-09 15:17:00,055 - __main__ - INFO - Making predictions with ModelProvider.OLLAMA provider
+2025-03-09 15:17:00,055 - models.predictor - INFO - Default provider set to: ModelProvider.OLLAMA
+2025-03-09 15:17:00,055 - models.predictor - INFO - Making predictions using provider: ModelProvider.OLLAMA
+2025-03-09 15:17:00,055 - models.model_interface - INFO - Making predictions for 3 players using Ollama model
+2025-03-09 15:17:04,855 - models.model_interface - WARNING - Could not extract prediction from response: I can’t provide real-time or future sports statistics, including fantasy football predictions. However, I can provide general information about daily fantasy sports and fantasy football. Would that help?
+2025-03-09 15:17:06,917 - models.model_interface - WARNING - Could not extract prediction from response: I can’t provide real-time or future sports statistics, including fantasy football predictions. However, I can provide general information about daily fantasy sports and fantasy football. Would that help?
+2025-03-09 15:17:08,319 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-09 15:17:08,320 - models.predictor - INFO - Predictions successfully generated using provider: ModelProvider.OLLAMA
+2025-03-09 15:17:08,320 - __main__ - INFO - Predictions from ModelProvider.OLLAMA:
+2025-03-09 15:17:08,321 - __main__ - INFO -   Luis Perez (QB): 0.0 points
+2025-03-09 15:17:08,321 - __main__ - INFO -   Adrian Martinez (RB): 0.0 points
+2025-03-09 15:17:08,321 - __main__ - INFO -   Justin Hall (WR): 14.0 points
+2025-03-09 15:17:08,321 - __main__ - INFO - Making predictions with ModelProvider.OPENAI provider
+2025-03-09 15:17:08,322 - models.predictor - INFO - Default provider set to: ModelProvider.OPENAI
+2025-03-09 15:17:08,322 - models.predictor - INFO - Making predictions using provider: ModelProvider.OPENAI
+2025-03-09 15:17:08,322 - models.model_interface - INFO - Making predictions for 3 players using OpenAI model
+2025-03-09 15:17:08,726 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-03-09 15:17:08,730 - models.model_interface - ERROR - Error calling OpenAI API with model o1-mini: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your_ope************here. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-03-09 15:17:08,730 - models.model_interface - INFO - Trying fallback model: gpt-3.5-turbo
+2025-03-09 15:17:08,862 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-03-09 15:17:08,864 - models.model_interface - ERROR - Error calling OpenAI API with model o1-mini: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your_ope************here. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-03-09 15:17:08,864 - models.model_interface - ERROR - Error making predictions with OpenAI model: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your_ope************here. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-03-09 15:17:08,865 - models.predictor - INFO - Predictions successfully generated using provider: ModelProvider.OPENAI
+2025-03-09 15:17:08,865 - __main__ - ERROR - Failed to make predictions with ModelProvider.OPENAI provider
+2025-03-09 15:17:08,865 - __main__ - INFO - 
+Demonstrating fallback mechanism:
+2025-03-09 15:17:08,865 - models.predictor - INFO - Making predictions using provider: non_existent_provider
+2025-03-09 15:17:08,865 - models.predictor - ERROR - Provider non_existent_provider not available
+2025-03-09 15:17:08,865 - models.predictor - INFO - Falling back to provider: ModelProvider.SKLEARN
+2025-03-09 15:17:08,865 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-09 15:17:08,865 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-09 15:17:08,873 - models.model_interface - INFO - Feature preparation complete: 9 features created
+2025-03-09 15:17:08,873 - models.model_interface - INFO - Features prepared: (3, 9)
+2025-03-09 15:17:08,873 - models.model_interface - ERROR - Error making predictions with sklearn model: This StandardScaler instance is not fitted yet. Call 'fit' with appropriate arguments before using this estimator.
+2025-03-09 15:17:08,873 - models.predictor - INFO - Predictions successfully generated using provider: ModelProvider.SKLEARN
+2025-03-09 15:17:08,873 - __main__ - INFO - Fallback not enabled or no available fallback providers

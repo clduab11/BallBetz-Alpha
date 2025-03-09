@@ -12,3 +12,5 @@ openai==1.12.0  # For OpenAI API integration
 tiktoken==0.5.2  # For token counting with OpenAI
 tenacity==8.2.3  # For retry logic
 pydantic==2.5.2  # For data validation
+dvc==3.59.1
+APScheduler==3.10.4

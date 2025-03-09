@@ -75,21 +75,22 @@ class UFLScraper:
             logger.error(f"Error making request to {url}: {str(e)}")
             return None
 
-    def _get_passing_stats(self) -> pd.DataFrame:
+    def _get_passing_stats(self) -> List[Dict]: # type: ignore
         """
         Scrape passing statistics from footballdb.com.
         
         Returns:
-            pd.DataFrame: DataFrame containing passing statistics
+            List[Dict]: List of dictionaries containing passing statistics.
         """
         logger.info("Scraping passing statistics")
-        url = f"{self.base_url}/ufl/stats/2024/passing"
+        # Current stats are for the 2024 season.  Update URL for future seasons.
+        url = f"{self.base_url}/statistics/ufl/player-stats/passing"
         
         try:
             response = self._make_request(url)
             if not response:
                 logger.error("Failed to get passing statistics")
-                return pd.DataFrame()
+                return []
                 
             soup = BeautifulSoup(response.content, 'html.parser')
             
@@ -97,7 +98,7 @@ class UFLScraper:
             table = soup.find('table')
             if not table:
                 logger.error("No stats table found on passing stats page")
-                return pd.DataFrame()
+                return []
                 
             # Extract headers
             headers = []
@@ -119,41 +120,41 @@ class UFLScraper:
                         'name': player_name,
                         'team': team_abbr,
                         'position': 'QB',  # Assuming all passers are QBs
-                        'games_played': self._safe_convert_to_int(cols[1].text.strip()),
-                        'passing_attempts': self._safe_convert_to_int(cols[2].text.strip()),
-                        'passing_completions': self._safe_convert_to_int(cols[3].text.strip()),
-                        'passing_completion_pct': float(cols[4].text.strip().replace('%', '')) if cols[4].text.strip() else 0,
-                        'passing_yards': self._safe_convert_to_int(cols[5].text.strip()),
-                        'passing_yards_per_game': float(cols[6].text.strip()) if cols[6].text.strip() else 0,
-                        'passing_touchdowns': self._safe_convert_to_int(cols[7].text.strip()),
-                        'interceptions': self._safe_convert_to_int(cols[9].text.strip()),
-                        'passer_rating': float(cols[12].text.strip()) if cols[12].text.strip() else 0,
+                        'games_played': self._safe_convert_to_int(cols[1].text.strip() if len(cols) > 1 else '0'), # type: ignore
+                        'passing_attempts': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'), # type: ignore
+                        'passing_completions': self._safe_convert_to_int(cols[3].text.strip() if len(cols) > 3 else '0'), # type: ignore
+                        'passing_completion_pct': float(cols[4].text.strip().replace('%', '')) if len(cols) > 4 and cols[4].text.strip() else 0, # type: ignore
+                        'passing_yards': self._safe_convert_to_int(cols[5].text.strip() if len(cols) > 5 else '0'), # type: ignore
+                        'passing_yards_per_game': float(cols[6].text.strip()) if len(cols) > 6 and cols[6].text.strip() else 0, # type: ignore
+                        'passing_touchdowns': self._safe_convert_to_int(cols[7].text.strip() if len(cols) > 7 else '0'), # type: ignore
+                        'interceptions': self._safe_convert_to_int(cols[9].text.strip() if len(cols) > 9 else '0'), # type: ignore
+                        'passer_rating': float(cols[12].text.strip()) if len(cols) > 12 and cols[12].text.strip() else 0, # type: ignore
                     }
                     players.append(player_data)
             
-            df = pd.DataFrame(players)
-            logger.info(f"Scraped {len(df)} player passing statistics")
-            return df
+            logger.info(f"Scraped {len(players)} player passing statistics")
+            return players
             
         except Exception as e:
             logger.error(f"Error scraping passing stats: {str(e)}")
-            return pd.DataFrame()
+            return [] # type: ignore
 
-    def _get_rushing_stats(self) -> pd.DataFrame:
+    def _get_rushing_stats(self) -> List[Dict]: # type: ignore
         """
         Scrape rushing statistics from footballdb.com.
         
         Returns:
-            pd.DataFrame: DataFrame containing rushing statistics
+            List[Dict]: List of dictionaries containing rushing statistics.
         """
         logger.info("Scraping rushing statistics")
-        url = f"{self.base_url}/ufl/stats/2024/rushing"
+        # Current stats are for the 2024 season.  Update URL for future seasons.
+        url = f"{self.base_url}/statistics/ufl/player-stats/rushing/2024/regular-season"
         
         try:
             response = self._make_request(url)
             if not response:
                 logger.error("Failed to get rushing statistics")
-                return pd.DataFrame()
+                return []
                 
             soup = BeautifulSoup(response.content, 'html.parser')
             
@@ -161,7 +162,7 @@ class UFLScraper:
             table = soup.find('table')
             if not table:
                 logger.error("No stats table found on rushing stats page")
-                return pd.DataFrame()
+                return []
                 
             # Extract player data
             players = []
@@ -178,39 +179,39 @@ class UFLScraper:
                     # Extract stats
                     player_data = {
                         'name': player_name,
-                        'team': team_abbr,
-                        'games_played': self._safe_convert_to_int(cols[1].text.strip()),
-                        'rushing_attempts': self._safe_convert_to_int(cols[2].text.strip()),
-                        'rushing_yards': self._safe_convert_to_int(cols[3].text.strip()),
-                        'rushing_yards_per_attempt': float(cols[4].text.strip()) if cols[4].text.strip() else 0,
-                        'rushing_yards_per_game': float(cols[5].text.strip()) if cols[5].text.strip() else 0,
-                        'rushing_touchdowns': self._safe_convert_to_int(cols[7].text.strip()),
+                        'team': team_abbr, # type: ignore
+                        'games_played': self._safe_convert_to_int(cols[1].text.strip() if len(cols) > 1 else '0'), # type: ignore
+                        'rushing_attempts': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'), # type: ignore
+                        'rushing_yards': self._safe_convert_to_int(cols[3].text.strip() if len(cols) > 3 else '0'), # type: ignore
+                        'rushing_yards_per_attempt': float(cols[4].text.strip()) if len(cols) > 4 and cols[4].text.strip() else 0, # type: ignore
+                        'rushing_yards_per_game': float(cols[5].text.strip()) if len(cols) > 5 and cols[5].text.strip() else 0, # type: ignore
+                        'rushing_touchdowns': self._safe_convert_to_int(cols[7].text.strip() if len(cols) > 7 else '0'), # type: ignore
                     }
                     players.append(player_data)
             
-            df = pd.DataFrame(players)
-            logger.info(f"Scraped {len(df)} player rushing statistics")
-            return df
+            logger.info(f"Scraped {len(players)} player rushing statistics") # type: ignore
+            return players # type: ignore
             
         except Exception as e:
             logger.error(f"Error scraping rushing stats: {str(e)}")
-            return pd.DataFrame()
+            return [] # type: ignore
 
-    def _get_receiving_stats(self) -> pd.DataFrame:
+    def _get_receiving_stats(self) -> List[Dict]: # type: ignore
         """
         Scrape receiving statistics from footballdb.com.
         
         Returns:
-            pd.DataFrame: DataFrame containing receiving statistics
+            List[Dict]: List of dictionaries containing receiving statistics.
         """
         logger.info("Scraping receiving statistics")
-        url = f"{self.base_url}/ufl/stats/2024/receiving"
+        # Current stats are for the 2024 season.  Update URL for future seasons.
+        url = f"{self.base_url}/statistics/ufl/player-stats/receiving/2024/regular-season"
         
         try:
             response = self._make_request(url)
             if not response:
                 logger.error("Failed to get receiving statistics")
-                return pd.DataFrame()
+                return []
                 
             soup = BeautifulSoup(response.content, 'html.parser')
             
@@ -218,7 +219,7 @@ class UFLScraper:
             table = soup.find('table')
             if not table:
                 logger.error("No stats table found on receiving stats page")
-                return pd.DataFrame()
+                return []
                 
             # Extract player data
             players = []
@@ -232,223 +233,203 @@ class UFLScraper:
                     # Extract stats
                     player_data = {
                         'name': player_name,
-                        'team': team_abbr,
-                        'games_played': self._safe_convert_to_int(cols[1].text.strip()),
-                        'receptions': self._safe_convert_to_int(cols[2].text.strip()),
-                        'receiving_yards': self._safe_convert_to_int(cols[3].text.strip()),
-                        'receiving_yards_per_reception': float(cols[4].text.strip()) if cols[4].text.strip() else 0,
-                        'receiving_yards_per_game': float(cols[5].text.strip()) if cols[5].text.strip() else 0,
-                        'receiving_touchdowns': self._safe_convert_to_int(cols[7].text.strip()),
+                        'team': team_abbr, # type: ignore
+                        'games_played': self._safe_convert_to_int(cols[1].text.strip() if len(cols) > 1 else '0'), # type: ignore
+                        'receptions': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'), # type: ignore
+                        'receiving_yards': self._safe_convert_to_int(cols[3].text.strip() if len(cols) > 3 else '0'), # type: ignore
+                        'receiving_yards_per_reception': float(cols[4].text.strip()) if len(cols) > 4 and cols[4].text.strip() else 0, # type: ignore
+                        'receiving_yards_per_game': float(cols[5].text.strip()) if len(cols) > 5 and cols[5].text.strip() else 0, # type: ignore
+                        'receiving_touchdowns': self._safe_convert_to_int(cols[7].text.strip() if len(cols) > 7 else '0'), # type: ignore
                     }
                     players.append(player_data)
             
-            df = pd.DataFrame(players)
-            logger.info(f"Scraped {len(df)} player receiving statistics")
-            return df
+            logger.info(f"Scraped {len(players)} player receiving statistics") # type: ignore
+            return players # type: ignore
             
         except Exception as e:
             logger.error(f"Error scraping receiving stats: {str(e)}")
-            return pd.DataFrame()
+            return []
 
-    def _determine_positions(self, combined_df: pd.DataFrame) -> pd.DataFrame:
-        """
-        Determine player positions based on their stats.
-        
-        Args:
-            combined_df: DataFrame with combined player statistics
-            
-        Returns:
-            pd.DataFrame: DataFrame with position information added
-        """
-        # Create a copy to avoid modifying the original
-        df = combined_df.copy()
-        
-        # Players already with a position (from passing stats) keep their position
-        # For others, determine based on stats:
-        
-        # Define position determination logic
-        def determine_position(row):
-            if pd.notna(row.get('position')):
-                return row['position']
-            
-            # QBs have significant passing stats
-            if pd.notna(row.get('passing_yards')) and row['passing_yards'] > 100:
-                return 'QB'
-                
-            # RBs have more rushing than receiving yards
-            if (pd.notna(row.get('rushing_yards')) and pd.notna(row.get('receiving_yards')) and 
-                row['rushing_yards'] > row['receiving_yards']):
-                return 'RB'
-                
-            # WRs have significant receiving yards
-            if pd.notna(row.get('receiving_yards')) and row['receiving_yards'] > 100:
-                return 'WR'
-                
-            # TEs have moderate receiving yards
-            if pd.notna(row.get('receiving_yards')) and 50 <= row['receiving_yards'] <= 400:
-                # This is a rough heuristic - in reality we'd need more data
-                return 'TE'
-                
-            # Default to WR if they have any receiving stats
-            if pd.notna(row.get('receiving_yards')) and row['receiving_yards'] > 0:
-                return 'WR'
-                
-            # Default to RB if they have any rushing stats
-            if pd.notna(row.get('rushing_yards')) and row['rushing_yards'] > 0:
-                return 'RB'
-                
-            # If we can't determine, use a default
-            return 'UNKNOWN'
-        
-        # Apply position determination
-        df['position'] = df.apply(determine_position, axis=1)
-        
-        # Log position distribution
-        position_counts = df['position'].value_counts()
-        logger.info(f"Position distribution: {position_counts.to_dict()}")
-        
-        return df
+    def _get_kickoff_return_stats(self) -> List[Dict]: # type: ignore
+        """Scrape kickoff return statistics."""
+        logger.info("Scraping kickoff return statistics")
+        # Current stats are for the 2024 season. Update URL for future seasons.
+        url = f"{self.base_url}/statistics/ufl/player-stats/kickoff-returns/2024/regular-season"
 
-    def get_player_stats(self, week: Optional[int] = None) -> pd.DataFrame:
-        """
-        Scrape player statistics from footballdb.com.
-        
-        This method combines passing, rushing, and receiving statistics
-        into a comprehensive player dataset.
-        
-        Args:
-            week: Optional week number to filter stats
-            
-        Returns:
-            pd.DataFrame: DataFrame containing player statistics
-        """
-        players: List[Dict] = []
-        
         try:
-            logger.info(f"Getting player stats for week: {week if week else 'all'}")
-            
-            # Get stats from different categories
-            passing_df = self._get_passing_stats()
-            rushing_df = self._get_rushing_stats()
-            receiving_df = self._get_receiving_stats()
-            
-            if passing_df.empty and rushing_df.empty and receiving_df.empty:
-                logger.error("Failed to retrieve any player statistics")
-                return pd.DataFrame()
-            
-            # Combine the dataframes
-            logger.info("Combining player statistics")
-            
-            # Start with a list of all unique players
-            all_players = set()
-            for df in [passing_df, rushing_df, receiving_df]:
-                if not df.empty:
-                    all_players.update(df['name'].tolist())
-            
-            logger.info(f"Found {len(all_players)} unique players")
-            
-            # Create a combined dataframe with all player stats
-            combined_data = []
-            
-            for player_name in all_players:
-                player_data = {'name': player_name}
-                
-                # Get player's team (should be consistent across dataframes)
-                team = None
-                for df in [passing_df, rushing_df, receiving_df]:
-                    if not df.empty and player_name in df['name'].values:
-                        team = df.loc[df['name'] == player_name, 'team'].iloc[0]
-                        break
-                
-                player_data['team'] = team
-                
-                # Add passing stats if available
-                if not passing_df.empty and player_name in passing_df['name'].values:
-                    pass_data = passing_df.loc[passing_df['name'] == player_name].iloc[0].to_dict()
-                    for key, value in pass_data.items():
-                        if key not in ['name', 'team']:  # Avoid duplicating these fields
-                            player_data[key] = value
-                
-                # Add rushing stats if available
-                if not rushing_df.empty and player_name in rushing_df['name'].values:
-                    rush_data = rushing_df.loc[rushing_df['name'] == player_name].iloc[0].to_dict()
-                    for key, value in rush_data.items():
-                        if key not in ['name', 'team']:  # Avoid duplicating these fields
-                            player_data[key] = value
-                
-                # Add receiving stats if available
-                if not receiving_df.empty and player_name in receiving_df['name'].values:
-                    rec_data = receiving_df.loc[receiving_df['name'] == player_name].iloc[0].to_dict()
-                    for key, value in rec_data.items():
-                        if key not in ['name', 'team']:  # Avoid duplicating these fields
-                            player_data[key] = value
-                
-                combined_data.append(player_data)
-            
-            # Create combined DataFrame
-            df = pd.DataFrame(combined_data)
-            
-            # Determine positions for players
-            df = self._determine_positions(df)
-            
-            # Fill NaN values with 0 for numeric columns
-            numeric_cols = [
-                'passing_attempts', 'passing_completions', 'passing_yards', 'passing_touchdowns',
-                'rushing_attempts', 'rushing_yards', 'rushing_touchdowns',
-                'receptions', 'receiving_yards', 'receiving_touchdowns',
-                'interceptions'
-            ]
-            
-            for col in numeric_cols:
-                if col in df.columns:
-                    df[col] = df[col].fillna(0)
-            
-            # Add timestamp and week
-            df['timestamp'] = pd.Timestamp.now()
-            if week:
-                df['week'] = week
-            else:
-                # If no specific week, assume it's the current week
-                df['week'] = self._get_current_week()
-            
-            # Calculate total touchdowns
-            td_cols = ['passing_touchdowns', 'rushing_touchdowns', 'receiving_touchdowns']
-            df['touchdowns'] = df[[col for col in td_cols if col in df.columns]].sum(axis=1)
-            
-            # Save checkpoint
-            if not df.empty:
-                checkpoint_path = f'data/raw/player_stats_week_{week}_{pd.Timestamp.now().strftime("%Y%m%d_%H%M%S")}.csv'
-                # Ensure directory exists
-                Path(checkpoint_path).parent.mkdir(parents=True, exist_ok=True)
-                df.to_csv(checkpoint_path, index=False)
-                logger.info(f"Saved checkpoint to {checkpoint_path}")
-                
-            logger.info(f"Successfully compiled stats for {len(df)} players")
-            return df
-            
+            response = self._make_request(url)
+            if not response:
+                logger.error("Failed to get kickoff return statistics")
+                return []
+
+            soup = BeautifulSoup(response.content, 'html.parser')
+            table = soup.find('table')
+            if not table:
+                logger.error("No stats table found on kickoff return stats page")
+                return []
+
+            players = []
+            for row in table.find_all('tr')[1:]:
+                cols = row.find_all('td')
+                if len(cols) > 0:
+                    player_data = {
+                        'name': cols[0].text.strip(),
+                        'team': cols[1].text.strip(),
+                        'kickoff_returns': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'), # type: ignore
+                        'kickoff_return_yards': self._safe_convert_to_int(cols[3].text.strip() if len(cols) > 3 else '0'), # type: ignore
+                        'kickoff_return_yards_per_return': float(cols[4].text.strip()) if len(cols) > 4 and cols[4].text.strip() else 0, # type: ignore
+                        'kickoff_return_touchdowns': self._safe_convert_to_int(cols[5].text.strip() if len(cols) > 5 else '0'), # type: ignore
+                    }
+                    players.append(player_data)
+
+            logger.info(f"Scraped {len(players)} player kickoff return statistics")
+            return players
+
         except Exception as e:
-            logger.error(f"Error scraping player stats: {str(e)}")
-            return pd.DataFrame()
-    
-    def _get_current_week(self) -> int:
-        """
-        Determine the current UFL week based on the schedule.
-        
-        Returns:
-            int: Current week number
-        """
+            logger.error(f"Error scraping kickoff return stats: {str(e)}")
+            return []
+
+    def _get_punt_return_stats(self) -> List[Dict]: # type: ignore
+        """Scrape punt return statistics."""
+        logger.info("Scraping punt return statistics")
+        # Current stats are for the 2024 season. Update URL for future seasons.
+        url = f"{self.base_url}/statistics/ufl/player-stats/punt-returns/2024/regular-season"
+
         try:
-            # This is a simplified approach - in a real implementation,
-            # we would scrape the schedule and determine the current week
-            # based on the current date
-            
-            # For now, we'll use a hardcoded value for the 2024 season
-            # In a real implementation, this would be determined dynamically
-            return 10  # Assuming we're in week 10 of the UFL season
-            
+            response = self._make_request(url)
+            if not response:
+                logger.error("Failed to get punt return statistics")
+                return []
+
+            soup = BeautifulSoup(response.content, 'html.parser')
+            table = soup.find('table')
+            if not table:
+                logger.error("No stats table found on punt return stats page")
+                return []
+
+            players = []
+            for row in table.find_all('tr')[1:]:
+                cols = row.find_all('td')
+                if len(cols) > 0:
+                    player_data = {
+                        'name': cols[0].text.strip(),
+                        'team': cols[1].text.strip(),
+                        'punt_returns': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'), # type: ignore
+                        'punt_return_yards': self._safe_convert_to_int(cols[3].text.strip() if len(cols) > 3 else '0'), # type: ignore
+                        'punt_return_yards_per_return': float(cols[4].text.strip()) if len(cols) > 4 and cols[4].text.strip() else 0, # type: ignore
+                        'punt_return_touchdowns': self._safe_convert_to_int(cols[5].text.strip() if len(cols) > 5 else '0'), # type: ignore
+                    }
+                    players.append(player_data)
+
+            logger.info(f"Scraped {len(players)} player punt return statistics")
+            return players
+
         except Exception as e:
-            logger.error(f"Error determining current week: {str(e)}")
-            return 1  # Default to week 1 if we can't determine
+            logger.error(f"Error scraping punt return stats: {str(e)}")
+            return []
+
+    def _get_defensive_stats(self) -> List[Dict]: # type: ignore
+        """Scrape defensive statistics."""
+        logger.info("Scraping defensive statistics")
+        # Current stats are for the 2024 season. Update URL for future seasons.
+        url = f"{self.base_url}/statistics/ufl/player-stats/defense/2024/regular-season"
+
+        try:
+            response = self._make_request(url)
+            if not response:
+                logger.error("Failed to get defensive statistics")
+                return []
+
+            soup = BeautifulSoup(response.content, 'html.parser')
+            table = soup.find('table')
+            if not table:
+                logger.error("No stats table found on defensive stats page")
+                return []
+
+            players = []
+            for row in table.find_all('tr')[1:]:
+                cols = row.find_all('td')
+                if len(cols) > 0:
+                    player_data = {
+                        'name': cols[0].text.strip(),
+                        'team': cols[1].text.strip(),
+                        'tackles': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'), # type: ignore
+                        'sacks': float(cols[3].text.strip()) if len(cols) > 3 and cols[3].text.strip() else 0, # type: ignore
+                        'interceptions': self._safe_convert_to_int(cols[4].text.strip() if len(cols) > 4 else '0'), # type: ignore
+                        'forced_fumbles': self._safe_convert_to_int(cols[5].text.strip() if len(cols) > 5 else '0'), # type: ignore
+                    }
+                    players.append(player_data)
+
+            logger.info(f"Scraped {len(players)} player defensive statistics")
+            return players
+
+        except Exception as e:
+            logger.error(f"Error scraping defensive stats: {str(e)}")
+            return []
+
+    def _get_yards_from_scrimmage_stats(self) -> List[Dict]: # type: ignore
+        """Scrape yards from scrimmage statistics."""
+        logger.info("Scraping yards from scrimmage statistics")
+        # Current stats are for the 2024 season. Update URL for future seasons.
+        url = f"{self.base_url}/statistics/ufl/player-stats/yards-from-scrimmage/2024/regular-season"
+
+        try:
+            response = self._make_request(url)
+            if not response:
+                logger.error("Failed to get yards from scrimmage statistics")
+                return []
+
+            soup = BeautifulSoup(response.content, 'html.parser')
+            table = soup.find('table')
+            if not table:
+                logger.error("No stats table found on yards from scrimmage stats page")
+                return []
+
+            players = []
+            for row in table.find_all('tr')[1:]:
+                cols = row.find_all('td')
+                if len(cols) > 0:
+                    player_data = {
+                        'name': cols[0].text.strip(),
+                        'team': cols[1].text.strip(),
+                        'rushing_yards': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'), # type: ignore
+                        'receiving_yards': self._safe_convert_to_int(cols[3].text.strip() if len(cols) > 3 else '0'), # type: ignore
+                        'total_yards_from_scrimmage': self._safe_convert_to_int(cols[4].text.strip() if len(cols) > 4 else '0'), # type: ignore
+                    }
+                    players.append(player_data)
+
+            logger.info(f"Scraped {len(players)} player yards from scrimmage statistics")
+            return players
+
+        except Exception as e:
+            logger.error(f"Error scraping yards from scrimmage stats: {str(e)}")
+            return []
+
+
+    def scrape_player_data(self) -> List[Dict]:
+        """
+        Scrape player statistics (passing, rushing, receiving) from footballdb.com.
+
+        Returns:
+            List[Dict]: Combined raw player data.
+    """
+        logger.info("Scraping all player data...") # type: ignore
+        passing_data = self._get_passing_stats()
+        rushing_data = self._get_rushing_stats()
+        receiving_data = self._get_receiving_stats()
+        kickoff_return_data = self._get_kickoff_return_stats()
+        punt_return_data = self._get_punt_return_stats()
+        defensive_data = self._get_defensive_stats()
+        yards_from_scrimmage_data = self._get_yards_from_scrimmage_stats()
+
+
+        # Combine the data
+        all_data = passing_data + rushing_data + receiving_data
+        logger.info(f"Scraped data for a total of {len(all_data)} players")
+        return all_data
+
+    # Remaining methods (get_fantasy_prices, _calculate_fantasy_salary, _safe_convert_to_int) remain unchanged
+
             
     def get_fantasy_prices(self, platform: str = 'draftkings') -> pd.DataFrame:
         """

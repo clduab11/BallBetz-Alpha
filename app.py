@@ -53,6 +53,9 @@ try:
 except Exception as e:
     logger.error(f"Error initializing components: {str(e)}")
     raise
+from scheduler import create_scheduler
+
+
 
 # Constants
 BANKROLL_FILE = Path('data/bankroll.json')
@@ -310,3 +313,8 @@ if __name__ == '__main__':
     setup_directories()
     logger.info("BallBetz application starting")
     app.run(debug=True)
+    # Initialize and start the scheduler
+    if os.environ.get('WERKZEUG_RUN_MAIN') == 'true':  # Only run in main process
+        scheduler = create_scheduler()
+        scheduler.start()
+        logger.info('Scheduler started.')

@@ -4,7 +4,9 @@ from wtforms import (
     PasswordField, 
     BooleanField, 
     SubmitField, 
-    SelectField
+    SelectField,
+    IntegerField,
+    TextAreaField
 )
 from wtforms.validators import (
     DataRequired, 
@@ -12,7 +14,8 @@ from wtforms.validators import (
     EqualTo, 
     Length, 
     ValidationError,
-    Regexp
+    Regexp,
+    NumberRange
 )
 import re
 from models import User
@@ -111,3 +114,54 @@ class TwoFactorForm(FlaskForm):
     ])
     remember_device = BooleanField('Remember this device for 30 days')
     submit = SubmitField('Verify')
+
+class DataSharingSettingsForm(FlaskForm):
+    """Form for managing data sharing settings."""
+    profile_visibility = BooleanField('Profile Visibility', 
+        description='Allow other users to see your profile information')
+    betting_history = BooleanField('Betting History', 
+        description='Share your anonymized betting history to improve platform predictions')
+    favorite_teams = BooleanField('Favorite Teams', 
+        description='Share your favorite teams to receive personalized recommendations')
+    betting_patterns = BooleanField('Betting Patterns', 
+        description='Share your betting patterns to help improve the platform algorithms')
+    platform_usage = BooleanField('Platform Usage', 
+        description='Share your platform usage data to help us improve the user experience')
+    performance_stats = BooleanField('Performance Stats', 
+        description='Share your performance statistics to contribute to community insights')
+    submit = SubmitField('Save Settings')
+
+class RewardsRedemptionForm(FlaskForm):
+    """Form for redeeming rewards points."""
+    reward_type = SelectField('Reward Type', choices=[
+        ('subscription_discount', 'Subscription Discount'),
+        ('premium_feature', 'Premium Feature Access'),
+        ('exclusive_content', 'Exclusive Content'),
+        ('custom_analysis', 'Custom Analysis Report')
+    ], validators=[DataRequired()])
+    points_to_spend = IntegerField('Points to Spend', validators=[
+        DataRequired(),
+        NumberRange(min=100, message='Minimum redemption is 100 points')
+    ])
+    submit = SubmitField('Redeem Points')
+
+class ManualPointsAdjustmentForm(FlaskForm):
+    """Admin form for manually adjusting user points."""
+    user_email = StringField('User Email', validators=[
+        DataRequired(),
+        Email(message="Please enter a valid email address")
+    ])
+    points = IntegerField('Points (positive or negative)', validators=[
+        DataRequired()
+    ])
+    action = SelectField('Action Type', choices=[
+        ('manual_adjustment', 'Manual Adjustment'),
+        ('bonus_points', 'Bonus Points'),
+        ('correction', 'Correction'),
+        ('promotion', 'Promotional Award')
+    ], validators=[DataRequired()])
+    description = TextAreaField('Description', validators=[
+        DataRequired(),
+        Length(max=200, message='Description must be less than 200 characters')
+    ])
+    submit = SubmitField('Adjust Points')

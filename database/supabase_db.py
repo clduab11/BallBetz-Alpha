@@ -239,6 +239,230 @@ class SupabaseDB:
         except APIError as e:
             logger.error(f"Failed to create audit log: {str(e)}")
             return False
+            
+    async def get_user_rewards_data(self, user_id: str) -> Optional[Dict[str, Any]]:
+        """Get a user's rewards data."""
+        try:
+            response = await self.client.table('user_profiles').select(
+                'rewards_tier', 'rewards_points', 'data_sharing_level'
+            ).eq('id', user_id).execute()
+            
+            if not response.data:
+                return None
+                
+            return response.data[0]
+        except APIError as e:
+            logger.error(f"Failed to get user rewards data: {str(e)}")
+            return None
+            
+    async def update_user_rewards_data(self, user_id: str, updates: Dict[str, Any]) -> bool:
+        """Update a user's rewards data."""
+        try:
+            allowed_fields = {'rewards_tier', 'rewards_points', 'data_sharing_level'}
+            filtered_updates = {k: v for k, v in updates.items() if k in allowed_fields}
+            
+            if not filtered_updates:
+                return False
+                
+            response = await self.client.table('user_profiles').update(
+                filtered_updates
+            ).eq('id', user_id).execute()
+            
+            return bool(response.data)
+        except APIError as e:
+            logger.error(f"Failed to update user rewards data: {str(e)}")
+            return False
+            
+    async def add_rewards_points(self, user_id: str, points: int, action: str, description: str = None) -> bool:
+        """Add rewards points to a user's account and record in history."""
+        try:
+            # Get current points
+            user_data = await self.get_user_rewards_data(user_id)
+            if not user_data:
+                return False
+                
+            current_points = user_data.get('rewards_points', 0)
+            new_points = current_points + points
+            
+            # Update user profile
+            await self.update_user_rewards_data(user_id, {'rewards_points': new_points})
+            
+            # Record in history
+            await self.client.table('rewards_points_history').insert({
+                'user_id': user_id,
+                'points': points,
+                'action': action,
+                'description': description
+            }).execute()
+            
+            # Check if tier upgrade is needed
+            await self.check_rewards_tier_change(user_id)
+            
+            return True
+        except APIError as e:
+            logger.error(f"Failed to add rewards points: {str(e)}")
+            return False
+            
+    async def redeem_rewards_points(self, user_id: str, points: int, reward_type: str, reward_description: str = None) -> bool:
+        """Redeem rewards points for a reward."""
+        try:
+            # Get current points
+            user_data = await self.get_user_rewards_data(user_id)
+            if not user_data:
+                return False
+                
+            current_points = user_data.get('rewards_points', 0)
+            
+            # Check if user has enough points
+            if current_points < points:
+                return False
+                
+            # Update user's points
+            new_points = current_points - points
+            await self.update_user_rewards_data(user_id, {'rewards_points': new_points})
+            
+            # Record redemption
+            await self.client.table('rewards_redemption_history').insert({
+                'user_id': user_id,
+                'points_spent': points,
+                'reward_type': reward_type,
+                'reward_description': reward_description
+            }).execute()
+            
+            # Check if tier downgrade is needed
+            await self.check_rewards_tier_change(user_id)
+            
+            return True
+        except APIError as e:
+            logger.error(f"Failed to redeem rewards points: {str(e)}")
+            return False
+            
+    async def check_rewards_tier_change(self, user_id: str) -> bool:
+        """Check if user's rewards tier should change based on points and data sharing level."""
+        try:
+            # Get user data
+            user_data = await self.get_user_rewards_data(user_id)
+            if not user_data:
+                return False
+                
+            current_points = user_data.get('rewards_points', 0)
+            current_tier = user_data.get('rewards_tier', 'rookie')
+            data_sharing_level = user_data.get('data_sharing_level', 1)
+            
+            # Get tier requirements
+            response = await self.client.table('rewards_tier_requirements').select('*').execute()
+            if not response.data:
+                return False
+                
+            # Find appropriate tier
+            appropriate_tier = 'rookie'
+            for tier_req in response.data:
+                if (current_points >= tier_req['min_points'] and 
+                    data_sharing_level >= tier_req['min_data_sharing_level']):
+                    if tier_req['tier'] in ['mvp', 'all_star', 'rookie'] and tier_req['tier'] > appropriate_tier:
+                        appropriate_tier = tier_req['tier']
+            
+            # Update tier if needed
+            if current_tier != appropriate_tier:
+                await self.update_user_rewards_data(user_id, {'rewards_tier': appropriate_tier})
+                
+                # Record tier change in audit log
+                await self.create_audit_log(
+                    user_id,
+                    'rewards_tier_changed',
+                    {
+                        'previous_tier': current_tier,
+                        'new_tier': appropriate_tier
+                    }
+                )
+                return True
+            return False
+        except APIError as e:
+            logger.error(f"Failed to check rewards tier change: {str(e)}")
+            return False
+            
+    async def get_rewards_tier_benefits(self, tier: str = None) -> List[Dict[str, Any]]:
+        """Get benefits for a specific tier or all tiers."""
+        try:
+            if tier:
+                response = await self.client.table('rewards_tier_benefits').select('*').eq('tier', tier).execute()
+            else:
+                response = await self.client.table('rewards_tier_benefits').select('*').execute()
+            return response.data
+        except APIError as e:
+            logger.error(f"Failed to get tier benefits: {str(e)}")
+            return []
+            
+    async def get_rewards_tier_requirements(self, tier: str = None) -> List[Dict[str, Any]]:
+        """Get requirements for a specific tier or all tiers."""
+        try:
+            if tier:
+                response = await self.client.table('rewards_tier_requirements').select('*').eq('tier', tier).execute()
+            else:
+                response = await self.client.table('rewards_tier_requirements').select('*').execute()
+            return response.data
+        except APIError as e:
+            logger.error(f"Failed to get tier requirements: {str(e)}")
+            return []
+            
+    async def get_rewards_points_history(self, user_id: str) -> List[Dict[str, Any]]:
+        """Get points history for a user."""
+        try:
+            response = await self.client.table('rewards_points_history').select('*').eq('user_id', user_id).order('created_at', {'ascending': False}).execute()
+            return response.data
+        except APIError as e:
+            logger.error(f"Failed to get points history: {str(e)}")
+            return []
+            
+    async def get_rewards_redemption_history(self, user_id: str) -> List[Dict[str, Any]]:
+        """Get redemption history for a user."""
+        try:
+            response = await self.client.table('rewards_redemption_history').select('*').eq('user_id', user_id).order('created_at', {'ascending': False}).execute()
+            return response.data
+        except APIError as e:
+            logger.error(f"Failed to get redemption history: {str(e)}")
+            return []
+            
+    async def get_user_data_sharing_settings(self, user_id: str) -> List[Dict[str, Any]]:
+        """Get user's data sharing settings."""
+        try:
+            response = await self.client.table('user_data_sharing_settings').select('*').eq('user_id', user_id).execute()
+            return response.data
+        except APIError as e:
+            logger.error(f"Failed to get data sharing settings: {str(e)}")
+            return []
+            
+    async def update_user_data_sharing_settings(self, user_id: str, settings: Dict[str, bool]) -> bool:
+        """Update user's data sharing settings."""
+        try:
+            # Update each setting
+            for setting_name, is_enabled in settings.items():
+                await self.client.table('user_data_sharing_settings').update({
+                    'is_enabled': is_enabled
+                }).eq('user_id', user_id).eq('setting_name', setting_name).execute()
+            
+            # Calculate new data sharing level
+            response = await self.client.table('user_data_sharing_settings').select('is_enabled').eq('user_id', user_id).execute()
+            enabled_count = sum(1 for setting in response.data if setting['is_enabled'])
+            
+            # Determine data sharing level based on enabled settings count
+            if enabled_count >= 5:
+                new_level = 3  # Comprehensive
+            elif enabled_count >= 3:
+                new_level = 2  # Moderate
+            else:
+                new_level = 1  # Basic
+            
+            # Update user profile with new data sharing level
+            await self.update_user_rewards_data(user_id, {'data_sharing_level': new_level})
+            
+            # Check if tier upgrade is needed
+            await self.check_rewards_tier_change(user_id)
+            
+            return True
+        except APIError as e:
+            logger.error(f"Failed to update data sharing settings: {str(e)}")
+            return False
 
 # Initialize database interface
 db = SupabaseDB()

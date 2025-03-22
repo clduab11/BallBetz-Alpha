@@ -52,3 +52,975 @@ Demonstrating fallback mechanism:
 2025-03-09 15:17:08,873 - models.model_interface - ERROR - Error making predictions with sklearn model: This StandardScaler instance is not fitted yet. Call 'fit' with appropriate arguments before using this estimator.
 2025-03-09 15:17:08,873 - models.predictor - INFO - Predictions successfully generated using provider: ModelProvider.SKLEARN
 2025-03-09 15:17:08,873 - __main__ - INFO - Fallback not enabled or no available fallback providers
+2025-03-22 08:17:24,912 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:17:24,948 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 08:17:24,949 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 08:17:24,949 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 08:17:24,986 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-22 08:17:24,986 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-22 08:17:24,989 - models.model_interface - INFO - Feature preparation complete: 4 features created
+2025-03-22 08:17:24,989 - models.model_interface - INFO - Features prepared: (3, 4)
+2025-03-22 08:17:24,989 - models.model_interface - INFO - Features scaled successfully
+2025-03-22 08:17:24,989 - models.model_interface - INFO - Predictions generated: 2 values
+2025-03-22 08:17:24,989 - models.model_interface - ERROR - Error making predictions with sklearn model: Mock object has no attribute 'estimators_'
+2025-03-22 08:17:25,098 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:17:25,098 - models.model_interface - INFO - Making predictions for 1 players using Ollama model
+2025-03-22 08:17:25,099 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:17:25,617 - models.model_interface - INFO - Making predictions for 1 players using OpenAI model
+2025-03-22 08:17:25,617 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:17:25,619 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:17:25,619 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:17:25,625 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:17:25,626 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:17:25,626 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:17:25,627 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:17:25,627 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:17:25,628 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:17:25,633 - models.predictor - ERROR - Error during training: Cannot have number of splits n_splits=5 greater than the number of samples: n_samples=4.
+2025-03-22 08:17:25,642 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:17:25,642 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:17:25,651 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:17:25,651 - models.predictor - INFO - Making predictions using provider: ollama
+2025-03-22 08:17:25,651 - models.model_interface - INFO - Making predictions for 5 players using Ollama model
+2025-03-22 08:18:02,068 - models.model_interface - WARNING - Could not extract prediction from response: I can't provide real-time or future-based information, including predicting fantasy points for a specific player in their next game. I can help with general information about daily fantasy sports and fantasy football. Would you like to know more about those topics?
+2025-03-22 08:18:02,071 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:18:02,071 - models.predictor - INFO - Predictions successfully generated using provider: ollama
+2025-03-22 08:18:02,083 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:18:02,083 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:18:02,092 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:18:02,093 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:18:02,093 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:18:02,094 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:18:02,094 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:18:02,096 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:18:02,103 - models.predictor - ERROR - Error during training: Cannot have number of splits n_splits=5 greater than the number of samples: n_samples=4.
+2025-03-22 08:18:02,105 - models.predictor - INFO - Model saved to /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-6/test_save_load_model0/test_model.joblib
+2025-03-22 08:18:02,105 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:18:02,105 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:18:02,112 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:18:02,113 - models.predictor - INFO - Loading model from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-6/test_save_load_model0/test_model.joblib
+2025-03-22 08:18:02,115 - models.predictor - INFO - Model successfully loaded from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-6/test_save_load_model0/test_model.joblib
+2025-03-22 08:18:02,115 - models.predictor - INFO - Model metadata: []
+2025-03-22 08:18:02,122 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-22 08:18:02,123 - optimizers.lineup_optimizer - INFO - === DIAGNOSTIC: optimize method called ===
+2025-03-22 08:18:02,123 - optimizers.lineup_optimizer - INFO - Method signature: (self, player_pool: pandas.core.frame.DataFrame, salary_cap: Optional[int] = None, min_salary: Optional[float] = None, max_lineups: int = 1, min_lineup_diff: int = 3, min_stack_size: int = 2) -> pandas.core.frame.DataFrame
+2025-03-22 08:18:02,123 - optimizers.lineup_optimizer - INFO - Received parameters: player_pool shape=(3, 5), salary_cap=None, min_salary=None, max_lineups=1, min_lineup_diff=3, min_stack_size=2
+2025-03-22 08:18:02,123 - optimizers.lineup_optimizer - INFO - Using default salary cap: $50,000
+2025-03-22 08:18:02,123 - optimizers.lineup_optimizer - INFO - Optimizing 1 lineups for draftkings
+2025-03-22 08:18:02,123 - optimizers.lineup_optimizer - INFO - Salary cap: $50,000
+2025-03-22 08:18:02,124 - optimizers.lineup_optimizer - WARNING - Could not find optimal solution for lineup 1
+2025-03-22 08:18:02,130 - scrapers.ufl_scraper - INFO - Scraping all player data...
+2025-03-22 08:18:02,130 - scrapers.ufl_scraper - INFO - Scraping kickoff return statistics
+2025-03-22 08:18:02,132 - scrapers.ufl_scraper - ERROR - Error scraping kickoff return stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:18:02,132 - scrapers.ufl_scraper - INFO - Scraping punt return statistics
+2025-03-22 08:18:02,132 - scrapers.ufl_scraper - ERROR - Error scraping punt return stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:18:02,132 - scrapers.ufl_scraper - INFO - Scraping defensive statistics
+2025-03-22 08:18:02,133 - scrapers.ufl_scraper - ERROR - Error scraping defensive stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:18:02,133 - scrapers.ufl_scraper - INFO - Scraping yards from scrimmage statistics
+2025-03-22 08:18:02,133 - scrapers.ufl_scraper - ERROR - Error scraping yards from scrimmage stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:18:02,133 - scrapers.ufl_scraper - INFO - Scraped data for a total of 3 players
+2025-03-22 08:18:02,137 - scrapers.ufl_scraper - INFO - Getting fantasy prices for draftkings
+2025-03-22 08:18:02,137 - scrapers.ufl_scraper - ERROR - Error generating fantasy prices: 'UFLScraper' object has no attribute 'get_player_stats'
+2025-03-22 08:18:02,146 - utils.data_processor - INFO - Saved checkpoint to BallBetz-Alpha/data/raw/player_stats_week_None_20250322_081802.csv
+2025-03-22 08:18:23,787 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:18:23,824 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 08:18:23,824 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 08:18:23,824 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 08:18:23,861 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-22 08:18:23,862 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-22 08:18:23,864 - models.model_interface - INFO - Feature preparation complete: 4 features created
+2025-03-22 08:18:23,864 - models.model_interface - INFO - Features prepared: (3, 4)
+2025-03-22 08:18:23,864 - models.model_interface - INFO - Features scaled successfully
+2025-03-22 08:18:23,864 - models.model_interface - INFO - Predictions generated: 3 values
+2025-03-22 08:18:23,865 - models.model_interface - INFO - Prediction intervals calculated
+2025-03-22 08:18:23,865 - models.model_interface - ERROR - Error making predictions with sklearn model: Length of values (0) does not match length of index (3)
+2025-03-22 08:18:23,981 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:18:23,982 - models.model_interface - INFO - Making predictions for 1 players using Ollama model
+2025-03-22 08:18:23,982 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:18:24,495 - models.model_interface - INFO - Making predictions for 1 players using OpenAI model
+2025-03-22 08:18:24,496 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:18:24,500 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:18:24,500 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:18:24,506 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:18:24,506 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:18:24,506 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:18:24,507 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:18:24,507 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:18:24,509 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:18:24,513 - models.predictor - ERROR - Error during training: Cannot have number of splits n_splits=5 greater than the number of samples: n_samples=4.
+2025-03-22 08:18:24,521 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:18:24,522 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:18:24,526 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:18:24,527 - models.predictor - INFO - Making predictions using provider: ollama
+2025-03-22 08:18:24,527 - models.model_interface - INFO - Making predictions for 5 players using Ollama model
+2025-03-22 08:18:59,661 - models.model_interface - WARNING - Could not extract prediction from response: I can't provide real-time or future-based information, including predicting fantasy points for a specific player in their next game. I can help with general information about daily fantasy sports and fantasy football. Would you like to know more about those topics?
+2025-03-22 08:18:59,661 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:18:59,661 - models.predictor - INFO - Predictions successfully generated using provider: ollama
+2025-03-22 08:18:59,669 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:18:59,670 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:18:59,677 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:18:59,677 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:18:59,677 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:18:59,678 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:18:59,678 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:18:59,679 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:18:59,684 - models.predictor - ERROR - Error during training: Cannot have number of splits n_splits=5 greater than the number of samples: n_samples=4.
+2025-03-22 08:18:59,685 - models.predictor - INFO - Model saved to /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-7/test_save_load_model0/test_model.joblib
+2025-03-22 08:18:59,686 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:18:59,686 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:18:59,691 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:18:59,691 - models.predictor - INFO - Loading model from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-7/test_save_load_model0/test_model.joblib
+2025-03-22 08:18:59,693 - models.predictor - INFO - Model successfully loaded from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-7/test_save_load_model0/test_model.joblib
+2025-03-22 08:18:59,693 - models.predictor - INFO - Model metadata: []
+2025-03-22 08:18:59,700 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-22 08:18:59,702 - optimizers.lineup_optimizer - INFO - === DIAGNOSTIC: optimize method called ===
+2025-03-22 08:18:59,702 - optimizers.lineup_optimizer - INFO - Method signature: (self, player_pool: pandas.core.frame.DataFrame, salary_cap: Optional[int] = None, min_salary: Optional[float] = None, max_lineups: int = 1, min_lineup_diff: int = 3, min_stack_size: int = 2) -> pandas.core.frame.DataFrame
+2025-03-22 08:18:59,702 - optimizers.lineup_optimizer - INFO - Received parameters: player_pool shape=(3, 5), salary_cap=None, min_salary=None, max_lineups=1, min_lineup_diff=3, min_stack_size=2
+2025-03-22 08:18:59,703 - optimizers.lineup_optimizer - INFO - Using default salary cap: $50,000
+2025-03-22 08:18:59,703 - optimizers.lineup_optimizer - INFO - Optimizing 1 lineups for draftkings
+2025-03-22 08:18:59,703 - optimizers.lineup_optimizer - INFO - Salary cap: $50,000
+2025-03-22 08:18:59,703 - optimizers.lineup_optimizer - WARNING - Could not find optimal solution for lineup 1
+2025-03-22 08:18:59,708 - scrapers.ufl_scraper - INFO - Scraping all player data...
+2025-03-22 08:18:59,708 - scrapers.ufl_scraper - INFO - Scraping kickoff return statistics
+2025-03-22 08:18:59,709 - scrapers.ufl_scraper - ERROR - Error scraping kickoff return stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:18:59,709 - scrapers.ufl_scraper - INFO - Scraping punt return statistics
+2025-03-22 08:18:59,710 - scrapers.ufl_scraper - ERROR - Error scraping punt return stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:18:59,710 - scrapers.ufl_scraper - INFO - Scraping defensive statistics
+2025-03-22 08:18:59,710 - scrapers.ufl_scraper - ERROR - Error scraping defensive stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:18:59,710 - scrapers.ufl_scraper - INFO - Scraping yards from scrimmage statistics
+2025-03-22 08:18:59,710 - scrapers.ufl_scraper - ERROR - Error scraping yards from scrimmage stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:18:59,710 - scrapers.ufl_scraper - INFO - Scraped data for a total of 3 players
+2025-03-22 08:18:59,711 - scrapers.ufl_scraper - INFO - Getting fantasy prices for draftkings
+2025-03-22 08:18:59,711 - scrapers.ufl_scraper - ERROR - Error generating fantasy prices: 'UFLScraper' object has no attribute 'get_player_stats'
+2025-03-22 08:18:59,718 - utils.data_processor - INFO - Saved checkpoint to BallBetz-Alpha/data/raw/player_stats_week_None_20250322_081859.csv
+2025-03-22 08:20:25,737 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:20:25,770 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 08:20:25,770 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 08:20:25,770 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 08:20:25,805 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-22 08:20:25,805 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-22 08:20:25,807 - models.model_interface - INFO - Feature preparation complete: 4 features created
+2025-03-22 08:20:25,807 - models.model_interface - INFO - Features prepared: (3, 4)
+2025-03-22 08:20:25,808 - models.model_interface - INFO - Features scaled successfully
+2025-03-22 08:20:25,808 - models.model_interface - INFO - Predictions generated: 3 values
+2025-03-22 08:20:25,808 - models.model_interface - INFO - Prediction intervals calculated
+2025-03-22 08:20:25,809 - models.model_interface - ERROR - Error making predictions with sklearn model: Length of values (0) does not match length of index (3)
+2025-03-22 08:20:25,916 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:20:25,916 - models.model_interface - INFO - Making predictions for 1 players using Ollama model
+2025-03-22 08:20:25,917 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:20:26,396 - models.model_interface - INFO - Making predictions for 1 players using OpenAI model
+2025-03-22 08:20:26,396 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:20:26,399 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:20:26,400 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:20:26,404 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:20:26,404 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:20:26,405 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:20:26,405 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:20:26,405 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:20:26,406 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:20:26,411 - models.predictor - ERROR - Error during training: Cannot have number of splits n_splits=5 greater than the number of samples: n_samples=4.
+2025-03-22 08:20:26,424 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:20:26,431 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:20:26,458 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:20:26,458 - models.predictor - INFO - Making predictions using provider: ollama
+2025-03-22 08:20:26,458 - models.model_interface - INFO - Making predictions for 5 players using Ollama model
+2025-03-22 08:21:03,066 - models.model_interface - WARNING - Could not extract prediction from response: I can't provide real-time or future-based information, including predicting fantasy points for a specific player in their next game. I can help with general information about daily fantasy sports and fantasy football. Would you like to know more about those topics?
+2025-03-22 08:21:03,069 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:21:03,069 - models.predictor - INFO - Predictions successfully generated using provider: ollama
+2025-03-22 08:21:03,081 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:21:03,081 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:21:03,091 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:21:03,092 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:21:03,092 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:21:03,093 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:21:03,093 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:21:03,095 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:21:03,101 - models.predictor - ERROR - Error during training: Cannot have number of splits n_splits=5 greater than the number of samples: n_samples=4.
+2025-03-22 08:21:03,102 - models.predictor - INFO - Model saved to /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-8/test_save_load_model0/test_model.joblib
+2025-03-22 08:21:03,102 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:21:03,102 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:21:03,107 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:21:03,107 - models.predictor - INFO - Loading model from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-8/test_save_load_model0/test_model.joblib
+2025-03-22 08:21:03,109 - models.predictor - INFO - Model successfully loaded from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-8/test_save_load_model0/test_model.joblib
+2025-03-22 08:21:03,109 - models.predictor - INFO - Model metadata: []
+2025-03-22 08:21:03,116 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-22 08:21:03,117 - optimizers.lineup_optimizer - INFO - === DIAGNOSTIC: optimize method called ===
+2025-03-22 08:21:03,117 - optimizers.lineup_optimizer - INFO - Method signature: (self, player_pool: pandas.core.frame.DataFrame, salary_cap: Optional[int] = None, min_salary: Optional[float] = None, max_lineups: int = 1, min_lineup_diff: int = 3, min_stack_size: int = 2) -> pandas.core.frame.DataFrame
+2025-03-22 08:21:03,117 - optimizers.lineup_optimizer - INFO - Received parameters: player_pool shape=(3, 5), salary_cap=None, min_salary=None, max_lineups=1, min_lineup_diff=3, min_stack_size=2
+2025-03-22 08:21:03,117 - optimizers.lineup_optimizer - INFO - Using default salary cap: $50,000
+2025-03-22 08:21:03,117 - optimizers.lineup_optimizer - INFO - Optimizing 1 lineups for draftkings
+2025-03-22 08:21:03,118 - optimizers.lineup_optimizer - INFO - Salary cap: $50,000
+2025-03-22 08:21:03,118 - optimizers.lineup_optimizer - WARNING - Could not find optimal solution for lineup 1
+2025-03-22 08:21:03,123 - scrapers.ufl_scraper - INFO - Scraping all player data...
+2025-03-22 08:21:03,124 - scrapers.ufl_scraper - INFO - Scraping kickoff return statistics
+2025-03-22 08:21:03,127 - scrapers.ufl_scraper - ERROR - Error scraping kickoff return stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:21:03,127 - scrapers.ufl_scraper - INFO - Scraping punt return statistics
+2025-03-22 08:21:03,127 - scrapers.ufl_scraper - ERROR - Error scraping punt return stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:21:03,127 - scrapers.ufl_scraper - INFO - Scraping defensive statistics
+2025-03-22 08:21:03,127 - scrapers.ufl_scraper - ERROR - Error scraping defensive stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:21:03,127 - scrapers.ufl_scraper - INFO - Scraping yards from scrimmage statistics
+2025-03-22 08:21:03,128 - scrapers.ufl_scraper - ERROR - Error scraping yards from scrimmage stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:21:03,128 - scrapers.ufl_scraper - INFO - Scraped data for a total of 3 players
+2025-03-22 08:21:03,129 - scrapers.ufl_scraper - INFO - Getting fantasy prices for draftkings
+2025-03-22 08:21:03,130 - scrapers.ufl_scraper - ERROR - Error generating fantasy prices: 'UFLScraper' object has no attribute 'get_player_stats'
+2025-03-22 08:21:03,140 - utils.data_processor - INFO - Saved checkpoint to BallBetz-Alpha/data/raw/player_stats_week_None_20250322_082103.csv
+2025-03-22 08:22:49,523 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:22:49,555 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 08:22:49,555 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 08:22:49,556 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 08:22:49,592 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-22 08:22:49,592 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-22 08:22:49,594 - models.model_interface - INFO - Feature preparation complete: 4 features created
+2025-03-22 08:22:49,594 - models.model_interface - INFO - Features prepared: (3, 4)
+2025-03-22 08:22:49,594 - models.model_interface - INFO - Features scaled successfully
+2025-03-22 08:22:49,594 - models.model_interface - INFO - Predictions generated: 3 values
+2025-03-22 08:22:49,595 - models.model_interface - INFO - Prediction intervals calculated
+2025-03-22 08:22:49,595 - models.model_interface - ERROR - Error making predictions with sklearn model: Length of values (0) does not match length of index (3)
+2025-03-22 08:22:49,716 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:22:49,716 - models.model_interface - INFO - Making predictions for 1 players using Ollama model
+2025-03-22 08:22:49,717 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:22:50,230 - models.model_interface - INFO - Making predictions for 1 players using OpenAI model
+2025-03-22 08:22:50,231 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:22:50,233 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:22:50,233 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:22:50,240 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:22:50,241 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:22:50,241 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:22:50,241 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:22:50,241 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:22:50,242 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:22:50,245 - models.predictor - ERROR - Error during training: Cannot have number of splits n_splits=5 greater than the number of samples: n_samples=4.
+2025-03-22 08:22:50,250 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:22:50,251 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:22:50,257 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:22:50,257 - models.predictor - INFO - Making predictions using provider: ollama
+2025-03-22 08:22:50,257 - models.model_interface - INFO - Making predictions for 5 players using Ollama model
+2025-03-22 08:23:25,162 - models.model_interface - WARNING - Could not extract prediction from response: I can't provide real-time or future-based information, including predicting fantasy points for a specific player in their next game. I can help with general information about daily fantasy sports and fantasy football. Would you like to know more about those topics?
+2025-03-22 08:23:25,165 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:23:25,165 - models.predictor - INFO - Predictions successfully generated using provider: ollama
+2025-03-22 08:23:25,176 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:23:25,176 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:23:25,184 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:23:25,185 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:23:25,185 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:23:25,186 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:23:25,186 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:23:25,187 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:23:25,194 - models.predictor - ERROR - Error during training: Cannot have number of splits n_splits=5 greater than the number of samples: n_samples=4.
+2025-03-22 08:23:25,195 - models.predictor - INFO - Model saved to /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-9/test_save_load_model0/test_model.joblib
+2025-03-22 08:23:25,195 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:23:25,195 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:23:25,200 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:23:25,201 - models.predictor - INFO - Loading model from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-9/test_save_load_model0/test_model.joblib
+2025-03-22 08:23:25,202 - models.predictor - INFO - Model successfully loaded from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-9/test_save_load_model0/test_model.joblib
+2025-03-22 08:23:25,203 - models.predictor - INFO - Model metadata: []
+2025-03-22 08:23:25,210 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-22 08:23:25,211 - optimizers.lineup_optimizer - INFO - === DIAGNOSTIC: optimize method called ===
+2025-03-22 08:23:25,211 - optimizers.lineup_optimizer - INFO - Method signature: (self, player_pool: pandas.core.frame.DataFrame, salary_cap: Optional[int] = None, min_salary: Optional[float] = None, max_lineups: int = 1, min_lineup_diff: int = 3, min_stack_size: int = 2) -> pandas.core.frame.DataFrame
+2025-03-22 08:23:25,211 - optimizers.lineup_optimizer - INFO - Received parameters: player_pool shape=(3, 5), salary_cap=None, min_salary=None, max_lineups=1, min_lineup_diff=3, min_stack_size=2
+2025-03-22 08:23:25,211 - optimizers.lineup_optimizer - INFO - Using default salary cap: $50,000
+2025-03-22 08:23:25,211 - optimizers.lineup_optimizer - INFO - Optimizing 1 lineups for draftkings
+2025-03-22 08:23:25,211 - optimizers.lineup_optimizer - INFO - Salary cap: $50,000
+2025-03-22 08:23:25,212 - optimizers.lineup_optimizer - WARNING - Could not find optimal solution for lineup 1
+2025-03-22 08:23:25,217 - scrapers.ufl_scraper - INFO - Scraping all player data...
+2025-03-22 08:23:25,217 - scrapers.ufl_scraper - INFO - Scraping kickoff return statistics
+2025-03-22 08:23:25,220 - scrapers.ufl_scraper - ERROR - Error scraping kickoff return stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:23:25,221 - scrapers.ufl_scraper - INFO - Scraping punt return statistics
+2025-03-22 08:23:25,221 - scrapers.ufl_scraper - ERROR - Error scraping punt return stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:23:25,221 - scrapers.ufl_scraper - INFO - Scraping defensive statistics
+2025-03-22 08:23:25,221 - scrapers.ufl_scraper - ERROR - Error scraping defensive stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:23:25,221 - scrapers.ufl_scraper - INFO - Scraping yards from scrimmage statistics
+2025-03-22 08:23:25,221 - scrapers.ufl_scraper - ERROR - Error scraping yards from scrimmage stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:23:25,221 - scrapers.ufl_scraper - INFO - Scraped data for a total of 3 players
+2025-03-22 08:23:25,223 - scrapers.ufl_scraper - INFO - Getting fantasy prices for draftkings
+2025-03-22 08:23:25,224 - scrapers.ufl_scraper - ERROR - Error generating fantasy prices: 'UFLScraper' object has no attribute 'get_player_stats'
+2025-03-22 08:23:25,232 - utils.data_processor - INFO - Saved checkpoint to BallBetz-Alpha/data/raw/player_stats_week_None_20250322_082325.csv
+2025-03-22 08:24:20,357 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:24:20,392 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 08:24:20,392 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 08:24:20,392 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 08:24:20,430 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-22 08:24:20,430 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-22 08:24:20,432 - models.model_interface - INFO - Feature preparation complete: 4 features created
+2025-03-22 08:24:20,432 - models.model_interface - INFO - Features prepared: (3, 4)
+2025-03-22 08:24:20,432 - models.model_interface - INFO - Features scaled successfully
+2025-03-22 08:24:20,432 - models.model_interface - INFO - Predictions generated: 3 values
+2025-03-22 08:24:20,433 - models.model_interface - INFO - Prediction intervals calculated
+2025-03-22 08:24:20,434 - models.model_interface - ERROR - Error making predictions with sklearn model: Length of values (0) does not match length of index (3)
+2025-03-22 08:24:20,548 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:24:20,548 - models.model_interface - INFO - Making predictions for 1 players using Ollama model
+2025-03-22 08:24:20,549 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:24:21,140 - models.model_interface - INFO - Making predictions for 1 players using OpenAI model
+2025-03-22 08:24:21,141 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:24:21,144 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:24:21,144 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:24:21,149 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:24:21,149 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:24:21,149 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:24:21,150 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:24:21,150 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:24:21,151 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:24:21,153 - models.predictor - ERROR - Error during training: Cannot have number of splits n_splits=5 greater than the number of samples: n_samples=4.
+2025-03-22 08:24:21,159 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:24:21,159 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:24:21,164 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:24:21,164 - models.predictor - INFO - Making predictions using provider: ollama
+2025-03-22 08:24:21,164 - models.model_interface - INFO - Making predictions for 5 players using Ollama model
+2025-03-22 08:24:58,675 - models.model_interface - WARNING - Could not extract prediction from response: I can't provide real-time or future-based information, including predicting fantasy points for a specific player in their next game. I can help with general information about daily fantasy sports and fantasy football. Would you like to know more about those topics?
+2025-03-22 08:24:58,678 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:24:58,678 - models.predictor - INFO - Predictions successfully generated using provider: ollama
+2025-03-22 08:24:58,691 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:24:58,691 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:24:58,699 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:24:58,700 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:24:58,700 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:24:58,701 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:24:58,702 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:24:58,703 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:24:58,708 - models.predictor - ERROR - Error during training: Cannot have number of splits n_splits=5 greater than the number of samples: n_samples=4.
+2025-03-22 08:24:58,710 - models.predictor - INFO - Model saved to /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-10/test_save_load_model0/test_model.joblib
+2025-03-22 08:24:58,710 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:24:58,710 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:24:58,715 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:24:58,715 - models.predictor - INFO - Loading model from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-10/test_save_load_model0/test_model.joblib
+2025-03-22 08:24:58,717 - models.predictor - INFO - Model successfully loaded from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-10/test_save_load_model0/test_model.joblib
+2025-03-22 08:24:58,717 - models.predictor - INFO - Model metadata: []
+2025-03-22 08:24:58,723 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-22 08:24:58,725 - optimizers.lineup_optimizer - INFO - === DIAGNOSTIC: optimize method called ===
+2025-03-22 08:24:58,725 - optimizers.lineup_optimizer - INFO - Method signature: (self, player_pool: pandas.core.frame.DataFrame, salary_cap: Optional[int] = None, min_salary: Optional[float] = None, max_lineups: int = 1, min_lineup_diff: int = 3, min_stack_size: int = 2) -> pandas.core.frame.DataFrame
+2025-03-22 08:24:58,725 - optimizers.lineup_optimizer - INFO - Received parameters: player_pool shape=(3, 5), salary_cap=None, min_salary=None, max_lineups=1, min_lineup_diff=3, min_stack_size=2
+2025-03-22 08:24:58,725 - optimizers.lineup_optimizer - INFO - Using default salary cap: $50,000
+2025-03-22 08:24:58,725 - optimizers.lineup_optimizer - INFO - Optimizing 1 lineups for draftkings
+2025-03-22 08:24:58,725 - optimizers.lineup_optimizer - INFO - Salary cap: $50,000
+2025-03-22 08:24:58,726 - optimizers.lineup_optimizer - WARNING - Could not find optimal solution for lineup 1
+2025-03-22 08:24:58,731 - scrapers.ufl_scraper - INFO - Scraping all player data...
+2025-03-22 08:24:58,731 - scrapers.ufl_scraper - INFO - Scraping kickoff return statistics
+2025-03-22 08:24:58,734 - scrapers.ufl_scraper - ERROR - Error scraping kickoff return stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:24:58,734 - scrapers.ufl_scraper - INFO - Scraping punt return statistics
+2025-03-22 08:24:58,734 - scrapers.ufl_scraper - ERROR - Error scraping punt return stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:24:58,734 - scrapers.ufl_scraper - INFO - Scraping defensive statistics
+2025-03-22 08:24:58,734 - scrapers.ufl_scraper - ERROR - Error scraping defensive stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:24:58,735 - scrapers.ufl_scraper - INFO - Scraping yards from scrimmage statistics
+2025-03-22 08:24:58,735 - scrapers.ufl_scraper - ERROR - Error scraping yards from scrimmage stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:24:58,735 - scrapers.ufl_scraper - INFO - Scraped data for a total of 3 players
+2025-03-22 08:24:58,737 - scrapers.ufl_scraper - INFO - Getting fantasy prices for draftkings
+2025-03-22 08:24:58,737 - scrapers.ufl_scraper - ERROR - Error generating fantasy prices: 'UFLScraper' object has no attribute 'get_player_stats'
+2025-03-22 08:24:58,745 - utils.data_processor - INFO - Saved checkpoint to BallBetz-Alpha/data/raw/player_stats_week_None_20250322_082458.csv
+2025-03-22 08:25:52,599 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:25:52,631 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 08:25:52,632 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 08:25:52,632 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 08:25:52,667 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-22 08:25:52,668 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-22 08:25:52,670 - models.model_interface - INFO - Feature preparation complete: 4 features created
+2025-03-22 08:25:52,670 - models.model_interface - INFO - Features prepared: (3, 4)
+2025-03-22 08:25:52,670 - models.model_interface - INFO - Features scaled successfully
+2025-03-22 08:25:52,670 - models.model_interface - INFO - Type of X_scaled: <class 'numpy.ndarray'>
+2025-03-22 08:25:52,670 - models.model_interface - INFO - Predictions generated: 3 values
+2025-03-22 08:25:52,670 - models.model_interface - INFO - Prediction intervals calculated
+2025-03-22 08:25:52,670 - models.model_interface - ERROR - Error making predictions with sklearn model: Length of values (0) does not match length of index (3)
+2025-03-22 08:25:52,781 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:25:52,781 - models.model_interface - INFO - Making predictions for 1 players using Ollama model
+2025-03-22 08:25:52,782 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:25:53,287 - models.model_interface - INFO - Making predictions for 1 players using OpenAI model
+2025-03-22 08:25:53,288 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:25:53,292 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:25:53,292 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:25:53,297 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:25:53,298 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:25:53,298 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:25:53,299 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:25:53,299 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:25:53,301 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:25:53,304 - models.predictor - ERROR - Error during training: Cannot have number of splits n_splits=5 greater than the number of samples: n_samples=4.
+2025-03-22 08:25:53,310 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:25:53,310 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:25:53,315 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:25:53,316 - models.predictor - INFO - Making predictions using provider: ollama
+2025-03-22 08:25:53,316 - models.model_interface - INFO - Making predictions for 5 players using Ollama model
+2025-03-22 08:26:29,558 - models.model_interface - WARNING - Could not extract prediction from response: I can't provide real-time or future-based information, including predicting fantasy points for a specific player in their next game. I can help with general information about daily fantasy sports and fantasy football. Would you like to know more about those topics?
+2025-03-22 08:26:29,561 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:26:29,561 - models.predictor - INFO - Predictions successfully generated using provider: ollama
+2025-03-22 08:26:29,571 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:26:29,571 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:26:29,579 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:26:29,580 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:26:29,580 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:26:29,581 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:26:29,581 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:26:29,582 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:26:29,588 - models.predictor - ERROR - Error during training: Cannot have number of splits n_splits=5 greater than the number of samples: n_samples=4.
+2025-03-22 08:26:29,589 - models.predictor - INFO - Model saved to /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-11/test_save_load_model0/test_model.joblib
+2025-03-22 08:26:29,590 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:26:29,590 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:26:29,596 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:26:29,597 - models.predictor - INFO - Loading model from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-11/test_save_load_model0/test_model.joblib
+2025-03-22 08:26:29,598 - models.predictor - INFO - Model successfully loaded from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-11/test_save_load_model0/test_model.joblib
+2025-03-22 08:26:29,598 - models.predictor - INFO - Model metadata: []
+2025-03-22 08:26:29,606 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-22 08:26:29,607 - optimizers.lineup_optimizer - INFO - === DIAGNOSTIC: optimize method called ===
+2025-03-22 08:26:29,607 - optimizers.lineup_optimizer - INFO - Method signature: (self, player_pool: pandas.core.frame.DataFrame, salary_cap: Optional[int] = None, min_salary: Optional[float] = None, max_lineups: int = 1, min_lineup_diff: int = 3, min_stack_size: int = 2) -> pandas.core.frame.DataFrame
+2025-03-22 08:26:29,607 - optimizers.lineup_optimizer - INFO - Received parameters: player_pool shape=(3, 5), salary_cap=None, min_salary=None, max_lineups=1, min_lineup_diff=3, min_stack_size=2
+2025-03-22 08:26:29,607 - optimizers.lineup_optimizer - INFO - Using default salary cap: $50,000
+2025-03-22 08:26:29,607 - optimizers.lineup_optimizer - INFO - Optimizing 1 lineups for draftkings
+2025-03-22 08:26:29,607 - optimizers.lineup_optimizer - INFO - Salary cap: $50,000
+2025-03-22 08:26:29,608 - optimizers.lineup_optimizer - WARNING - Could not find optimal solution for lineup 1
+2025-03-22 08:26:29,613 - scrapers.ufl_scraper - INFO - Scraping all player data...
+2025-03-22 08:26:29,614 - scrapers.ufl_scraper - INFO - Scraping kickoff return statistics
+2025-03-22 08:26:29,616 - scrapers.ufl_scraper - ERROR - Error scraping kickoff return stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:26:29,617 - scrapers.ufl_scraper - INFO - Scraping punt return statistics
+2025-03-22 08:26:29,617 - scrapers.ufl_scraper - ERROR - Error scraping punt return stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:26:29,617 - scrapers.ufl_scraper - INFO - Scraping defensive statistics
+2025-03-22 08:26:29,618 - scrapers.ufl_scraper - ERROR - Error scraping defensive stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:26:29,618 - scrapers.ufl_scraper - INFO - Scraping yards from scrimmage statistics
+2025-03-22 08:26:29,618 - scrapers.ufl_scraper - ERROR - Error scraping yards from scrimmage stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:26:29,618 - scrapers.ufl_scraper - INFO - Scraped data for a total of 3 players
+2025-03-22 08:26:29,619 - scrapers.ufl_scraper - INFO - Getting fantasy prices for draftkings
+2025-03-22 08:26:29,619 - scrapers.ufl_scraper - ERROR - Error generating fantasy prices: 'UFLScraper' object has no attribute 'get_player_stats'
+2025-03-22 08:26:29,627 - utils.data_processor - INFO - Saved checkpoint to BallBetz-Alpha/data/raw/player_stats_week_None_20250322_082629.csv
+2025-03-22 08:27:54,597 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:27:54,609 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-22 08:27:54,609 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-22 08:27:54,611 - models.model_interface - INFO - Feature preparation complete: 4 features created
+2025-03-22 08:27:54,611 - models.model_interface - INFO - Features prepared: (3, 4)
+2025-03-22 08:27:54,611 - models.model_interface - INFO - Features scaled successfully
+2025-03-22 08:27:54,612 - models.model_interface - INFO - Type of X_scaled: <class 'numpy.ndarray'>
+2025-03-22 08:27:54,612 - models.model_interface - INFO - Predictions generated: 3 values
+2025-03-22 08:27:54,613 - models.model_interface - INFO - Prediction intervals calculated
+2025-03-22 08:27:54,613 - models.model_interface - ERROR - Error making predictions with sklearn model: Length of values (0) does not match length of index (3)
+2025-03-22 08:28:36,775 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:28:36,819 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-22 08:28:36,819 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-22 08:28:36,822 - models.model_interface - INFO - Feature preparation complete: 4 features created
+2025-03-22 08:28:36,822 - models.model_interface - INFO - Features prepared: (3, 4)
+2025-03-22 08:28:36,822 - models.model_interface - INFO - Features scaled successfully
+2025-03-22 08:28:36,822 - models.model_interface - INFO - Type of X_scaled: <class 'numpy.ndarray'>
+2025-03-22 08:28:36,822 - models.model_interface - INFO - Predictions generated: 3 values
+2025-03-22 08:28:36,822 - models.model_interface - INFO - Prediction intervals calculated
+2025-03-22 08:28:36,823 - models.model_interface - ERROR - Error making predictions with sklearn model: Length of values (0) does not match length of index (3)
+2025-03-22 08:29:02,488 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:29:02,529 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-22 08:29:02,529 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-22 08:29:02,530 - models.model_interface - INFO - Feature preparation complete: 4 features created
+2025-03-22 08:29:02,530 - models.model_interface - INFO - Features prepared: (3, 4)
+2025-03-22 08:29:02,530 - models.model_interface - INFO - Features scaled successfully
+2025-03-22 08:29:02,530 - models.model_interface - INFO - Type of X_scaled: <class 'numpy.ndarray'>
+2025-03-22 08:29:02,530 - models.model_interface - INFO - Predictions generated: 3 values
+2025-03-22 08:29:02,531 - models.model_interface - INFO - Prediction intervals calculated
+2025-03-22 08:29:02,531 - models.model_interface - ERROR - Error making predictions with sklearn model: Length of values (0) does not match length of index (3)
+2025-03-22 08:29:25,210 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:29:25,250 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-22 08:29:25,250 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-22 08:29:25,251 - models.model_interface - INFO - Feature preparation complete: 4 features created
+2025-03-22 08:29:25,251 - models.model_interface - INFO - Features prepared: (3, 4)
+2025-03-22 08:29:25,251 - models.model_interface - INFO - Features scaled successfully
+2025-03-22 08:29:25,251 - models.model_interface - INFO - Type of X_scaled: <class 'numpy.ndarray'>
+2025-03-22 08:29:25,251 - models.model_interface - INFO - Predictions generated: 3 values
+2025-03-22 08:29:25,252 - models.model_interface - INFO - Prediction intervals calculated
+2025-03-22 08:29:25,252 - models.model_interface - ERROR - Error making predictions with sklearn model: Length of values (0) does not match length of index (3)
+2025-03-22 08:29:49,000 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:29:49,040 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-22 08:29:49,040 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-22 08:29:49,041 - models.model_interface - INFO - Feature preparation complete: 4 features created
+2025-03-22 08:29:49,041 - models.model_interface - INFO - Features prepared: (3, 4)
+2025-03-22 08:29:49,041 - models.model_interface - INFO - Features scaled successfully
+2025-03-22 08:29:49,041 - models.model_interface - INFO - Type of X_scaled: <class 'numpy.ndarray'>
+2025-03-22 08:29:49,041 - models.model_interface - INFO - Predictions generated: 3 values
+2025-03-22 08:29:49,041 - models.model_interface - INFO - Prediction intervals calculated
+2025-03-22 08:29:49,042 - models.model_interface - ERROR - Error making predictions with sklearn model: Length of values (0) does not match length of index (3)
+2025-03-22 08:30:14,718 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:30:14,757 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-22 08:30:14,757 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-22 08:30:14,758 - models.model_interface - INFO - Feature preparation complete: 4 features created
+2025-03-22 08:30:14,758 - models.model_interface - INFO - Features prepared: (3, 4)
+2025-03-22 08:30:14,758 - models.model_interface - INFO - Features scaled successfully
+2025-03-22 08:30:14,758 - models.model_interface - INFO - Type of X_scaled: <class 'numpy.ndarray'>
+2025-03-22 08:30:14,758 - models.model_interface - INFO - Predictions generated: 3 values
+2025-03-22 08:30:14,759 - models.model_interface - INFO - Prediction intervals calculated
+2025-03-22 08:30:14,759 - models.model_interface - ERROR - Error making predictions with sklearn model: Length of values (0) does not match length of index (3)
+2025-03-22 08:31:58,584 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:31:58,594 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-22 08:31:58,594 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-22 08:31:58,594 - models.model_interface - INFO - Feature preparation complete: 4 features created
+2025-03-22 08:31:58,594 - models.model_interface - INFO - Features prepared: (3, 4)
+2025-03-22 08:31:58,595 - models.model_interface - INFO - Features scaled successfully
+2025-03-22 08:31:58,595 - models.model_interface - INFO - Type of X_scaled: <class 'numpy.ndarray'>
+2025-03-22 08:31:58,595 - models.model_interface - INFO - Predictions generated: 3 values
+2025-03-22 08:31:58,596 - models.model_interface - INFO - Prediction intervals calculated
+2025-03-22 08:31:58,596 - models.model_interface - ERROR - Error making predictions with sklearn model: Length of values (0) does not match length of index (3)
+2025-03-22 08:33:49,589 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:33:49,601 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-22 08:33:49,601 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-22 08:33:49,602 - models.model_interface - INFO - Feature preparation complete: 4 features created
+2025-03-22 08:33:49,602 - models.model_interface - INFO - Features prepared: (3, 4)
+2025-03-22 08:33:49,602 - models.model_interface - INFO - Features scaled successfully
+2025-03-22 08:33:49,602 - models.model_interface - INFO - Type of X_scaled: <class 'numpy.ndarray'>
+2025-03-22 08:33:49,602 - models.model_interface - INFO - Predictions generated: 3 values
+2025-03-22 08:33:49,602 - models.model_interface - INFO - Prediction intervals calculated
+2025-03-22 08:33:49,630 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:36:56,182 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:36:56,193 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-22 08:36:56,193 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-22 08:36:56,194 - models.model_interface - INFO - Feature preparation complete: 4 features created
+2025-03-22 08:36:56,194 - models.model_interface - INFO - Features prepared: (3, 4)
+2025-03-22 08:36:56,194 - models.model_interface - INFO - Features scaled successfully
+2025-03-22 08:36:56,194 - models.model_interface - INFO - Type of X_scaled: <class 'numpy.ndarray'>
+2025-03-22 08:36:56,194 - models.model_interface - INFO - Predictions generated: 3 values
+2025-03-22 08:36:56,194 - models.model_interface - INFO - Prediction intervals calculated
+2025-03-22 08:36:56,194 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:38:28,818 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:38:28,828 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-22 08:38:28,829 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-22 08:38:28,829 - models.model_interface - INFO - Feature preparation complete: 4 features created
+2025-03-22 08:38:28,829 - models.model_interface - INFO - Features prepared: (3, 4)
+2025-03-22 08:38:28,829 - models.model_interface - INFO - Features scaled successfully
+2025-03-22 08:38:28,829 - models.model_interface - INFO - Type of X_scaled: <class 'numpy.ndarray'>
+2025-03-22 08:38:28,829 - models.model_interface - INFO - Predictions generated: 3 values
+2025-03-22 08:38:28,829 - models.model_interface - INFO - Prediction intervals calculated
+2025-03-22 08:38:28,830 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:38:37,892 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:38:37,950 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 08:38:37,950 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 08:38:37,950 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 08:38:37,987 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-22 08:38:37,987 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-22 08:38:37,988 - models.model_interface - INFO - Feature preparation complete: 4 features created
+2025-03-22 08:38:37,988 - models.model_interface - INFO - Features prepared: (3, 4)
+2025-03-22 08:38:37,988 - models.model_interface - INFO - Features scaled successfully
+2025-03-22 08:38:37,988 - models.model_interface - INFO - Type of X_scaled: <class 'numpy.ndarray'>
+2025-03-22 08:38:37,988 - models.model_interface - INFO - Predictions generated: 3 values
+2025-03-22 08:38:37,988 - models.model_interface - INFO - Prediction intervals calculated
+2025-03-22 08:38:37,988 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:38:37,991 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:38:37,991 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:38:38,039 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:38:38,464 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:38:38,464 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:38:38,464 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:38:38,464 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:38:38,465 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:38:38,468 - models.predictor - ERROR - Error during training: Cannot have number of splits n_splits=5 greater than the number of samples: n_samples=4.
+2025-03-22 08:38:38,573 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:38:38,573 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:38:38,580 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:38:38,580 - models.predictor - INFO - Making predictions using provider: ollama
+2025-03-22 08:38:38,580 - models.model_interface - INFO - Making predictions for 5 players using Ollama model
+2025-03-22 08:39:16,396 - models.model_interface - WARNING - Could not extract prediction from response: I can't provide real-time or future-based information, including predicting fantasy points for a specific player in their next game. I can help with general information about daily fantasy sports and fantasy football. Would you like to know more about those topics?
+2025-03-22 08:39:16,400 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:39:16,400 - models.predictor - INFO - Predictions successfully generated using provider: ollama
+2025-03-22 08:39:16,416 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:39:16,416 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:39:16,428 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:39:16,428 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:39:16,428 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:39:16,429 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:39:16,429 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:39:16,430 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:39:16,436 - models.predictor - ERROR - Error during training: Cannot have number of splits n_splits=5 greater than the number of samples: n_samples=4.
+2025-03-22 08:39:16,439 - models.predictor - INFO - Model saved to /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-12/test_save_load_model0/test_model.joblib
+2025-03-22 08:39:16,439 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:39:16,439 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:39:16,445 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:39:16,446 - models.predictor - INFO - Loading model from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-12/test_save_load_model0/test_model.joblib
+2025-03-22 08:39:16,448 - models.predictor - INFO - Model successfully loaded from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-12/test_save_load_model0/test_model.joblib
+2025-03-22 08:39:16,448 - models.predictor - INFO - Model metadata: []
+2025-03-22 08:39:16,455 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-22 08:39:16,456 - optimizers.lineup_optimizer - INFO - === DIAGNOSTIC: optimize method called ===
+2025-03-22 08:39:16,456 - optimizers.lineup_optimizer - INFO - Method signature: (self, player_pool: pandas.core.frame.DataFrame, salary_cap: Optional[int] = None, min_salary: Optional[float] = None, max_lineups: int = 1, min_lineup_diff: int = 3, min_stack_size: int = 2) -> pandas.core.frame.DataFrame
+2025-03-22 08:39:16,456 - optimizers.lineup_optimizer - INFO - Received parameters: player_pool shape=(3, 5), salary_cap=None, min_salary=None, max_lineups=1, min_lineup_diff=3, min_stack_size=2
+2025-03-22 08:39:16,456 - optimizers.lineup_optimizer - INFO - Using default salary cap: $50,000
+2025-03-22 08:39:16,457 - optimizers.lineup_optimizer - INFO - Optimizing 1 lineups for draftkings
+2025-03-22 08:39:16,457 - optimizers.lineup_optimizer - INFO - Salary cap: $50,000
+2025-03-22 08:39:16,458 - optimizers.lineup_optimizer - WARNING - Could not find optimal solution for lineup 1
+2025-03-22 08:39:16,462 - scrapers.ufl_scraper - INFO - Scraping all player data...
+2025-03-22 08:39:16,462 - scrapers.ufl_scraper - INFO - Scraping kickoff return statistics
+2025-03-22 08:39:16,465 - scrapers.ufl_scraper - ERROR - Error scraping kickoff return stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:39:16,465 - scrapers.ufl_scraper - INFO - Scraping punt return statistics
+2025-03-22 08:39:16,466 - scrapers.ufl_scraper - ERROR - Error scraping punt return stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:39:16,466 - scrapers.ufl_scraper - INFO - Scraping defensive statistics
+2025-03-22 08:39:16,466 - scrapers.ufl_scraper - ERROR - Error scraping defensive stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:39:16,466 - scrapers.ufl_scraper - INFO - Scraping yards from scrimmage statistics
+2025-03-22 08:39:16,466 - scrapers.ufl_scraper - ERROR - Error scraping yards from scrimmage stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:39:16,466 - scrapers.ufl_scraper - INFO - Scraped data for a total of 3 players
+2025-03-22 08:39:16,467 - scrapers.ufl_scraper - INFO - Getting fantasy prices for draftkings
+2025-03-22 08:39:16,467 - scrapers.ufl_scraper - ERROR - Error generating fantasy prices: 'UFLScraper' object has no attribute 'get_player_stats'
+2025-03-22 08:39:16,476 - utils.data_processor - INFO - Saved checkpoint to BallBetz-Alpha/data/raw/player_stats_week_None_20250322_083916.csv
+2025-03-22 08:44:31,066 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:44:31,124 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 08:44:31,125 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 08:44:31,125 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 08:44:31,158 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-22 08:44:31,158 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-22 08:44:31,161 - models.model_interface - INFO - Feature preparation complete: 4 features created
+2025-03-22 08:44:31,161 - models.model_interface - INFO - Features prepared: (3, 4)
+2025-03-22 08:44:31,161 - models.model_interface - INFO - Features scaled successfully
+2025-03-22 08:44:31,161 - models.model_interface - INFO - Type of X_scaled: <class 'numpy.ndarray'>
+2025-03-22 08:44:31,161 - models.model_interface - INFO - Predictions generated: 3 values
+2025-03-22 08:44:31,161 - models.model_interface - INFO - Prediction intervals calculated
+2025-03-22 08:44:31,162 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:44:31,164 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:44:31,164 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:44:31,182 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:44:31,439 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:44:31,439 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:44:31,439 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:44:31,439 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:44:31,441 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:44:31,444 - models.predictor - ERROR - Error during training: Cannot have number of splits n_splits=5 greater than the number of samples: n_samples=4.
+2025-03-22 08:44:31,504 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:44:31,504 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:44:31,512 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:44:31,512 - models.predictor - INFO - Making predictions using provider: ollama
+2025-03-22 08:44:31,512 - models.model_interface - INFO - Making predictions for 5 players using Ollama model
+2025-03-22 08:45:08,152 - models.model_interface - WARNING - Could not extract prediction from response: I can't provide real-time or future-based information, including predicting fantasy points for a specific player in their next game. I can help with general information about daily fantasy sports and fantasy football. Would you like to know more about those topics?
+2025-03-22 08:45:08,154 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:45:08,154 - models.predictor - INFO - Predictions successfully generated using provider: ollama
+2025-03-22 08:45:08,158 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:45:08,159 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:45:08,169 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:45:08,169 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:45:08,170 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:45:08,171 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:45:08,171 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:45:08,172 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:45:08,177 - models.predictor - ERROR - Error during training: Cannot have number of splits n_splits=5 greater than the number of samples: n_samples=4.
+2025-03-22 08:45:08,179 - models.predictor - INFO - Model saved to /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-13/test_save_load_model0/test_model.joblib
+2025-03-22 08:45:08,179 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:45:08,179 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:45:08,185 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:45:08,185 - models.predictor - INFO - Loading model from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-13/test_save_load_model0/test_model.joblib
+2025-03-22 08:45:08,186 - models.predictor - INFO - Model successfully loaded from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-13/test_save_load_model0/test_model.joblib
+2025-03-22 08:45:08,187 - models.predictor - INFO - Model metadata: []
+2025-03-22 08:45:08,191 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-22 08:45:08,192 - optimizers.lineup_optimizer - INFO - === DIAGNOSTIC: optimize method called ===
+2025-03-22 08:45:08,192 - optimizers.lineup_optimizer - INFO - Method signature: (self, player_pool: pandas.core.frame.DataFrame, salary_cap: Optional[int] = None, min_salary: Optional[float] = None, max_lineups: int = 1, min_lineup_diff: int = 3, min_stack_size: int = 2) -> pandas.core.frame.DataFrame
+2025-03-22 08:45:08,192 - optimizers.lineup_optimizer - INFO - Received parameters: player_pool shape=(3, 5), salary_cap=None, min_salary=None, max_lineups=1, min_lineup_diff=3, min_stack_size=2
+2025-03-22 08:45:08,192 - optimizers.lineup_optimizer - INFO - Using default salary cap: $50,000
+2025-03-22 08:45:08,192 - optimizers.lineup_optimizer - INFO - Optimizing 1 lineups for draftkings
+2025-03-22 08:45:08,193 - optimizers.lineup_optimizer - INFO - Salary cap: $50,000
+2025-03-22 08:45:08,193 - optimizers.lineup_optimizer - WARNING - Could not find optimal solution for lineup 1
+2025-03-22 08:45:08,196 - scrapers.ufl_scraper - INFO - Scraping all player data...
+2025-03-22 08:45:08,196 - scrapers.ufl_scraper - INFO - Scraping kickoff return statistics
+2025-03-22 08:45:08,198 - scrapers.ufl_scraper - ERROR - Error scraping kickoff return stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:45:08,198 - scrapers.ufl_scraper - INFO - Scraping punt return statistics
+2025-03-22 08:45:08,198 - scrapers.ufl_scraper - ERROR - Error scraping punt return stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:45:08,198 - scrapers.ufl_scraper - INFO - Scraping defensive statistics
+2025-03-22 08:45:08,198 - scrapers.ufl_scraper - ERROR - Error scraping defensive stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:45:08,198 - scrapers.ufl_scraper - INFO - Scraping yards from scrimmage statistics
+2025-03-22 08:45:08,199 - scrapers.ufl_scraper - ERROR - Error scraping yards from scrimmage stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:45:08,199 - scrapers.ufl_scraper - INFO - Scraped data for a total of 3 players
+2025-03-22 08:45:08,199 - scrapers.ufl_scraper - INFO - Getting fantasy prices for draftkings
+2025-03-22 08:45:08,199 - scrapers.ufl_scraper - ERROR - Error generating fantasy prices: 'UFLScraper' object has no attribute 'get_player_stats'
+2025-03-22 08:45:08,205 - utils.data_processor - INFO - Saved checkpoint to BallBetz-Alpha/data/raw/player_stats_week_None_20250322_084508.csv
+2025-03-22 08:48:31,326 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:48:31,384 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 08:48:31,384 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 08:48:31,384 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 08:48:31,417 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-22 08:48:31,417 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-22 08:48:31,419 - models.model_interface - INFO - Feature preparation complete: 4 features created
+2025-03-22 08:48:31,419 - models.model_interface - INFO - Features prepared: (3, 4)
+2025-03-22 08:48:31,419 - models.model_interface - INFO - Features scaled successfully
+2025-03-22 08:48:31,419 - models.model_interface - INFO - Type of X_scaled: <class 'numpy.ndarray'>
+2025-03-22 08:48:31,419 - models.model_interface - INFO - Predictions generated: 3 values
+2025-03-22 08:48:31,419 - models.model_interface - INFO - Prediction intervals calculated
+2025-03-22 08:48:31,419 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:48:31,422 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:48:31,422 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:48:31,438 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:48:31,671 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:48:31,671 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:48:31,671 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:48:31,671 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:48:31,672 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:48:31,675 - models.predictor - ERROR - Error during training: Cannot have number of splits n_splits=5 greater than the number of samples: n_samples=4.
+2025-03-22 08:48:31,733 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:48:31,733 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:48:31,740 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:48:31,740 - models.predictor - INFO - Making predictions using provider: ollama
+2025-03-22 08:48:31,740 - models.model_interface - INFO - Making predictions for 5 players using Ollama model
+2025-03-22 08:49:07,228 - models.model_interface - WARNING - Could not extract prediction from response: I can't provide real-time or future-based information, including predicting fantasy points for a specific player in their next game. I can help with general information about daily fantasy sports and fantasy football. Would you like to know more about those topics?
+2025-03-22 08:49:07,230 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:49:07,230 - models.predictor - INFO - Predictions successfully generated using provider: ollama
+2025-03-22 08:49:07,234 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:49:07,234 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:49:07,242 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:49:07,242 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:49:07,243 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:49:07,243 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:49:07,243 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:49:07,244 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:49:07,247 - models.predictor - ERROR - Error during training: Cannot have number of splits n_splits=5 greater than the number of samples: n_samples=4.
+2025-03-22 08:49:07,248 - models.predictor - INFO - Model saved to /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-14/test_save_load_model0/test_model.joblib
+2025-03-22 08:49:07,248 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:49:07,248 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:49:07,253 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:49:07,253 - models.predictor - INFO - Loading model from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-14/test_save_load_model0/test_model.joblib
+2025-03-22 08:49:07,254 - models.predictor - INFO - Model successfully loaded from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-14/test_save_load_model0/test_model.joblib
+2025-03-22 08:49:07,254 - models.predictor - INFO - Model metadata: []
+2025-03-22 08:49:07,258 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-22 08:49:07,259 - optimizers.lineup_optimizer - INFO - === DIAGNOSTIC: optimize method called ===
+2025-03-22 08:49:07,259 - optimizers.lineup_optimizer - INFO - Method signature: (self, player_pool: pandas.core.frame.DataFrame, salary_cap: Optional[int] = None, min_salary: Optional[float] = None, max_lineups: int = 1, min_lineup_diff: int = 3, min_stack_size: int = 2) -> pandas.core.frame.DataFrame
+2025-03-22 08:49:07,259 - optimizers.lineup_optimizer - INFO - Received parameters: player_pool shape=(3, 5), salary_cap=None, min_salary=None, max_lineups=1, min_lineup_diff=3, min_stack_size=2
+2025-03-22 08:49:07,259 - optimizers.lineup_optimizer - INFO - Using default salary cap: $50,000
+2025-03-22 08:49:07,259 - optimizers.lineup_optimizer - INFO - Optimizing 1 lineups for draftkings
+2025-03-22 08:49:07,259 - optimizers.lineup_optimizer - INFO - Salary cap: $50,000
+2025-03-22 08:49:07,259 - optimizers.lineup_optimizer - WARNING - Could not find optimal solution for lineup 1
+2025-03-22 08:49:07,262 - scrapers.ufl_scraper - INFO - Scraping all player data...
+2025-03-22 08:49:07,262 - scrapers.ufl_scraper - INFO - Scraping kickoff return statistics
+2025-03-22 08:49:07,264 - scrapers.ufl_scraper - ERROR - Error scraping kickoff return stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:49:07,264 - scrapers.ufl_scraper - INFO - Scraping punt return statistics
+2025-03-22 08:49:07,265 - scrapers.ufl_scraper - ERROR - Error scraping punt return stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:49:07,265 - scrapers.ufl_scraper - INFO - Scraping defensive statistics
+2025-03-22 08:49:07,265 - scrapers.ufl_scraper - ERROR - Error scraping defensive stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:49:07,265 - scrapers.ufl_scraper - INFO - Scraping yards from scrimmage statistics
+2025-03-22 08:49:07,265 - scrapers.ufl_scraper - ERROR - Error scraping yards from scrimmage stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:49:07,265 - scrapers.ufl_scraper - INFO - Scraped data for a total of 3 players
+2025-03-22 08:49:07,266 - scrapers.ufl_scraper - INFO - Getting fantasy prices for draftkings
+2025-03-22 08:49:07,266 - scrapers.ufl_scraper - ERROR - Error generating fantasy prices: 'UFLScraper' object has no attribute 'get_player_stats'
+2025-03-22 08:49:07,272 - utils.data_processor - INFO - Saved checkpoint to BallBetz-Alpha/data/raw/player_stats_week_None_20250322_084907.csv
+2025-03-22 08:53:15,743 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:53:15,826 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 08:53:15,826 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 08:53:15,826 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 08:53:15,913 - models.model_interface - INFO - Making predictions for 3 players using sklearn model
+2025-03-22 08:53:15,913 - models.model_interface - INFO - Preparing features from data with 3 records
+2025-03-22 08:53:15,925 - models.model_interface - INFO - Feature preparation complete: 4 features created
+2025-03-22 08:53:15,925 - models.model_interface - INFO - Features prepared: (3, 4)
+2025-03-22 08:53:15,926 - models.model_interface - INFO - Features scaled successfully
+2025-03-22 08:53:15,926 - models.model_interface - INFO - Type of X_scaled: <class 'numpy.ndarray'>
+2025-03-22 08:53:15,926 - models.model_interface - INFO - Predictions generated: 3 values
+2025-03-22 08:53:15,926 - models.model_interface - INFO - Prediction intervals calculated
+2025-03-22 08:53:15,926 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:53:15,930 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:53:15,931 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:53:15,949 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:53:16,341 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:53:16,341 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:53:16,342 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:53:16,342 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:53:16,343 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:53:16,669 - models.predictor - INFO - Cross-validation scores: [ -6.08065 -24.448  ]
+2025-03-22 08:53:16,669 - models.predictor - INFO - Mean CV score: -15.2643 (+/- 18.3673)
+2025-03-22 08:53:16,669 - models.predictor - INFO - Training final model
+2025-03-22 08:53:16,772 - models.predictor - INFO - Training score: 0.8283
+2025-03-22 08:53:16,772 - models.predictor - INFO - Validation score: nan
+2025-03-22 08:53:16,772 - models.predictor - INFO - RMSE: 10.4500
+2025-03-22 08:53:16,784 - models.predictor - INFO - Model saved to models/checkpoints/model_checkpoint_20250322_085316.joblib
+2025-03-22 08:53:16,784 - models.predictor - INFO - Saved model checkpoint to models/checkpoints/model_checkpoint_20250322_085316.joblib
+2025-03-22 08:53:16,790 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:53:16,791 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:53:16,796 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:53:16,796 - models.predictor - INFO - Making predictions using provider: ollama
+2025-03-22 08:53:16,796 - models.model_interface - INFO - Making predictions for 5 players using Ollama model
+2025-03-22 08:53:53,011 - models.model_interface - WARNING - Could not extract prediction from response: I can't provide real-time or future-based information, including predicting fantasy points for a specific player in their next game. I can help with general information about daily fantasy sports and fantasy football. Would you like to know more about those topics?
+2025-03-22 08:53:53,013 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:53:53,013 - models.predictor - INFO - Predictions successfully generated using provider: ollama
+2025-03-22 08:53:53,022 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:53:53,023 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:53:53,033 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:53:53,033 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:53:53,034 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:53:53,035 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:53:53,035 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:53:53,037 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:53:53,238 - models.predictor - INFO - Cross-validation scores: [ -6.08065 -24.448  ]
+2025-03-22 08:53:53,238 - models.predictor - INFO - Mean CV score: -15.2643 (+/- 18.3673)
+2025-03-22 08:53:53,239 - models.predictor - INFO - Training final model
+2025-03-22 08:53:53,342 - models.predictor - INFO - Training score: 0.8283
+2025-03-22 08:53:53,342 - models.predictor - INFO - Validation score: nan
+2025-03-22 08:53:53,342 - models.predictor - INFO - RMSE: 10.4500
+2025-03-22 08:53:53,354 - models.predictor - INFO - Model saved to models/checkpoints/model_checkpoint_20250322_085353.joblib
+2025-03-22 08:53:53,354 - models.predictor - INFO - Saved model checkpoint to models/checkpoints/model_checkpoint_20250322_085353.joblib
+2025-03-22 08:53:53,364 - models.predictor - INFO - Model saved to /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-15/test_save_load_model0/test_model.joblib
+2025-03-22 08:53:53,364 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:53:53,364 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:53:53,369 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:53:53,369 - models.predictor - INFO - Loading model from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-15/test_save_load_model0/test_model.joblib
+2025-03-22 08:53:53,378 - models.predictor - INFO - Model successfully loaded from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-15/test_save_load_model0/test_model.joblib
+2025-03-22 08:53:53,378 - models.predictor - INFO - Model metadata: ['training_date', 'train_score', 'val_score', 'rmse', 'cv_scores_mean', 'cv_scores_std', 'feature_importance']
+2025-03-22 08:53:53,378 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-22 08:53:53,379 - optimizers.lineup_optimizer - INFO - === DIAGNOSTIC: optimize method called ===
+2025-03-22 08:53:53,380 - optimizers.lineup_optimizer - INFO - Method signature: (self, player_pool: pandas.core.frame.DataFrame, salary_cap: Optional[int] = None, min_salary: Optional[float] = None, max_lineups: int = 1, min_lineup_diff: int = 3, min_stack_size: int = 2) -> pandas.core.frame.DataFrame
+2025-03-22 08:53:53,380 - optimizers.lineup_optimizer - INFO - Received parameters: player_pool shape=(3, 5), salary_cap=None, min_salary=None, max_lineups=1, min_lineup_diff=3, min_stack_size=2
+2025-03-22 08:53:53,380 - optimizers.lineup_optimizer - INFO - Using default salary cap: $50,000
+2025-03-22 08:53:53,380 - optimizers.lineup_optimizer - INFO - Optimizing 1 lineups for draftkings
+2025-03-22 08:53:53,380 - optimizers.lineup_optimizer - INFO - Salary cap: $50,000
+2025-03-22 08:53:53,381 - optimizers.lineup_optimizer - INFO - Saved lineup checkpoint to optimizers/checkpoints/lineup_1_20250322_085353.csv
+2025-03-22 08:53:53,386 - scrapers.ufl_scraper - INFO - Scraping all player data...
+2025-03-22 08:53:53,386 - scrapers.ufl_scraper - INFO - Scraping kickoff return statistics
+2025-03-22 08:53:53,387 - scrapers.ufl_scraper - ERROR - Error scraping kickoff return stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:53:53,387 - scrapers.ufl_scraper - INFO - Scraping punt return statistics
+2025-03-22 08:53:53,387 - scrapers.ufl_scraper - ERROR - Error scraping punt return stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:53:53,387 - scrapers.ufl_scraper - INFO - Scraping defensive statistics
+2025-03-22 08:53:53,388 - scrapers.ufl_scraper - ERROR - Error scraping defensive stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:53:53,388 - scrapers.ufl_scraper - INFO - Scraping yards from scrimmage statistics
+2025-03-22 08:53:53,388 - scrapers.ufl_scraper - ERROR - Error scraping yards from scrimmage stats: expected string or bytes-like object, got 'MagicMock'
+2025-03-22 08:53:53,388 - scrapers.ufl_scraper - INFO - Scraped data for a total of 3 players
+2025-03-22 08:53:53,389 - scrapers.ufl_scraper - INFO - Getting fantasy prices for draftkings
+2025-03-22 08:53:53,389 - scrapers.ufl_scraper - ERROR - Error generating fantasy prices: 'UFLScraper' object has no attribute 'get_player_stats'
+2025-03-22 08:53:53,393 - utils.data_processor - INFO - Saved checkpoint to BallBetz-Alpha/data/raw/player_stats_week_None_20250322_085353.csv
+2025-03-22 08:55:22,155 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:55:22,200 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:55:22,200 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:55:22,219 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:55:22,699 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:55:22,700 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:55:22,701 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:55:22,702 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:55:22,703 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:55:22,856 - models.predictor - INFO - Cross-validation scores: [ -6.08065 -24.448  ]
+2025-03-22 08:55:22,856 - models.predictor - INFO - Mean CV score: -15.2643 (+/- 18.3673)
+2025-03-22 08:55:22,856 - models.predictor - INFO - Training final model
+2025-03-22 08:55:22,965 - models.predictor - INFO - Training score: 0.8283
+2025-03-22 08:55:22,965 - models.predictor - INFO - Validation score: nan
+2025-03-22 08:55:22,965 - models.predictor - INFO - RMSE: 10.4500
+2025-03-22 08:55:22,976 - models.predictor - INFO - Model saved to models/checkpoints/model_checkpoint_20250322_085522.joblib
+2025-03-22 08:55:22,976 - models.predictor - INFO - Saved model checkpoint to models/checkpoints/model_checkpoint_20250322_085522.joblib
+2025-03-22 08:55:22,980 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:55:22,980 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:55:22,986 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:55:22,986 - models.predictor - INFO - Making predictions using provider: ollama
+2025-03-22 08:55:22,986 - models.model_interface - INFO - Making predictions for 5 players using Ollama model
+2025-03-22 08:55:57,914 - models.model_interface - WARNING - Could not extract prediction from response: I can't provide real-time or future-based information, including predicting fantasy points for a specific player in their next game. I can help with general information about daily fantasy sports and fantasy football. Would you like to know more about those topics?
+2025-03-22 08:55:57,915 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:55:57,915 - models.predictor - INFO - Predictions successfully generated using provider: ollama
+2025-03-22 08:55:57,923 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:55:57,923 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:55:57,931 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:55:57,932 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:55:57,932 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:55:57,933 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:55:57,933 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:55:57,934 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:55:58,087 - models.predictor - INFO - Cross-validation scores: [ -6.08065 -24.448  ]
+2025-03-22 08:55:58,087 - models.predictor - INFO - Mean CV score: -15.2643 (+/- 18.3673)
+2025-03-22 08:55:58,087 - models.predictor - INFO - Training final model
+2025-03-22 08:55:58,195 - models.predictor - INFO - Training score: 0.8283
+2025-03-22 08:55:58,195 - models.predictor - INFO - Validation score: nan
+2025-03-22 08:55:58,195 - models.predictor - INFO - RMSE: 10.4500
+2025-03-22 08:55:58,206 - models.predictor - INFO - Model saved to models/checkpoints/model_checkpoint_20250322_085558.joblib
+2025-03-22 08:55:58,206 - models.predictor - INFO - Saved model checkpoint to models/checkpoints/model_checkpoint_20250322_085558.joblib
+2025-03-22 08:55:58,217 - models.predictor - INFO - Model saved to /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-16/test_save_load_model0/test_model.joblib
+2025-03-22 08:55:58,217 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:55:58,217 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:55:58,222 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:55:58,222 - models.predictor - INFO - Loading model from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-16/test_save_load_model0/test_model.joblib
+2025-03-22 08:55:58,231 - models.predictor - INFO - Model successfully loaded from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-16/test_save_load_model0/test_model.joblib
+2025-03-22 08:55:58,231 - models.predictor - INFO - Model metadata: ['training_date', 'train_score', 'val_score', 'rmse', 'cv_scores_mean', 'cv_scores_std', 'feature_importance']
+2025-03-22 08:55:58,233 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:55:58,233 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:55:58,240 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:55:58,240 - models.predictor - INFO - Making predictions using provider: ollama
+2025-03-22 08:55:58,240 - models.predictor - INFO - Predictions successfully generated using provider: ollama
+2025-03-22 08:55:58,241 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:55:58,241 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:55:58,246 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:55:58,246 - models.predictor - INFO - Making predictions using provider: ModelProvider.SKLEARN
+2025-03-22 08:55:58,246 - models.predictor - INFO - Predictions successfully generated using provider: ModelProvider.SKLEARN
+2025-03-22 08:55:58,247 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:55:58,247 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:55:58,251 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:55:58,252 - models.predictor - INFO - Making predictions using provider: ollama
+2025-03-22 08:55:58,252 - models.predictor - ERROR - Provider ollama not available
+2025-03-22 08:55:58,252 - models.predictor - INFO - Falling back to provider: ModelProvider.SKLEARN
+2025-03-22 08:55:58,252 - models.predictor - INFO - Predictions successfully generated using provider: ModelProvider.SKLEARN
+2025-03-22 08:55:58,253 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:55:58,253 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:55:58,256 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:55:58,256 - models.predictor - INFO - Making predictions using provider: ollama
+2025-03-22 08:55:58,256 - models.predictor - ERROR - Provider ollama not available
+2025-03-22 08:55:58,256 - models.predictor - ERROR - No fallback provider available
+2025-03-22 08:55:58,257 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:55:58,257 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:55:58,261 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:55:58,262 - models.predictor - INFO - Default provider set to: ModelProvider.SKLEARN
+2025-03-22 08:55:58,263 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:55:58,263 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:55:58,267 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:55:58,267 - models.predictor - INFO - Default provider set to: ModelProvider.OPENAI
+2025-03-22 08:55:58,328 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:55:58,328 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:55:58,334 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:56:24,741 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 08:56:24,788 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:56:24,788 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:56:24,805 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:56:25,228 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:56:25,228 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:56:25,230 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:56:25,230 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:56:25,232 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:56:25,424 - models.predictor - INFO - Cross-validation scores: [ -6.08065 -24.448  ]
+2025-03-22 08:56:25,424 - models.predictor - INFO - Mean CV score: -15.2643 (+/- 18.3673)
+2025-03-22 08:56:25,424 - models.predictor - INFO - Training final model
+2025-03-22 08:56:25,533 - models.predictor - INFO - Training score: 0.8283
+2025-03-22 08:56:25,533 - models.predictor - INFO - Validation score: nan
+2025-03-22 08:56:25,533 - models.predictor - INFO - RMSE: 10.4500
+2025-03-22 08:56:25,543 - models.predictor - INFO - Model saved to models/checkpoints/model_checkpoint_20250322_085625.joblib
+2025-03-22 08:56:25,543 - models.predictor - INFO - Saved model checkpoint to models/checkpoints/model_checkpoint_20250322_085625.joblib
+2025-03-22 08:56:25,547 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:56:25,547 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:56:25,555 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:56:25,555 - models.predictor - INFO - Making predictions using provider: ollama
+2025-03-22 08:56:25,555 - models.model_interface - INFO - Making predictions for 5 players using Ollama model
+2025-03-22 08:57:00,356 - models.model_interface - WARNING - Could not extract prediction from response: I can't provide real-time or future-based information, including predicting fantasy points for a specific player in their next game. I can help with general information about daily fantasy sports and fantasy football. Would you like to know more about those topics?
+2025-03-22 08:57:00,356 - models.model_interface - INFO - Predictions successfully added to player data
+2025-03-22 08:57:00,357 - models.predictor - INFO - Predictions successfully generated using provider: ollama
+2025-03-22 08:57:00,366 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:57:00,366 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:57:00,374 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:57:00,374 - models.predictor - INFO - Preparing features for training
+2025-03-22 08:57:00,374 - models.predictor - INFO - Preparing features from data with 5 records
+2025-03-22 08:57:00,376 - models.predictor - INFO - Calculating rolling averages if week information is available
+2025-03-22 08:57:00,376 - models.predictor - INFO - Adding position encoding if available
+2025-03-22 08:57:00,378 - models.predictor - INFO - Feature preparation complete: 8 features created
+2025-03-22 08:57:00,531 - models.predictor - INFO - Cross-validation scores: [ -6.08065 -24.448  ]
+2025-03-22 08:57:00,531 - models.predictor - INFO - Mean CV score: -15.2643 (+/- 18.3673)
+2025-03-22 08:57:00,531 - models.predictor - INFO - Training final model
+2025-03-22 08:57:00,636 - models.predictor - INFO - Training score: 0.8283
+2025-03-22 08:57:00,637 - models.predictor - INFO - Validation score: nan
+2025-03-22 08:57:00,637 - models.predictor - INFO - RMSE: 10.4500
+2025-03-22 08:57:00,648 - models.predictor - INFO - Model saved to models/checkpoints/model_checkpoint_20250322_085700.joblib
+2025-03-22 08:57:00,649 - models.predictor - INFO - Saved model checkpoint to models/checkpoints/model_checkpoint_20250322_085700.joblib
+2025-03-22 08:57:00,659 - models.predictor - INFO - Model saved to /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-17/test_save_load_model0/test_model.joblib
+2025-03-22 08:57:00,659 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:57:00,659 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:57:00,664 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:57:00,664 - models.predictor - INFO - Loading model from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-17/test_save_load_model0/test_model.joblib
+2025-03-22 08:57:00,672 - models.predictor - INFO - Model successfully loaded from /private/var/folders/x0/97s7n8xd1c5fhlztcsrxh2kc0000gp/T/pytest-of-chrisdukes/pytest-17/test_save_load_model0/test_model.joblib
+2025-03-22 08:57:00,672 - models.predictor - INFO - Model metadata: ['training_date', 'train_score', 'val_score', 'rmse', 'cv_scores_mean', 'cv_scores_std', 'feature_importance']
+2025-03-22 08:57:00,674 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:57:00,674 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:57:00,679 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:57:00,679 - models.predictor - INFO - Making predictions using provider: ollama
+2025-03-22 08:57:00,679 - models.predictor - INFO - Predictions successfully generated using provider: ollama
+2025-03-22 08:57:00,681 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:57:00,681 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:57:00,686 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:57:00,686 - models.predictor - INFO - Making predictions using provider: ModelProvider.SKLEARN
+2025-03-22 08:57:00,686 - models.predictor - INFO - Predictions successfully generated using provider: ModelProvider.SKLEARN
+2025-03-22 08:57:00,687 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:57:00,687 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:57:00,692 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:57:00,694 - models.predictor - INFO - Making predictions using provider: ollama
+2025-03-22 08:57:00,694 - models.predictor - ERROR - Provider ollama not available
+2025-03-22 08:57:00,694 - models.predictor - INFO - Falling back to provider: ModelProvider.SKLEARN
+2025-03-22 08:57:00,694 - models.predictor - INFO - Predictions successfully generated using provider: ModelProvider.SKLEARN
+2025-03-22 08:57:00,695 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:57:00,695 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:57:00,700 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:57:00,700 - models.predictor - INFO - Making predictions using provider: ollama
+2025-03-22 08:57:00,700 - models.predictor - ERROR - Provider ollama not available
+2025-03-22 08:57:00,700 - models.predictor - ERROR - No fallback provider available
+2025-03-22 08:57:00,701 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:57:00,701 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:57:00,706 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:57:00,706 - models.predictor - INFO - Default provider set to: ModelProvider.SKLEARN
+2025-03-22 08:57:00,707 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:57:00,707 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:57:00,710 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 08:57:00,711 - models.predictor - ERROR - Provider MockProvider.INVALID not available
+2025-03-22 08:57:00,713 - models.predictor - INFO - No model path provided, initializing new model
+2025-03-22 08:57:00,713 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 08:57:00,717 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']

@@ -171,13 +171,15 @@ class PlayerPerformancePredictor:
             logger.error(f"Error preparing features: {str(e)}")
             raise
             
-    def train(self, historical_data: pd.DataFrame, target_col: str = 'fantasy_points') -> bool:
+    def train(self, historical_data: pd.DataFrame, target_col: str = 'fantasy_points', cv_splits: int = 5) -> bool:
         """
         Train the prediction model using historical data.
         
         Args:
+        Args:
             historical_data: DataFrame containing historical player data
             target_col: Column name for the target variable
+            cv_splits: Number of cross-validation splits (default: 5)
             
         Returns:
             bool: True if training was successful
@@ -203,7 +205,7 @@ class PlayerPerformancePredictor:
             # Perform cross-validation
             cv_scores = cross_val_score(
                 self.sklearn_model, X_train_scaled, y_train, 
-                cv=5, scoring='r2'
+                cv=cv_splits, scoring='r2'
             )
             
             logger.info(f"Cross-validation scores: {cv_scores}")

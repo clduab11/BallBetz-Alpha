@@ -112,6 +112,7 @@ class SklearnModel(ModelInterface):
             logger.info("Features scaled successfully")
             
             # Make predictions
+            logger.info(f"Type of X_scaled: {type(X_scaled)}")
             predictions = self.model.predict(X_scaled)
             logger.info(f"Predictions generated: {len(predictions)} values")
             
@@ -119,15 +120,12 @@ class SklearnModel(ModelInterface):
             prediction_intervals = self.get_prediction_intervals(X_scaled)
             logger.info("Prediction intervals calculated")
             
-            # Add predictions to player data
-            result = player_data.copy()
-            result['predicted_points'] = predictions.round(2)
-            result['prediction_lower'] = prediction_intervals[:, 0].round(2)
-            result['prediction_upper'] = prediction_intervals[:, 1].round(2)
-            result['prediction_confidence'] = (
-                (prediction_intervals[:, 1] - prediction_intervals[:, 0]) / predictions
-            ).round(4)
-            result['model_provider'] = ModelProvider.SKLEARN
+            # Create a new DataFrame with only the required columns
+            result = pd.DataFrame({
+                'predicted_points': predictions.round(2),
+                'lower_bound': prediction_intervals[:, 0].round(2),
+                'upper_bound': prediction_intervals[:, 1].round(2)
+            }, index=player_data.index)
             
             logger.info("Predictions successfully added to player data")
             return result
@@ -135,7 +133,7 @@ class SklearnModel(ModelInterface):
         except Exception as e:
             logger.error(f"Error making predictions with sklearn model: {str(e)}")
             return None
-    
+
     def get_prediction_intervals(self, X_scaled: np.ndarray) -> np.ndarray:
         """
         Calculate prediction intervals using the Random Forest's tree variance.
@@ -258,7 +256,7 @@ class OllamaModel(ModelInterface):
         except Exception as e:
             logger.error(f"Error getting available Ollama models: {str(e)}")
             return []
-    
+        
     def _select_model(self, player_position: str) -> str:
         """
         Select the appropriate model based on player position.
@@ -328,7 +326,7 @@ class OllamaModel(ModelInterface):
         except json.JSONDecodeError as e:
             logger.error(f"Error parsing Ollama API response: {str(e)}")
             raise
-    
+        
     def _format_player_stats(self, player: pd.Series) -> str:
         """
         Format player statistics for the prompt.
@@ -408,17 +406,15 @@ class OllamaModel(ModelInterface):
             logger.info(f"Making predictions for {len(player_data)} players using Ollama model")
             
             # Create a copy of the input data
-            result = player_data.copy()
+            result = pd.DataFrame(index=player_data.index)
             
             # Initialize prediction columns
             result['predicted_points'] = 0.0
-            result['prediction_lower'] = 0.0
-            result['prediction_upper'] = 0.0
-            result['prediction_confidence'] = 0.0
-            result['model_provider'] = ModelProvider.OLLAMA
+            result['lower_bound'] = 0.0
+            result['upper_bound'] = 0.0
             
             # Process each player
-            for idx, player in result.iterrows():
+            for idx, player in player_data.iterrows():
                 # Select model based on player position
                 position = player.get('position', 'UNKNOWN')
                 model = self._select_model(position)
@@ -446,9 +442,8 @@ class OllamaModel(ModelInterface):
                 result.at[idx, 'predicted_points'] = round(prediction, 2)
                 
                 # Simple prediction intervals (±20%)
-                result.at[idx, 'prediction_lower'] = round(prediction * 0.8, 2)
-                result.at[idx, 'prediction_upper'] = round(prediction * 1.2, 2)
-                result.at[idx, 'prediction_confidence'] = 0.2  # Fixed confidence for now
+                result.at[idx, 'lower_bound'] = round(prediction * 0.8, 2)
+                result.at[idx, 'upper_bound'] = round(prediction * 1.2, 2)
             
             logger.info("Predictions successfully added to player data")
             return result
@@ -456,7 +451,7 @@ class OllamaModel(ModelInterface):
         except Exception as e:
             logger.error(f"Error making predictions with Ollama model: {str(e)}")
             return None
-    
+
     def get_prediction_intervals(self, predictions: np.ndarray) -> np.ndarray:
         """
         Calculate prediction intervals.
@@ -497,13 +492,16 @@ class OpenAIModel(ModelInterface):
             self.openai = openai
             self.openai.api_key = self.api_key
         except ImportError:
-            logger.error("OpenAI library not installed")
+            logger.warning("OpenAI library not installed. Please install it to use OpenAI models.")
+            self.openai = None
+        except Exception as e:
+            logger.error(f"Error initializing OpenAI: {str(e)}")
             self.openai = None
     
     @retry(
         stop=stop_after_attempt(ModelConfig.MAX_RETRIES),
         wait=wait_exponential(multiplier=1, min=1, max=ModelConfig.RETRY_BACKOFF),
-        retry=retry_if_exception_type((requests.RequestException, json.JSONDecodeError)),
+        retry=retry_if_exception_type(requests.exceptions.RequestException),
         reraise=True
     )
     def _call_openai_api(self, model: str, prompt: str, use_fallback: bool = False) -> str:
@@ -513,40 +511,27 @@ class OpenAIModel(ModelInterface):
         Args:
             model: The model to use
             prompt: The prompt to send to the model
-            use_fallback: Whether to use the fallback model
+            use_fallback: Whether to use the fallback model if the primary model fails
             
         Returns:
             str: The model's response
         """
-        if self.openai is None:
-            logger.error("OpenAI library not available")
-            return ""
-        
         try:
-            # Use the specified model or fallback if requested
-            current_model = self.fallback_model if use_fallback else model
-            
-            response = self.openai.chat.completions.create(
-                model=current_model,
-                messages=[
-                    {"role": "system", "content": "You are a fantasy football analyst specializing in UFL player performance predictions."},
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=ModelConfig.TEMPERATURE,
+            response = self.openai.Completion.create(
+                engine=model,
+                prompt=prompt,
                 max_tokens=ModelConfig.MAX_TOKENS,
+                n=1,
+                stop=None,
+                temperature=ModelConfig.TEMPERATURE,
                 timeout=self.timeout
             )
-            
-            return response.choices[0].message.content
-            
+            return response.choices[0].text.strip()
         except Exception as e:
-            logger.error(f"Error calling OpenAI API with model {model}: {str(e)}")
-            
-            # Try fallback model if not already using it
-            if not use_fallback and ModelConfig.ENABLE_FALLBACK:
-                logger.info(f"Trying fallback model: {self.fallback_model}")
-                return self._call_openai_api(model, prompt, use_fallback=True)
-            
+            logger.error(f"Error calling OpenAI API: {str(e)}")
+            if use_fallback and model != self.fallback_model:
+                logger.info(f"Retrying with fallback model: {self.fallback_model}")
+                return self._call_openai_api(self.fallback_model, prompt, use_fallback=False)
             raise
     
     def _format_player_stats(self, player: pd.Series) -> str:
@@ -625,33 +610,30 @@ class OpenAIModel(ModelInterface):
             pd.DataFrame: DataFrame with predictions added
         """
         try:
-            if self.openai is None:
-                logger.error("OpenAI library not available - cannot make predictions")
-                return None
-            
             logger.info(f"Making predictions for {len(player_data)} players using OpenAI model")
             
-            # Create a copy of the input data
-            result = player_data.copy()
+            # Create a new DataFrame with the same index
+            result = pd.DataFrame(index=player_data.index)
             
             # Initialize prediction columns
             result['predicted_points'] = 0.0
-            result['prediction_lower'] = 0.0
-            result['prediction_upper'] = 0.0
-            result['prediction_confidence'] = 0.0
-            result['model_provider'] = ModelProvider.OPENAI
+            result['lower_bound'] = 0.0
+            result['upper_bound'] = 0.0
             
             # Process each player
-            for idx, player in result.iterrows():
+            for idx, player in player_data.iterrows():
+                # Select model based on player position
+                position = player.get('position', 'UNKNOWN')
+                
                 # Format player stats
                 stats = self._format_player_stats(player)
                 
                 # Create prompt
-                model_size = ModelConfig.get_model_size(ModelProvider.OPENAI)
+                model_size = "small"  # Assume small model for OpenAI
                 prompt_template = ModelConfig.get_prompt_template(model_size)
                 prompt = prompt_template.format(
                     player_name=player.get('name', 'Unknown'),
-                    position=player.get('position', 'UNKNOWN'),
+                    position=position,
                     team=player.get('team', 'Unknown'),
                     stats=stats
                 )
@@ -665,10 +647,9 @@ class OpenAIModel(ModelInterface):
                 # Update result
                 result.at[idx, 'predicted_points'] = round(prediction, 2)
                 
-                # Simple prediction intervals (±15%)
-                result.at[idx, 'prediction_lower'] = round(prediction * 0.85, 2)
-                result.at[idx, 'prediction_upper'] = round(prediction * 1.15, 2)
-                result.at[idx, 'prediction_confidence'] = 0.15  # Fixed confidence for now
+                # Simple prediction intervals (±20%)
+                result.at[idx, 'lower_bound'] = round(prediction * 0.8, 2)
+                result.at[idx, 'upper_bound'] = round(prediction * 1.2, 2)
             
             logger.info("Predictions successfully added to player data")
             return result
@@ -676,7 +657,7 @@ class OpenAIModel(ModelInterface):
         except Exception as e:
             logger.error(f"Error making predictions with OpenAI model: {str(e)}")
             return None
-    
+
     def get_prediction_intervals(self, predictions: np.ndarray) -> np.ndarray:
         """
         Calculate prediction intervals.
@@ -687,8 +668,8 @@ class OpenAIModel(ModelInterface):
         Returns:
             np.ndarray: Array of prediction intervals (lower, upper)
         """
-        # Simple prediction intervals (±15%)
+        # Simple prediction intervals (±20%)
         return np.column_stack([
-            predictions * 0.85,
-            predictions * 1.15
+            predictions * 0.8,
+            predictions * 1.2
         ])

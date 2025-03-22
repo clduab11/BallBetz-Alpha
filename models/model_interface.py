@@ -175,6 +175,10 @@ class SklearnModel(ModelInterface):
             required_cols = ['passing_yards', 'rushing_yards', 'receiving_yards']
             missing_cols = [col for col in required_cols if col not in df.columns]
             if missing_cols:
+                sensitive_cols = ['user_id', 'password', 'email']  # Add any sensitive columns here
+                if any(col in df.columns for col in sensitive_cols):
+                    logger.error(f"Sensitive columns found in input data: {[col for col in sensitive_cols if col in df.columns]}")
+                    raise ValueError(f"Sensitive columns found in input data: {[col for col in sensitive_cols if col in df.columns]}")
                 logger.error(f"Missing required columns: {missing_cols}")
                 logger.info(f"Available columns: {df.columns.tolist()}")
                 raise ValueError(f"Missing required columns: {missing_cols}")

@@ -61,7 +61,7 @@ class UFLScraper:
             
         try:
             logger.info(f"Making request to {url}")
-            response = self.session.get(url)
+            response = self.session.get(url, verify=True)  # Always verify SSL certificates
             self.last_request_time = time.time()
             
             if response.status_code == 200:

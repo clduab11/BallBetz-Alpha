@@ -1,0 +1,22 @@
+{% extends "auth_base.html" %}
+
+{% block auth_title %}Set Up Two-Factor Authentication{% endblock %}
+
+{% block auth_content %}
+<div class="text-center mb-4">
+    <p>Scan the QR code below with your authenticator app (like Google Authenticator, Authy, or Microsoft Authenticator).</p>
+    
+    <div class="qr-code-container my-4">
+        <img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl={{ totp_uri|urlencode }}" 
+             alt="QR Code" class="img-fluid">
+    </div>
+    
+    <p class="text-muted">Or enter this code manually: <code>{{ current_user.totp_secret }}</code></p>
+    
+    <div class="alert alert-info">
+        <strong>Important:</strong> After scanning the QR code, you'll need to enter the 6-digit code from your authenticator app when logging in.
+    </div>
+    
+    <a href="{{ url_for('index') }}" class="btn btn-primary">I've set up my authenticator</a>
+</div>
+{% endblock %}

@@ -1024,3 +1024,350 @@ Demonstrating fallback mechanism:
 2025-03-22 08:57:00,713 - models.predictor - INFO - No model path provided, initializing new model
 2025-03-22 08:57:00,713 - models.predictor - INFO - Initializing new Random Forest model
 2025-03-22 08:57:00,717 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 11:15:37,757 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 11:16:14,818 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 11:17:45,177 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 11:17:45,422 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 11:17:45,422 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 11:17:45,422 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 11:19:15,194 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 11:19:58,538 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 11:21:03,217 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 11:22:35,002 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 11:23:58,813 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 11:23:59,074 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 11:23:59,074 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 11:23:59,074 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 11:23:59,074 - app - INFO - === BallBetz Diagnostic Logs ===
+2025-03-22 11:23:59,075 - app - INFO - PuLP dependency check: FOUND
+2025-03-22 11:23:59,075 - app - INFO - Python version: 3.11.11 (main, Dec  3 2024, 17:20:40) [Clang 16.0.0 (clang-1600.0.26.4)]
+2025-03-22 11:24:48,048 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 11:24:48,400 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 11:24:48,400 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 11:24:48,400 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 11:24:48,400 - app - INFO - === BallBetz Diagnostic Logs ===
+2025-03-22 11:24:48,400 - app - INFO - PuLP dependency check: FOUND
+2025-03-22 11:24:48,400 - app - INFO - Python version: 3.11.11 (main, Dec  3 2024, 17:20:40) [Clang 16.0.0 (clang-1600.0.26.4)]
+2025-03-22 11:25:36,454 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 11:25:36,723 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 11:25:36,723 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 11:25:36,723 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 11:25:36,723 - app - INFO - === BallBetz Diagnostic Logs ===
+2025-03-22 11:25:36,723 - app - INFO - PuLP dependency check: FOUND
+2025-03-22 11:25:36,723 - app - INFO - Python version: 3.11.11 (main, Dec  3 2024, 17:20:40) [Clang 16.0.0 (clang-1600.0.26.4)]
+2025-03-22 11:25:37,546 - models.predictor - INFO - Model path provided: models/ufl_predictor.joblib
+2025-03-22 11:25:37,546 - models.predictor - INFO - Model file exists: False
+2025-03-22 11:25:37,546 - models.predictor - WARNING - Model file not found at models/ufl_predictor.joblib
+2025-03-22 11:25:37,546 - models.predictor - INFO - Initializing new model instead
+2025-03-22 11:25:37,546 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 11:25:37,583 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 11:25:37,881 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-22 11:25:37,881 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: fanduel
+2025-03-22 11:25:37,881 - app - INFO - All components initialized successfully
+2025-03-22 11:25:37,881 - app - INFO - Model file exists: False
+2025-03-22 11:26:37,325 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 11:26:37,583 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 11:26:37,583 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 11:26:37,583 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 11:26:37,583 - app - INFO - === BallBetz Diagnostic Logs ===
+2025-03-22 11:26:37,583 - app - INFO - PuLP dependency check: FOUND
+2025-03-22 11:26:37,583 - app - INFO - Python version: 3.11.11 (main, Dec  3 2024, 17:20:40) [Clang 16.0.0 (clang-1600.0.26.4)]
+2025-03-22 11:26:38,378 - models.predictor - INFO - Model path provided: models/ufl_predictor.joblib
+2025-03-22 11:26:38,378 - models.predictor - INFO - Model file exists: False
+2025-03-22 11:26:38,378 - models.predictor - WARNING - Model file not found at models/ufl_predictor.joblib
+2025-03-22 11:26:38,378 - models.predictor - INFO - Initializing new model instead
+2025-03-22 11:26:38,378 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 11:26:38,395 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 11:26:38,679 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-22 11:26:38,679 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: fanduel
+2025-03-22 11:26:38,679 - app - INFO - All components initialized successfully
+2025-03-22 11:26:38,679 - app - INFO - Model file exists: False
+2025-03-22 11:26:38,684 - flask_wtf.csrf - INFO - The CSRF token is missing.
+2025-03-22 11:26:39,195 - flask_wtf.csrf - INFO - The CSRF token is missing.
+2025-03-22 11:26:40,408 - flask_wtf.csrf - INFO - The CSRF token is missing.
+2025-03-22 11:26:40,888 - flask_wtf.csrf - INFO - The CSRF token is missing.
+2025-03-22 11:30:27,488 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 11:30:27,776 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 11:30:27,776 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 11:30:27,776 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 11:30:27,776 - app - INFO - === BallBetz Diagnostic Logs ===
+2025-03-22 11:30:27,776 - app - INFO - PuLP dependency check: FOUND
+2025-03-22 11:30:27,776 - app - INFO - Python version: 3.11.11 (main, Dec  3 2024, 17:20:40) [Clang 16.0.0 (clang-1600.0.26.4)]
+2025-03-22 11:30:28,602 - models.predictor - INFO - Model path provided: models/ufl_predictor.joblib
+2025-03-22 11:30:28,602 - models.predictor - INFO - Model file exists: False
+2025-03-22 11:30:28,602 - models.predictor - WARNING - Model file not found at models/ufl_predictor.joblib
+2025-03-22 11:30:28,602 - models.predictor - INFO - Initializing new model instead
+2025-03-22 11:30:28,602 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 11:30:28,624 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 11:30:28,931 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-22 11:30:28,931 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: fanduel
+2025-03-22 11:30:28,931 - app - INFO - All components initialized successfully
+2025-03-22 11:30:28,931 - app - INFO - Model file exists: False
+2025-03-22 11:30:29,734 - app - INFO - User test_free logged in successfully.
+2025-03-22 11:30:29,743 - app - ERROR - Error in index: invalid literal for int() with base 10: 'None'
+2025-03-22 11:30:30,456 - app - INFO - User test_admin logged in successfully.
+2025-03-22 11:30:30,456 - app - ERROR - Error in index: invalid literal for int() with base 10: 'None'
+2025-03-22 11:30:31,211 - app - INFO - User test_premium logged in successfully.
+2025-03-22 11:30:31,212 - app - ERROR - Error in index: invalid literal for int() with base 10: 'None'
+2025-03-22 11:30:32,049 - app - INFO - User test_free logged in successfully.
+2025-03-22 11:30:32,050 - app - ERROR - Error in index: invalid literal for int() with base 10: 'None'
+2025-03-22 11:30:32,607 - app - WARNING - Failed login attempt for user test_free. Attempts: 1
+2025-03-22 11:30:32,614 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:30:33,087 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:32:32,628 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 11:32:32,929 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 11:32:32,929 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 11:32:32,929 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 11:32:32,929 - app - INFO - === BallBetz Diagnostic Logs ===
+2025-03-22 11:32:32,929 - app - INFO - PuLP dependency check: FOUND
+2025-03-22 11:32:32,929 - app - INFO - Python version: 3.11.11 (main, Dec  3 2024, 17:20:40) [Clang 16.0.0 (clang-1600.0.26.4)]
+2025-03-22 11:32:33,778 - models.predictor - INFO - Model path provided: models/ufl_predictor.joblib
+2025-03-22 11:32:33,778 - models.predictor - INFO - Model file exists: False
+2025-03-22 11:32:33,778 - models.predictor - WARNING - Model file not found at models/ufl_predictor.joblib
+2025-03-22 11:32:33,778 - models.predictor - INFO - Initializing new model instead
+2025-03-22 11:32:33,778 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 11:32:33,800 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 11:32:34,100 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-22 11:32:34,100 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: fanduel
+2025-03-22 11:32:34,100 - app - INFO - All components initialized successfully
+2025-03-22 11:32:34,100 - app - INFO - Model file exists: False
+2025-03-22 11:32:34,425 - app - INFO - New user registered: newuser
+2025-03-22 11:32:34,983 - app - INFO - User test_free logged in successfully.
+2025-03-22 11:32:35,759 - app - INFO - User test_admin logged in successfully.
+2025-03-22 11:32:36,469 - app - INFO - User test_premium logged in successfully.
+2025-03-22 11:32:36,709 - app - INFO - Password reset requested for free@example.com. Reset URL: http://localhost/reset_password/ImZyZWVAZXhhbXBsZS5jb20i.Z97mJA.uG5vB1hUoy4yiF54c2NjP7Cjgqw
+2025-03-22 11:32:36,714 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:32:36,952 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:32:37,191 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:32:37,192 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:32:37,192 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:32:37,192 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:32:37,192 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:32:37,193 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:32:37,193 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:32:37,664 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:32:37,665 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:34:19,087 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 11:34:19,354 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 11:34:19,354 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 11:34:19,354 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 11:34:19,354 - app - INFO - === BallBetz Diagnostic Logs ===
+2025-03-22 11:34:19,354 - app - INFO - PuLP dependency check: FOUND
+2025-03-22 11:34:19,354 - app - INFO - Python version: 3.11.11 (main, Dec  3 2024, 17:20:40) [Clang 16.0.0 (clang-1600.0.26.4)]
+2025-03-22 11:34:20,179 - models.predictor - INFO - Model path provided: models/ufl_predictor.joblib
+2025-03-22 11:34:20,179 - models.predictor - INFO - Model file exists: False
+2025-03-22 11:34:20,179 - models.predictor - WARNING - Model file not found at models/ufl_predictor.joblib
+2025-03-22 11:34:20,179 - models.predictor - INFO - Initializing new model instead
+2025-03-22 11:34:20,179 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 11:34:20,197 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 11:34:20,483 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-22 11:34:20,483 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: fanduel
+2025-03-22 11:34:20,483 - app - INFO - All components initialized successfully
+2025-03-22 11:34:20,483 - app - INFO - Model file exists: False
+2025-03-22 11:34:20,832 - app - INFO - New user registered: newuser
+2025-03-22 11:34:21,407 - app - INFO - User test_free logged in successfully.
+2025-03-22 11:34:22,121 - app - INFO - User test_admin logged in successfully.
+2025-03-22 11:34:22,123 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:34:22,124 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:34:22,125 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:34:22,659 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:34:22,660 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:34:22,900 - app - INFO - Password reset requested for free@example.com. Reset URL: http://localhost/reset_password/ImZyZWVAZXhhbXBsZS5jb20i.Z97mjg.vcVsGVskMwOEW097uVatXQrKRGo
+2025-03-22 11:34:22,901 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:34:23,139 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:34:23,140 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:34:23,378 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:34:23,378 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:34:23,379 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:34:23,379 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:34:23,379 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:34:23,379 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:34:23,380 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:34:23,852 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:34:23,853 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:34:23,853 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:34:23,854 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:37,624 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 11:35:37,852 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 11:35:37,852 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 11:35:37,852 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 11:35:37,853 - app - INFO - === BallBetz Diagnostic Logs ===
+2025-03-22 11:35:37,853 - app - INFO - PuLP dependency check: FOUND
+2025-03-22 11:35:37,853 - app - INFO - Python version: 3.11.11 (main, Dec  3 2024, 17:20:40) [Clang 16.0.0 (clang-1600.0.26.4)]
+2025-03-22 11:35:38,727 - models.predictor - INFO - Model path provided: models/ufl_predictor.joblib
+2025-03-22 11:35:38,727 - models.predictor - INFO - Model file exists: False
+2025-03-22 11:35:38,727 - models.predictor - WARNING - Model file not found at models/ufl_predictor.joblib
+2025-03-22 11:35:38,727 - models.predictor - INFO - Initializing new model instead
+2025-03-22 11:35:38,727 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 11:35:38,749 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 11:35:39,057 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-22 11:35:39,057 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: fanduel
+2025-03-22 11:35:39,057 - app - INFO - All components initialized successfully
+2025-03-22 11:35:39,057 - app - INFO - Model file exists: False
+2025-03-22 11:35:39,406 - app - INFO - New user registered: newuser
+2025-03-22 11:35:39,964 - app - INFO - User test_free logged in successfully.
+2025-03-22 11:35:40,676 - app - INFO - User test_admin logged in successfully.
+2025-03-22 11:35:40,678 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:40,679 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:40,679 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:41,149 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:41,150 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:41,151 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:41,151 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:41,152 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:41,450 - app - INFO - Password reset requested for free@example.com. Reset URL: http://localhost/reset_password/ImZyZWVAZXhhbXBsZS5jb20i.Z97m3Q.4pMm34uRrBy4-EaWpqUdU8aJqDQ
+2025-03-22 11:35:41,450 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:41,453 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:41,691 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:41,692 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:41,933 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:41,933 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:41,933 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:41,934 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:41,934 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:41,934 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:41,934 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:42,404 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:42,405 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:42,406 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:35:42,406 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:45,523 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 11:36:45,729 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 11:36:45,730 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 11:36:45,730 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 11:36:45,730 - app - INFO - === BallBetz Diagnostic Logs ===
+2025-03-22 11:36:45,730 - app - INFO - PuLP dependency check: FOUND
+2025-03-22 11:36:45,730 - app - INFO - Python version: 3.11.11 (main, Dec  3 2024, 17:20:40) [Clang 16.0.0 (clang-1600.0.26.4)]
+2025-03-22 11:36:46,587 - models.predictor - INFO - Model path provided: models/ufl_predictor.joblib
+2025-03-22 11:36:46,587 - models.predictor - INFO - Model file exists: False
+2025-03-22 11:36:46,587 - models.predictor - WARNING - Model file not found at models/ufl_predictor.joblib
+2025-03-22 11:36:46,587 - models.predictor - INFO - Initializing new model instead
+2025-03-22 11:36:46,587 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 11:36:46,605 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 11:36:46,889 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-22 11:36:46,889 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: fanduel
+2025-03-22 11:36:46,889 - app - INFO - All components initialized successfully
+2025-03-22 11:36:46,889 - app - INFO - Model file exists: False
+2025-03-22 11:36:47,238 - app - INFO - New user registered: newuser
+2025-03-22 11:36:47,792 - app - INFO - User test_free logged in successfully.
+2025-03-22 11:36:48,504 - app - INFO - User test_admin logged in successfully.
+2025-03-22 11:36:48,507 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:48,508 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:48,508 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:48,979 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:48,980 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:48,981 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:48,981 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:48,982 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:49,218 - app - INFO - Password reset requested for free@example.com. Reset URL: http://localhost/reset_password/ImZyZWVAZXhhbXBsZS5jb20i.Z97nIQ.tE4O4BRs-Zq38eSSFM3Xq2AfDPs
+2025-03-22 11:36:49,219 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:49,222 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:49,460 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:49,461 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:49,462 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:49,462 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:49,762 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:49,762 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:49,762 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:49,763 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:49,763 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:49,763 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:49,763 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:50,234 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:50,234 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:50,235 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:36:50,235 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:04,789 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 11:38:05,145 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 11:38:05,145 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 11:38:05,145 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 11:38:05,145 - app - INFO - === BallBetz Diagnostic Logs ===
+2025-03-22 11:38:05,145 - app - INFO - PuLP dependency check: FOUND
+2025-03-22 11:38:05,145 - app - INFO - Python version: 3.11.11 (main, Dec  3 2024, 17:20:40) [Clang 16.0.0 (clang-1600.0.26.4)]
+2025-03-22 11:38:05,980 - models.predictor - INFO - Model path provided: models/ufl_predictor.joblib
+2025-03-22 11:38:05,981 - models.predictor - INFO - Model file exists: False
+2025-03-22 11:38:05,981 - models.predictor - WARNING - Model file not found at models/ufl_predictor.joblib
+2025-03-22 11:38:05,981 - models.predictor - INFO - Initializing new model instead
+2025-03-22 11:38:05,981 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 11:38:06,001 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 11:38:06,306 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-22 11:38:06,306 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: fanduel
+2025-03-22 11:38:06,306 - app - INFO - All components initialized successfully
+2025-03-22 11:38:06,306 - app - INFO - Model file exists: False
+2025-03-22 11:38:06,636 - app - INFO - New user registered: newuser
+2025-03-22 11:38:07,209 - app - INFO - User test_free logged in successfully.
+2025-03-22 11:38:07,921 - app - INFO - User test_admin logged in successfully.
+2025-03-22 11:38:07,924 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:07,924 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:07,925 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:08,396 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:08,397 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:08,397 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:08,398 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:08,399 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:08,635 - app - INFO - Password reset requested for free@example.com. Reset URL: http://localhost/reset_password/ImZyZWVAZXhhbXBsZS5jb20i.Z97ncA.HcRwuw7d6G_0pcFmmKPGUGNtc1s
+2025-03-22 11:38:08,636 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:08,640 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:08,878 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:08,879 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:08,880 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:08,880 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:08,881 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:09,118 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:09,118 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:09,118 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:09,119 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:09,119 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:09,119 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:09,120 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:09,590 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:09,591 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:09,592 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:09,592 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:48,869 - models.predictor - INFO - === PlayerPerformancePredictor Diagnostic Logs ===
+2025-03-22 11:38:49,165 - optimizers.lineup_optimizer - INFO - === LineupOptimizer Diagnostic Logs ===
+2025-03-22 11:38:49,165 - optimizers.lineup_optimizer - INFO - PuLP library available: True
+2025-03-22 11:38:49,165 - optimizers.lineup_optimizer - INFO - PuLP version: 2.7.0
+2025-03-22 11:38:49,166 - app - INFO - === BallBetz Diagnostic Logs ===
+2025-03-22 11:38:49,166 - app - INFO - PuLP dependency check: FOUND
+2025-03-22 11:38:49,166 - app - INFO - Python version: 3.11.11 (main, Dec  3 2024, 17:20:40) [Clang 16.0.0 (clang-1600.0.26.4)]
+2025-03-22 11:38:50,072 - models.predictor - INFO - Model path provided: models/ufl_predictor.joblib
+2025-03-22 11:38:50,073 - models.predictor - INFO - Model file exists: False
+2025-03-22 11:38:50,073 - models.predictor - WARNING - Model file not found at models/ufl_predictor.joblib
+2025-03-22 11:38:50,073 - models.predictor - INFO - Initializing new model instead
+2025-03-22 11:38:50,073 - models.predictor - INFO - Initializing new Random Forest model
+2025-03-22 11:38:50,090 - models.model_interface - INFO - Available Ollama models: ['granite-embedding:278m', 'bge-m3:latest', 'gemma3:latest', 'gemma3:1b-it-fp16', 'wanlige.li-14b-v0.4.Q4_K_S:latest', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'llama3.2:3b-instruct-q5_K_M', 'codellama:7b-python-q5_K_M', 'mistral-nemo:latest', 'llama3.2-vision:latest', 'snowflake-arctic-embed:latest', 'deepseek-r1:14b', 'phi4:14b-q4_K_M']
+2025-03-22 11:38:50,376 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: draftkings
+2025-03-22 11:38:50,376 - optimizers.lineup_optimizer - INFO - LineupOptimizer initialized for platform: fanduel
+2025-03-22 11:38:50,376 - app - INFO - All components initialized successfully
+2025-03-22 11:38:50,376 - app - INFO - Model file exists: False
+2025-03-22 11:38:50,714 - app - INFO - New user registered: newuser
+2025-03-22 11:38:51,478 - app - INFO - User test_free logged in successfully.
+2025-03-22 11:38:52,364 - app - INFO - User test_admin logged in successfully.
+2025-03-22 11:38:52,367 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:52,368 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:52,368 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:53,030 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:53,032 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:53,033 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:53,034 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:53,034 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:53,304 - app - INFO - Password reset requested for free@example.com. Reset URL: http://localhost/reset_password/ImZyZWVAZXhhbXBsZS5jb20i.Z97nnQ.4hiUGYylTy05u0JFxf1ngqdrftk
+2025-03-22 11:38:53,309 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:53,366 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:53,630 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:53,632 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:53,633 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:53,633 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:53,634 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:54,047 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:54,049 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:54,050 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:54,050 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:54,050 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:54,051 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:54,051 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:54,856 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:54,857 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:54,858 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login
+2025-03-22 11:38:54,858 - flask-limiter - INFO - ratelimit 5 per 1 minute (127.0.0.1) exceeded at endpoint: login

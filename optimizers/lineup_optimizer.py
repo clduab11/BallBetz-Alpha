@@ -150,7 +150,9 @@ class LineupOptimizer:
             
         except Exception as e:
             logger.error(f"Error in optimize: {str(e)}")
-            return pd.DataFrame()
+            return pd.DataFrame(columns=[
+                'name', 'team', 'position', 'salary', 'predicted_points'
+            ])
             
     def _optimize_lineups(self,
                          player_pool: pd.DataFrame,
@@ -161,29 +163,22 @@ class LineupOptimizer:
                          min_stack_size: int) -> pd.DataFrame:
         """
         Core optimization logic for generating lineups.
-        
-        Args:
-            player_pool: DataFrame containing available players
-            salary_cap: Maximum total salary for each lineup
-            min_salary: Minimum salary threshold for players to include
-            max_lineups: Number of unique lineups to generate
-            min_lineup_diff: Minimum number of different players between lineups
-            min_stack_size: Minimum size for team stacks
-            
-        Returns:
-            pd.DataFrame: Generated lineups
         """
         try:
             # Check if PuLP is available
             if not PULP_AVAILABLE:
                 logger.error("PuLP library not available - cannot optimize lineups")
-                return pd.DataFrame()
+                return pd.DataFrame(columns=[
+                    'name', 'team', 'position', 'salary', 'predicted_points'
+                ])
                 
             # Filter and prepare player pool
             player_pool = self._prepare_player_pool(player_pool)
             if player_pool.empty:
                 logger.error("Prepared player pool is empty - cannot optimize lineup")
-                return pd.DataFrame()
+                return pd.DataFrame(columns=[
+                    'name', 'team', 'position', 'salary', 'predicted_points'
+                ])
                 
             platform_settings = self.settings[self.platform]
             all_lineups = []
@@ -213,17 +208,26 @@ class LineupOptimizer:
                         self._save_lineup_checkpoint(lineup)
                 else:
                     logger.warning(f"Could not find optimal solution for lineup {lineup_count + 1}")
-                    break
+                    empty_lineup = pd.DataFrame(columns=[
+                        'name', 'team', 'position', 'salary', 'predicted_points'
+                    ])
+                    return empty_lineup
                     
             if all_lineups:
                 result_df = pd.concat(all_lineups)
                 result_df = self._add_lineup_metadata(result_df)
                 return result_df
-            return pd.DataFrame()
+            
+            # Fix: Return empty DataFrame with correct columns if no lineups were created
+            return pd.DataFrame(columns=[
+                'name', 'team', 'position', 'salary', 'predicted_points'
+            ])
             
         except Exception as e:
             logger.error(f"Error in _optimize_lineups: {str(e)}")
-            return pd.DataFrame()
+            return pd.DataFrame(columns=[
+                'name', 'team', 'position', 'salary', 'predicted_points'
+            ])
             
     def _prepare_player_pool(self, player_pool: pd.DataFrame) -> pd.DataFrame:
         """

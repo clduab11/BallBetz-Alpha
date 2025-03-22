@@ -6,6 +6,30 @@ from pathlib import Path
 # Set up logging
 logger = logging.getLogger(__name__)
 
+class DataProcessor:
+    """Class for processing player data."""
+    
+    def __init__(self):
+        """Initialize the DataProcessor."""
+        pass
+    
+    def clean_player_data(self, player_data):
+        """
+        Clean player data.
+        
+        Args:
+            player_data: The raw player data.
+            
+        Returns:
+            A pandas DataFrame with the cleaned data.
+        """
+        if player_data.empty:
+            logger.warning("No player data to clean.")
+            return pd.DataFrame()
+        
+        # Use the existing process_player_data function
+        return process_player_data(player_data)
+
 def clean_data(raw_data: List[Dict]) -> List[Dict]:
     """
     Cleans the raw scraped data.  Currently a placeholder, but this is where

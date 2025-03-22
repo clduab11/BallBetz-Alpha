@@ -6,7 +6,6 @@ beautifulsoup4==4.12.2
 scikit-learn==1.3.2
 pytest==7.4.3
 python-dotenv==1.0.0
-sqlalchemy==2.0.23
 pulp==2.7.0  # Added for lineup optimization
 openai==1.12.0  # For OpenAI API integration
 tiktoken==0.5.2  # For token counting with OpenAI
@@ -14,3 +13,17 @@ tenacity==8.2.3  # For retry logic
 pydantic==2.5.2  # For data validation
 dvc==3.59.1
 APScheduler==3.10.4
+
+# Authentication dependencies
+flask-bcrypt==1.0.1  # For password hashing
+flask-login==0.6.3  # For user session management
+flask-limiter==3.12  # For rate limiting
+flask-wtf==1.2.2  # For forms and CSRF protection
+pyotp==2.9.0  # For two-factor authentication
+email_validator==2.1.0  # For email validation in WTForms
+itsdangerous==2.2.0  # For secure token generation
+
+# Supabase dependencies
+supabase-py==2.3.4  # Main Supabase client
+python-jose[cryptography]==3.3.0  # For JWT handling
+postgrest-py==0.15.0  # For Supabase database queries

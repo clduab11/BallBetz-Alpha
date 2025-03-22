@@ -82,9 +82,21 @@ class SklearnModel(ModelInterface):
             feature_columns: The feature columns to use for prediction
             **kwargs: Additional arguments
         """
+        # Define allowed features to prevent data leakage
+        self.allowed_features = [
+            'passing_yards', 'rushing_yards', 'receiving_yards',
+            'passing_touchdowns', 'rushing_touchdowns', 'receiving_touchdowns',
+            'touchdowns', 'games_played', 'position'
+        ]
         self.model = model
         self.scaler = scaler
-        self.feature_columns = feature_columns
+        # Filter feature columns to only include allowed features
+        if feature_columns:
+            self.feature_columns = [col for col in feature_columns if any(
+                allowed in col for allowed in self.allowed_features
+            )]
+        else:
+            self.feature_columns = None
         
     def predict(self, player_data: pd.DataFrame) -> pd.DataFrame:
         """
@@ -170,6 +182,20 @@ class SklearnModel(ModelInterface):
         """
         try:
             logger.info(f"Preparing features from data with {len(df)} records")
+            
+            # Filter columns to only include allowed features and their derivatives
+            allowed_columns = []
+            for col in df.columns:
+                if any(allowed in col for allowed in self.allowed_features):
+                    allowed_columns.append(col)
+                elif '_rolling_avg' in col:  # Allow rolling averages of allowed features
+                    base_col = col.replace('_rolling_avg', '')
+                    if any(allowed in base_col for allowed in self.allowed_features):
+                        allowed_columns.append(col)
+            
+            # Create a new DataFrame with only allowed columns
+            df = df[allowed_columns].copy()
+            logger.info(f"Filtered to {len(allowed_columns)} allowed columns")
             
             # Check for required columns
             required_cols = ['passing_yards', 'rushing_yards', 'receiving_yards']

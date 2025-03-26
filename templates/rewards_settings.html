@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Data Sharing Settings{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('rewards_dashboard') }}">Rewards Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Data Sharing Settings</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0"><i class="fas fa-shield-alt me-2"></i>Data Sharing Settings</h2>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <h5><i class="fas fa-info-circle me-2"></i>How StatShare Rewards™ Works</h5>
+                        <p>
+                            The more data you choose to share, the higher your data sharing level and the greater your rewards.
+                            You always maintain complete control over what data you share, and you can change your settings at any time.
+                        </p>
+                        <p class="mb-0">
+                            <strong>Current Data Sharing Level:</strong> {{ data_sharing_level }} 
+                            <span class="text-muted">({{ data_sharing_description }})</span>
+                        </p>
+                    </div>
+
+                    <form method="POST" action="{{ url_for('rewards_settings') }}">
+                        {{ form.hidden_tag() }}
+                        
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Setting</th>
+                                        <th>Description</th>
+                                        <th class="text-center">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>{{ form.profile_visibility.label }}</strong></td>
+                                        <td>{{ form.profile_visibility.description }}</td>
+                                        <td class="text-center">
+                                            <div class="form-check form-switch d-flex justify-content-center">
+                                                {{ form.profile_visibility(class="form-check-input") }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>{{ form.betting_history.label }}</strong></td>
+                                        <td>{{ form.betting_history.description }}</td>
+                                        <td class="text-center">
+                                            <div class="form-check form-switch d-flex justify-content-center">
+                                                {{ form.betting_history(class="form-check-input") }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>{{ form.favorite_teams.label }}</strong></td>
+                                        <td>{{ form.favorite_teams.description }}</td>
+                                        <td class="text-center">
+                                            <div class="form-check form-switch d-flex justify-content-center">
+                                                {{ form.favorite_teams(class="form-check-input") }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>{{ form.betting_patterns.label }}</strong></td>
+                                        <td>{{ form.betting_patterns.description }}</td>
+                                        <td class="text-center">
+                                            <div class="form-check form-switch d-flex justify-content-center">
+                                                {{ form.betting_patterns(class="form-check-input") }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>{{ form.platform_usage.label }}</strong></td>
+                                        <td>{{ form.platform_usage.description }}</td>
+                                        <td class="text-center">
+                                            <div class="form-check form-switch d-flex justify-content-center">
+                                                {{ form.platform_usage(class="form-check-input") }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>{{ form.performance_stats.label }}</strong></td>
+                                        <td>{{ form.performance_stats.description }}</td>
+                                        <td class="text-center">
+                                            <div class="form-check form-switch d-flex justify-content-center">
+                                                {{ form.performance_stats(class="form-check-input") }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-md-6 offset-md-3">
+                                <div class="d-grid">
+                                    {{ form.submit(class="btn btn-primary btn-lg") }}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0"><i class="fas fa-level-up-alt me-2"></i>Data Sharing Levels</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100 {% if data_sharing_level == 1 %}border-primary{% endif %}">
+                                <div class="card-header {% if data_sharing_level == 1 %}bg-primary text-white{% endif %}">
+                                    <h5 class="mb-0">Level 1: Basic</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p>Share minimal data for basic rewards.</p>
+                                    <ul>
+                                        <li>1-2 settings enabled</li>
+                                        <li>Eligible for Rookie tier (10% discount)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100 {% if data_sharing_level == 2 %}border-primary{% endif %}">
+                                <div class="card-header {% if data_sharing_level == 2 %}bg-primary text-white{% endif %}">
+                                    <h5 class="mb-0">Level 2: Moderate</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p>Share moderate data for enhanced rewards.</p>
+                                    <ul>
+                                        <li>3-4 settings enabled</li>
+                                        <li>Eligible for All-Star tier (25% discount)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100 {% if data_sharing_level == 3 %}border-primary{% endif %}">
+                                <div class="card-header {% if data_sharing_level == 3 %}bg-primary text-white{% endif %}">
+                                    <h5 class="mb-0">Level 3: Comprehensive</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p>Share comprehensive data for maximum rewards.</p>
+                                    <ul>
+                                        <li>5-6 settings enabled</li>
+                                        <li>Eligible for MVP tier (40% discount)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="alert alert-secondary mb-0">
+                        <i class="fas fa-lock me-2"></i>
+                        <strong>Your Privacy is Protected:</strong> All shared data is anonymized and used only to improve the platform. You can opt out at any time.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        // Toggle highlighting of data sharing level cards
+        $('input[type="checkbox"]').change(function() {
+            let enabledCount = $('input[type="checkbox"]:checked').length;
+            
+            // Update visual indicator of current level
+            $('.level-indicator').removeClass('active');
+            
+            if (enabledCount >= 5) {
+                $('#level3-indicator').addClass('active');
+            } else if (enabledCount >= 3) {
+                $('#level2-indicator').addClass('active');
+            } else {
+                $('#level1-indicator').addClass('active');
+            }
+        });
+    });
+</script>
+{% endblock %}

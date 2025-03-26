@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+
+{% block title %}StatShare Rewards Dashboard{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h2 class="mb-0">
+                        <i class="fas fa-award me-2"></i>StatShare Rewards™ Dashboard
+                    </h2>
+                    <span class="badge bg-primary p-2">{{ user_tier|title }} Member</span>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="me-3">
+                                    <i class="fas fa-coins fa-3x text-warning"></i>
+                                </div>
+                                <div>
+                                    <h3 class="mb-0">{{ user_points }}</h3>
+                                    <p class="text-muted mb-0">Available Points</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="me-3">
+                                    <i class="fas fa-percentage fa-3x text-success"></i>
+                                </div>
+                                <div>
+                                    <h3 class="mb-0">{{ subscription_discount }}%</h3>
+                                    <p class="text-muted mb-0">Subscription Discount</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="me-3">
+                                    <i class="fas fa-chart-line fa-3x text-primary"></i>
+                                </div>
+                                <div>
+                                    <h3 class="mb-0">{{ data_sharing_level }}</h3>
+                                    <p class="text-muted mb-0">Data Sharing Level</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="me-3">
+                                    <i class="fas fa-arrow-up fa-3x text-info"></i>
+                                </div>
+                                <div>
+                                    <h3 class="mb-0">{{ points_to_next_tier }}</h3>
+                                    <p class="text-muted mb-0">Points to Next Tier</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="progress" style="height: 25px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ tier_progress }}%;" 
+                                    aria-valuenow="{{ tier_progress }}" aria-valuemin="0" aria-valuemax="100">
+                                    {{ tier_progress }}%
+                                </div>
+                            </div>
+                            <p class="text-center mt-2">Progress to {{ next_tier|title }} Tier</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-md-4 mb-2 mb-md-0">
+                            <a href="{{ url_for('rewards_settings') }}" class="btn btn-primary w-100">
+                                <i class="fas fa-cog me-2"></i>Manage Data Sharing
+                            </a>
+                        </div>
+                        <div class="col-md-4 mb-2 mb-md-0">
+                            <a href="{{ url_for('rewards_redeem') }}" class="btn btn-success w-100">
+                                <i class="fas fa-exchange-alt me-2"></i>Redeem Points
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="{{ url_for('rewards_history') }}" class="btn btn-info w-100">
+                                <i class="fas fa-history me-2"></i>View History
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0"><i class="fas fa-star me-2"></i>Your Exclusive Benefits</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for benefit in tier_benefits %}
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex">
+                                <div class="me-3">
+                                    <i class="fas fa-check-circle text-success fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h5>{{ benefit.benefit_name }}</h5>
+                                    <p class="text-muted mb-0">{{ benefit.benefit_description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0"><i class="fas fa-level-up-alt me-2"></i>Tier Requirements</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Tier</th>
+                                <th>Min Points</th>
+                                <th>Data Sharing</th>
+                                <th>Discount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for req in tier_requirements %}
+                            <tr {% if req.tier == user_tier %}class="table-primary"{% endif %}>
+                                <td><strong>{{ req.tier|title }}</strong></td>
+                                <td>{{ req.min_points }}</td>
+                                <td>Level {{ req.min_data_sharing_level }}</td>
+                                <td>{{ req.subscription_discount }}%</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0"><i class="fas fa-gift me-2"></i>Ways to Earn Points</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Daily Login
+                            <span class="badge bg-primary rounded-pill">10 points</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Complete Your Profile
+                            <span class="badge bg-primary rounded-pill">50 points</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Place Your First Bet
+                            <span class="badge bg-primary rounded-pill">100 points</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Win a Bet
+                            <span class="badge bg-primary rounded-pill">25 points</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Refer a Friend
+                            <span class="badge bg-primary rounded-pill">200 points</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Submit Feedback
+                            <span class="badge bg-primary rounded-pill">30 points</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        // Any dashboard-specific JavaScript can go here
+    });
+</script>
+{% endblock %}

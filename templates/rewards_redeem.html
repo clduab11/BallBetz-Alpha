@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+
+{% block title %}Redeem Rewards Points{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('rewards_dashboard') }}">Rewards Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Redeem Points</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h2 class="mb-0"><i class="fas fa-exchange-alt me-2"></i>Redeem Your Points</h2>
+                    <div>
+                        <span class="badge bg-warning p-2 fs-5">
+                            <i class="fas fa-coins me-1"></i> {{ user_points }} Points Available
+                        </span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <h5><i class="fas fa-info-circle me-2"></i>How Redemption Works</h5>
+                        <p class="mb-0">
+                            Choose a reward type and the number of points you want to redeem. 
+                            Different rewards have different point requirements and benefits.
+                            All redemptions are final and cannot be reversed.
+                        </p>
+                    </div>
+
+                    <form method="POST" action="{{ url_for('rewards_redeem') }}">
+                        {{ form.hidden_tag() }}
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.reward_type.id }}" class="form-label">{{ form.reward_type.label }}</label>
+                                {{ form.reward_type(class="form-select") }}
+                                {% if form.reward_type.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in form.reward_type.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.points_to_spend.id }}" class="form-label">{{ form.points_to_spend.label }}</label>
+                                {{ form.points_to_spend(class="form-control", min="100", max=user_points) }}
+                                {% if form.points_to_spend.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in form.points_to_spend.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                <div class="form-text">Minimum redemption: 100 points</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 offset-md-3">
+                                <div class="d-grid">
+                                    {{ form.submit(class="btn btn-primary btn-lg") }}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0"><i class="fas fa-gift me-2"></i>Available Rewards</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="mb-0">Subscription Discount</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="me-3">
+                                            <i class="fas fa-percentage fa-3x text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <h4>10% Off Next Month</h4>
+                                            <p class="text-muted mb-0">1,000 points</p>
+                                        </div>
+                                    </div>
+                                    <p>Redeem your points for a discount on your next monthly subscription payment. This is in addition to your tier-based discount.</p>
+                                    <div class="d-grid">
+                                        <button class="btn btn-outline-primary reward-select-btn" data-reward="subscription_discount" data-points="1000">
+                                            Select This Reward
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header bg-success text-white">
+                                    <h5 class="mb-0">Premium Feature Access</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="me-3">
+                                            <i class="fas fa-unlock-alt fa-3x text-success"></i>
+                                        </div>
+                                        <div>
+                                            <h4>1 Week Premium Access</h4>
+                                            <p class="text-muted mb-0">500 points</p>
+                                        </div>
+                                    </div>
+                                    <p>Get access to premium features for one week, regardless of your current subscription tier.</p>
+                                    <div class="d-grid">
+                                        <button class="btn btn-outline-success reward-select-btn" data-reward="premium_feature" data-points="500">
+                                            Select This Reward
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header bg-info text-white">
+                                    <h5 class="mb-0">Exclusive Content</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="me-3">
+                                            <i class="fas fa-file-alt fa-3x text-info"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Expert Strategy Guide</h4>
+                                            <p class="text-muted mb-0">300 points</p>
+                                        </div>
+                                    </div>
+                                    <p>Unlock exclusive betting strategy guides written by professional sports bettors with proven track records.</p>
+                                    <div class="d-grid">
+                                        <button class="btn btn-outline-info reward-select-btn" data-reward="exclusive_content" data-points="300">
+                                            Select This Reward
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header bg-warning text-dark">
+                                    <h5 class="mb-0">Custom Analysis Report</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="me-3">
+                                            <i class="fas fa-chart-pie fa-3x text-warning"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Personalized Betting Analysis</h4>
+                                            <p class="text-muted mb-0">2,000 points</p>
+                                        </div>
+                                    </div>
+                                    <p>Receive a custom analysis report of your betting history with personalized recommendations to improve your strategy.</p>
+                                    <div class="d-grid">
+                                        <button class="btn btn-outline-warning reward-select-btn" data-reward="custom_analysis" data-points="2000">
+                                            Select This Reward
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        // Handle reward selection buttons
+        $('.reward-select-btn').click(function(e) {
+            e.preventDefault();
+            
+            // Get reward data
+            const rewardType = $(this).data('reward');
+            const points = $(this).data('points');
+            
+            // Set form values
+            $('#{{ form.reward_type.id }}').val(rewardType);
+            $('#{{ form.points_to_spend.id }}').val(points);
+            
+            // Scroll to form
+            $('html, body').animate({
+                scrollTop: $('#{{ form.reward_type.id }}').offset().top - 100
+            }, 500);
+        });
+        
+        // Validate points input
+        $('#{{ form.points_to_spend.id }}').on('input', function() {
+            const points = parseInt($(this).val());
+            const maxPoints = {{ user_points }};
+            
+            if (points > maxPoints) {
+                $(this).val(maxPoints);
+            }
+        });
+    });
+</script>
+{% endblock %}

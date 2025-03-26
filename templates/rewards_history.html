@@ -1,0 +1,281 @@
+{% extends "base.html" %}
+
+{% block title %}Rewards History{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('rewards_dashboard') }}">Rewards Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Rewards History</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h2 class="mb-0"><i class="fas fa-history me-2"></i>Rewards History</h2>
+                    <div>
+                        <span class="badge bg-warning p-2 fs-5">
+                            <i class="fas fa-coins me-1"></i> {{ user_points }} Points Available
+                        </span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="nav nav-tabs mb-4" id="historyTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="points-tab" data-bs-toggle="tab" data-bs-target="#points" type="button" role="tab" aria-controls="points" aria-selected="true">
+                                <i class="fas fa-plus-circle me-1"></i>Points Earned
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="redemptions-tab" data-bs-toggle="tab" data-bs-target="#redemptions" type="button" role="tab" aria-controls="redemptions" aria-selected="false">
+                                <i class="fas fa-minus-circle me-1"></i>Points Redeemed
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="tier-tab" data-bs-toggle="tab" data-bs-target="#tier" type="button" role="tab" aria-controls="tier" aria-selected="false">
+                                <i class="fas fa-level-up-alt me-1"></i>Tier Changes
+                            </button>
+                        </li>
+                    </ul>
+                    
+                    <div class="tab-content" id="historyTabsContent">
+                        <!-- Points Earned Tab -->
+                        <div class="tab-pane fade show active" id="points" role="tabpanel" aria-labelledby="points-tab">
+                            {% if points_history %}
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Action</th>
+                                                <th>Description</th>
+                                                <th class="text-end">Points</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for entry in points_history %}
+                                                <tr>
+                                                    <td>{{ entry.created_at|datetime }}</td>
+                                                    <td>{{ entry.action|replace('_', ' ')|title }}</td>
+                                                    <td>{{ entry.description }}</td>
+                                                    <td class="text-end text-success">+{{ entry.points }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            {% else %}
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i>No points earning history yet. Start using the platform to earn points!
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Points Redeemed Tab -->
+                        <div class="tab-pane fade" id="redemptions" role="tabpanel" aria-labelledby="redemptions-tab">
+                            {% if redemption_history %}
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Reward Type</th>
+                                                <th>Description</th>
+                                                <th class="text-end">Points Spent</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for entry in redemption_history %}
+                                                <tr>
+                                                    <td>{{ entry.created_at|datetime }}</td>
+                                                    <td>{{ entry.reward_type|replace('_', ' ')|title }}</td>
+                                                    <td>{{ entry.reward_description }}</td>
+                                                    <td class="text-end text-danger">-{{ entry.points_spent }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            {% else %}
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i>No redemption history yet. Visit the Redeem Points page to use your points!
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Tier Changes Tab -->
+                        <div class="tab-pane fade" id="tier" role="tabpanel" aria-labelledby="tier-tab">
+                            {% if tier_history %}
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Previous Tier</th>
+                                                <th>New Tier</th>
+                                                <th>Reason</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for entry in tier_history %}
+                                                <tr>
+                                                    <td>{{ entry.created_at|datetime }}</td>
+                                                    <td>
+                                                        <span class="badge bg-secondary">{{ entry.details.previous_tier|title }}</span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge {% if entry.details.new_tier == 'rookie' %}bg-info{% elif entry.details.new_tier == 'all_star' %}bg-primary{% else %}bg-warning{% endif %}">
+                                                            {{ entry.details.new_tier|title }}
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        {% if entry.action == 'rewards_tier_upgraded' %}
+                                                            <span class="text-success">
+                                                                <i class="fas fa-arrow-up me-1"></i>Tier Upgrade
+                                                            </span>
+                                                        {% else %}
+                                                            <span class="text-danger">
+                                                                <i class="fas fa-arrow-down me-1"></i>Tier Downgrade
+                                                            </span>
+                                                        {% endif %}
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            {% else %}
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i>No tier change history yet. Earn more points and increase your data sharing to upgrade your tier!
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0"><i class="fas fa-chart-pie me-2"></i>Points Summary</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body text-center">
+                                    <h4 class="text-success mb-0">{{ total_points_earned }}</h4>
+                                    <p class="text-muted mb-0">Total Points Earned</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body text-center">
+                                    <h4 class="text-danger mb-0">{{ total_points_spent }}</h4>
+                                    <p class="text-muted mb-0">Total Points Spent</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <h5>Points by Activity</h5>
+                        <div class="progress mb-3" style="height: 25px;">
+                            {% for category in points_by_category %}
+                                <div class="progress-bar bg-{{ category.color }}" role="progressbar" 
+                                    style="width: {{ category.percentage }}%" 
+                                    aria-valuenow="{{ category.percentage }}" aria-valuemin="0" aria-valuemax="100"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" 
+                                    title="{{ category.name }}: {{ category.points }} points ({{ category.percentage }}%)">
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="row">
+                            {% for category in points_by_category %}
+                                <div class="col-md-6 mb-2">
+                                    <div class="d-flex align-items-center">
+                                        <div class="me-2" style="width: 15px; height: 15px; background-color: var(--bs-{{ category.color }});"></div>
+                                        <small>{{ category.name }}: {{ category.points }} points</small>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0"><i class="fas fa-trophy me-2"></i>Achievements</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for achievement in achievements %}
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100 {% if achievement.unlocked %}border-success{% else %}border-secondary{% endif %}">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-2">
+                                            <div class="me-3">
+                                                <i class="fas fa-{{ achievement.icon }} fa-2x {% if achievement.unlocked %}text-success{% else %}text-secondary{% endif %}"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-0">{{ achievement.name }}</h5>
+                                                <p class="text-muted mb-0">{{ achievement.points }} points</p>
+                                            </div>
+                                        </div>
+                                        <p class="mb-0">{{ achievement.description }}</p>
+                                        {% if not achievement.unlocked %}
+                                            <div class="progress mt-2" style="height: 5px;">
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ achievement.progress }}%;" 
+                                                    aria-valuenow="{{ achievement.progress }}" aria-valuemin="0" aria-valuemax="100">
+                                                </div>
+                                            </div>
+                                            <small class="text-muted">{{ achievement.progress }}% complete</small>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+        
+        // Handle tab change from URL hash
+        var hash = window.location.hash;
+        if (hash) {
+            $('.nav-tabs a[href="' + hash + '"]').tab('show');
+        }
+        
+        // Update URL hash on tab change
+        $('.nav-tabs a').on('shown.bs.tab', function (e) {
+            window.location.hash = e.target.hash;
+        });
+    });
+</script>
+{% endblock %}

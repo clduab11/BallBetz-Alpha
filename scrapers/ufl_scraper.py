@@ -3,7 +3,8 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import time
 import random
-from typing import Optional, Dict, List
+from typing import Optional, Dict, List, Tuple
+from collections import defaultdict
 import logging
 import re
 
@@ -79,7 +80,7 @@ class UFLScraper:
             logger.error(f"Error making request to {url}: {str(e)}")
             return None
 
-    def _get_passing_stats(self) -> List[Dict]: # type: ignore
+    def _get_passing_stats(self) -> List[Dict]:
         """
         Scrape passing statistics from footballdb.com.
         
@@ -124,15 +125,15 @@ class UFLScraper:
                         'name': player_name,
                         'team': team_abbr,
                         'position': 'QB',  # Assuming all passers are QBs
-                        'games_played': self._safe_convert_to_int(cols[1].text.strip() if len(cols) > 1 else '0'), # type: ignore
-                        'passing_attempts': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'), # type: ignore
-                        'passing_completions': self._safe_convert_to_int(cols[3].text.strip() if len(cols) > 3 else '0'), # type: ignore
-                        'passing_completion_pct': float(cols[4].text.strip().replace('%', '')) if len(cols) > 4 and cols[4].text.strip() else 0, # type: ignore
-                        'passing_yards': self._safe_convert_to_int(cols[5].text.strip() if len(cols) > 5 else '0'), # type: ignore
-                        'passing_yards_per_game': float(cols[6].text.strip()) if len(cols) > 6 and cols[6].text.strip() else 0, # type: ignore
-                        'passing_touchdowns': self._safe_convert_to_int(cols[7].text.strip() if len(cols) > 7 else '0'), # type: ignore
-                        'interceptions': self._safe_convert_to_int(cols[9].text.strip() if len(cols) > 9 else '0'), # type: ignore
-                        'passer_rating': float(cols[12].text.strip()) if len(cols) > 12 and cols[12].text.strip() else 0, # type: ignore
+                        'games_played': self._safe_convert_to_int(cols[1].text.strip() if len(cols) > 1 else '0'),
+                        'passing_attempts': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'),
+                        'passing_completions': self._safe_convert_to_int(cols[3].text.strip() if len(cols) > 3 else '0'),
+                        'passing_completion_pct': float(cols[4].text.strip().replace('%', '')) if len(cols) > 4 and cols[4].text.strip() else 0,
+                        'passing_yards': self._safe_convert_to_int(cols[5].text.strip() if len(cols) > 5 else '0'),
+                        'passing_yards_per_game': float(cols[6].text.strip()) if len(cols) > 6 and cols[6].text.strip() else 0,
+                        'passing_touchdowns': self._safe_convert_to_int(cols[7].text.strip() if len(cols) > 7 else '0'),
+                        'interceptions': self._safe_convert_to_int(cols[9].text.strip() if len(cols) > 9 else '0'),
+                        'passer_rating': float(cols[12].text.strip()) if len(cols) > 12 and cols[12].text.strip() else 0,
                     }
                     players.append(player_data)
             
@@ -141,9 +142,9 @@ class UFLScraper:
             
         except Exception as e:
             logger.error(f"Error scraping passing stats: {str(e)}")
-            return [] # type: ignore
+            return []
 
-    def _get_rushing_stats(self) -> List[Dict]: # type: ignore
+    def _get_rushing_stats(self) -> List[Dict]:
         """
         Scrape rushing statistics from footballdb.com.
         
@@ -177,30 +178,27 @@ class UFLScraper:
                     player_name = cols[0].text.strip()
                     team_abbr = cols[0].find_next('td').text.strip()
                     
-                    # Infer position based on player role (most rushers are RBs, but QBs can rush too)
-                    # We'll determine position later when combining data
-                    
                     # Extract stats
                     player_data = {
                         'name': player_name,
-                        'team': team_abbr, # type: ignore
-                        'games_played': self._safe_convert_to_int(cols[1].text.strip() if len(cols) > 1 else '0'), # type: ignore
-                        'rushing_attempts': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'), # type: ignore
-                        'rushing_yards': self._safe_convert_to_int(cols[3].text.strip() if len(cols) > 3 else '0'), # type: ignore
-                        'rushing_yards_per_attempt': float(cols[4].text.strip()) if len(cols) > 4 and cols[4].text.strip() else 0, # type: ignore
-                        'rushing_yards_per_game': float(cols[5].text.strip()) if len(cols) > 5 and cols[5].text.strip() else 0, # type: ignore
-                        'rushing_touchdowns': self._safe_convert_to_int(cols[7].text.strip() if len(cols) > 7 else '0'), # type: ignore
+                        'team': team_abbr,
+                        'games_played': self._safe_convert_to_int(cols[1].text.strip() if len(cols) > 1 else '0'),
+                        'rushing_attempts': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'),
+                        'rushing_yards': self._safe_convert_to_int(cols[3].text.strip() if len(cols) > 3 else '0'),
+                        'rushing_yards_per_attempt': float(cols[4].text.strip()) if len(cols) > 4 and cols[4].text.strip() else 0,
+                        'rushing_yards_per_game': float(cols[5].text.strip()) if len(cols) > 5 and cols[5].text.strip() else 0,
+                        'rushing_touchdowns': self._safe_convert_to_int(cols[7].text.strip() if len(cols) > 7 else '0'),
                     }
                     players.append(player_data)
             
-            logger.info(f"Scraped {len(players)} player rushing statistics") # type: ignore
-            return players # type: ignore
+            logger.info(f"Scraped {len(players)} player rushing statistics")
+            return players
             
         except Exception as e:
             logger.error(f"Error scraping rushing stats: {str(e)}")
-            return [] # type: ignore
+            return []
 
-    def _get_receiving_stats(self) -> List[Dict]: # type: ignore
+    def _get_receiving_stats(self) -> List[Dict]:
         """
         Scrape receiving statistics from footballdb.com.
         
@@ -237,24 +235,24 @@ class UFLScraper:
                     # Extract stats
                     player_data = {
                         'name': player_name,
-                        'team': team_abbr, # type: ignore
-                        'games_played': self._safe_convert_to_int(cols[1].text.strip() if len(cols) > 1 else '0'), # type: ignore
-                        'receptions': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'), # type: ignore
-                        'receiving_yards': self._safe_convert_to_int(cols[3].text.strip() if len(cols) > 3 else '0'), # type: ignore
-                        'receiving_yards_per_reception': float(cols[4].text.strip()) if len(cols) > 4 and cols[4].text.strip() else 0, # type: ignore
-                        'receiving_yards_per_game': float(cols[5].text.strip()) if len(cols) > 5 and cols[5].text.strip() else 0, # type: ignore
-                        'receiving_touchdowns': self._safe_convert_to_int(cols[7].text.strip() if len(cols) > 7 else '0'), # type: ignore
+                        'team': team_abbr,
+                        'games_played': self._safe_convert_to_int(cols[1].text.strip() if len(cols) > 1 else '0'),
+                        'receptions': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'),
+                        'receiving_yards': self._safe_convert_to_int(cols[3].text.strip() if len(cols) > 3 else '0'),
+                        'receiving_yards_per_reception': float(cols[4].text.strip()) if len(cols) > 4 and cols[4].text.strip() else 0,
+                        'receiving_yards_per_game': float(cols[5].text.strip()) if len(cols) > 5 and cols[5].text.strip() else 0,
+                        'receiving_touchdowns': self._safe_convert_to_int(cols[7].text.strip() if len(cols) > 7 else '0'),
                     }
                     players.append(player_data)
             
-            logger.info(f"Scraped {len(players)} player receiving statistics") # type: ignore
-            return players # type: ignore
+            logger.info(f"Scraped {len(players)} player receiving statistics")
+            return players
             
         except Exception as e:
             logger.error(f"Error scraping receiving stats: {str(e)}")
             return []
 
-    def _get_kickoff_return_stats(self) -> List[Dict]: # type: ignore
+    def _get_kickoff_return_stats(self) -> List[Dict]:
         """Scrape kickoff return statistics."""
         logger.info("Scraping kickoff return statistics")
         # Current stats are for the 2024 season. Update URL for future seasons.
@@ -279,10 +277,10 @@ class UFLScraper:
                     player_data = {
                         'name': cols[0].text.strip(),
                         'team': cols[1].text.strip(),
-                        'kickoff_returns': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'), # type: ignore
-                        'kickoff_return_yards': self._safe_convert_to_int(cols[3].text.strip() if len(cols) > 3 else '0'), # type: ignore
-                        'kickoff_return_yards_per_return': float(cols[4].text.strip()) if len(cols) > 4 and cols[4].text.strip() else 0, # type: ignore
-                        'kickoff_return_touchdowns': self._safe_convert_to_int(cols[5].text.strip() if len(cols) > 5 else '0'), # type: ignore
+                        'kickoff_returns': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'),
+                        'kickoff_return_yards': self._safe_convert_to_int(cols[3].text.strip() if len(cols) > 3 else '0'),
+                        'kickoff_return_yards_per_return': float(cols[4].text.strip()) if len(cols) > 4 and cols[4].text.strip() else 0,
+                        'kickoff_return_touchdowns': self._safe_convert_to_int(cols[5].text.strip() if len(cols) > 5 else '0'),
                     }
                     players.append(player_data)
 
@@ -293,7 +291,7 @@ class UFLScraper:
             logger.error(f"Error scraping kickoff return stats: {str(e)}")
             return []
 
-    def _get_punt_return_stats(self) -> List[Dict]: # type: ignore
+    def _get_punt_return_stats(self) -> List[Dict]:
         """Scrape punt return statistics."""
         logger.info("Scraping punt return statistics")
         # Current stats are for the 2024 season. Update URL for future seasons.
@@ -318,10 +316,10 @@ class UFLScraper:
                     player_data = {
                         'name': cols[0].text.strip(),
                         'team': cols[1].text.strip(),
-                        'punt_returns': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'), # type: ignore
-                        'punt_return_yards': self._safe_convert_to_int(cols[3].text.strip() if len(cols) > 3 else '0'), # type: ignore
-                        'punt_return_yards_per_return': float(cols[4].text.strip()) if len(cols) > 4 and cols[4].text.strip() else 0, # type: ignore
-                        'punt_return_touchdowns': self._safe_convert_to_int(cols[5].text.strip() if len(cols) > 5 else '0'), # type: ignore
+                        'punt_returns': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'),
+                        'punt_return_yards': self._safe_convert_to_int(cols[3].text.strip() if len(cols) > 3 else '0'),
+                        'punt_return_yards_per_return': float(cols[4].text.strip()) if len(cols) > 4 and cols[4].text.strip() else 0,
+                        'punt_return_touchdowns': self._safe_convert_to_int(cols[5].text.strip() if len(cols) > 5 else '0'),
                     }
                     players.append(player_data)
 
@@ -332,7 +330,7 @@ class UFLScraper:
             logger.error(f"Error scraping punt return stats: {str(e)}")
             return []
 
-    def _get_defensive_stats(self) -> List[Dict]: # type: ignore
+    def _get_defensive_stats(self) -> List[Dict]:
         """Scrape defensive statistics."""
         logger.info("Scraping defensive statistics")
         # Current stats are for the 2024 season. Update URL for future seasons.
@@ -357,10 +355,10 @@ class UFLScraper:
                     player_data = {
                         'name': cols[0].text.strip(),
                         'team': cols[1].text.strip(),
-                        'tackles': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'), # type: ignore
-                        'sacks': float(cols[3].text.strip()) if len(cols) > 3 and cols[3].text.strip() else 0, # type: ignore
-                        'interceptions': self._safe_convert_to_int(cols[4].text.strip() if len(cols) > 4 else '0'), # type: ignore
-                        'forced_fumbles': self._safe_convert_to_int(cols[5].text.strip() if len(cols) > 5 else '0'), # type: ignore
+                        'tackles': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'),
+                        'sacks': float(cols[3].text.strip()) if len(cols) > 3 and cols[3].text.strip() else 0,
+                        'interceptions': self._safe_convert_to_int(cols[4].text.strip() if len(cols) > 4 else '0'),
+                        'forced_fumbles': self._safe_convert_to_int(cols[5].text.strip() if len(cols) > 5 else '0'),
                     }
                     players.append(player_data)
 
@@ -371,7 +369,7 @@ class UFLScraper:
             logger.error(f"Error scraping defensive stats: {str(e)}")
             return []
 
-    def _get_yards_from_scrimmage_stats(self) -> List[Dict]: # type: ignore
+    def _get_yards_from_scrimmage_stats(self) -> List[Dict]:
         """Scrape yards from scrimmage statistics."""
         logger.info("Scraping yards from scrimmage statistics")
         # Current stats are for the 2024 season. Update URL for future seasons.
@@ -396,9 +394,9 @@ class UFLScraper:
                     player_data = {
                         'name': cols[0].text.strip(),
                         'team': cols[1].text.strip(),
-                        'rushing_yards': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'), # type: ignore
-                        'receiving_yards': self._safe_convert_to_int(cols[3].text.strip() if len(cols) > 3 else '0'), # type: ignore
-                        'total_yards_from_scrimmage': self._safe_convert_to_int(cols[4].text.strip() if len(cols) > 4 else '0'), # type: ignore
+                        'rushing_yards': self._safe_convert_to_int(cols[2].text.strip() if len(cols) > 2 else '0'),
+                        'receiving_yards': self._safe_convert_to_int(cols[3].text.strip() if len(cols) > 3 else '0'),
+                        'total_yards_from_scrimmage': self._safe_convert_to_int(cols[4].text.strip() if len(cols) > 4 else '0'),
                     }
                     players.append(player_data)
 
@@ -409,32 +407,140 @@ class UFLScraper:
             logger.error(f"Error scraping yards from scrimmage stats: {str(e)}")
             return []
 
-
     def scrape_player_data(self) -> List[Dict]:
         """
-        Scrape player statistics (passing, rushing, receiving) from footballdb.com.
+        Scrape and merge player statistics from various categories (passing, rushing,
+        receiving, returns, defense, scrimmage yards) from footballdb.com.
 
+        Determines player position based on statistical contributions.
+        
         Returns:
-            List[Dict]: Combined raw player data.
-    """
-        logger.info("Scraping all player data...") # type: ignore
+            List[Dict]: A list of dictionaries, where each dictionary represents a
+                       unique player with their merged statistics and determined position.
+                       Missing stats for a player are defaulted to 0 or 0.0.
+        """
+        logger.info("Starting comprehensive player data scraping...")
+
+        # Fetch data from all stat categories
         passing_data = self._get_passing_stats()
         rushing_data = self._get_rushing_stats()
         receiving_data = self._get_receiving_stats()
         kickoff_return_data = self._get_kickoff_return_stats()
         punt_return_data = self._get_punt_return_stats()
         defensive_data = self._get_defensive_stats()
-        yards_from_scrimmage_data = self._get_yards_from_scrimmage_stats()
+        # yards_from_scrimmage_data is redundant as its components are in rushing/receiving
 
+        # Use defaultdict for easier merging
+        merged_players: Dict[Tuple[str, str], Dict] = defaultdict(lambda: {
+            'name': '', 'team': '', 'position': 'UNKNOWN', 'games_played': 0,
+            # Passing
+            'passing_attempts': 0, 'passing_completions': 0, 'passing_completion_pct': 0.0,
+            'passing_yards': 0, 'passing_yards_per_game': 0.0, 'passing_touchdowns': 0,
+            'interceptions': 0, 'passer_rating': 0.0,
+            # Rushing
+            'rushing_attempts': 0, 'rushing_yards': 0, 'rushing_yards_per_attempt': 0.0,
+            'rushing_yards_per_game': 0.0, 'rushing_touchdowns': 0,
+            # Receiving
+            'receptions': 0, 'receiving_yards': 0, 'receiving_yards_per_reception': 0.0,
+            'receiving_yards_per_game': 0.0, 'receiving_touchdowns': 0,
+            # Kickoff Returns
+            'kickoff_returns': 0, 'kickoff_return_yards': 0,
+            'kickoff_return_yards_per_return': 0.0, 'kickoff_return_touchdowns': 0,
+            # Punt Returns
+            'punt_returns': 0, 'punt_return_yards': 0,
+            'punt_return_yards_per_return': 0.0, 'punt_return_touchdowns': 0,
+            # Defense
+            'tackles': 0, 'sacks': 0.0, 'forced_fumbles': 0
+        })
 
-        # Combine the data
-        all_data = passing_data + rushing_data + receiving_data
-        logger.info(f"Scraped data for a total of {len(all_data)} players")
-        return all_data
+        # List of all data sources to iterate through
+        all_stats_sources = [
+            passing_data, rushing_data, receiving_data,
+            kickoff_return_data, punt_return_data, defensive_data
+        ]
 
-    # Remaining methods (get_fantasy_prices, _calculate_fantasy_salary, _safe_convert_to_int) remain unchanged
+        logger.info("Merging player data...")
+        for stats_list in all_stats_sources:
+            for player_stats in stats_list:
+                name = player_stats.get('name')
+                team = player_stats.get('team')
 
+                if not name or not team:
+                    logger.warning(f"Skipping player entry with missing name or team: {player_stats}")
+                    continue
+
+                player_key = (name, team)
+                
+                # Initialize if first time seeing this player
+                if player_key not in merged_players:
+                    merged_players[player_key]['name'] = name
+                    merged_players[player_key]['team'] = team
+
+                # Update games_played if the new value is higher
+                current_games = merged_players[player_key].get('games_played', 0)
+                new_games = player_stats.get('games_played', 0)
+                if new_games > current_games:
+                    merged_players[player_key]['games_played'] = new_games
+
+                # Merge other stats
+                for key, value in player_stats.items():
+                    if key not in ['name', 'team', 'games_played', 'position']:
+                        # Handle None values
+                        if value is not None:
+                            # Ensure numeric types are added correctly
+                            merged_players[player_key][key] = merged_players[player_key].get(key, 0) + value
+
+        # Determine position based on merged stats
+        logger.info("Determining player positions...")
+        final_player_list = []
+        for player_key, data in merged_players.items():
+            # Determine position based on stats priority
+            if data.get('passing_attempts', 0) > 5:
+                data['position'] = 'QB'
+            elif data.get('rushing_attempts', 0) > 10:
+                data['position'] = 'RB'
+            elif data.get('receptions', 0) > 5:
+                # Could be WR or TE, for now we'll mark as WR
+                data['position'] = 'WR'
+            elif data.get('tackles', 0) > 0 or data.get('sacks', 0) > 0:
+                if data.get('rushing_attempts', 0) < 5 and data.get('receptions', 0) < 3:
+                    data['position'] = 'DEF'
             
+            # Clean up potential float inaccuracies
+            if 'sacks' in data:
+                data['sacks'] = round(data['sacks'], 1)
+
+            final_player_list.append(data)
+
+        logger.info(f"Successfully scraped and merged data for {len(final_player_list)} unique players")
+        return final_player_list
+
+    def get_player_stats(self) -> pd.DataFrame:
+        """
+        Get player statistics as a pandas DataFrame.
+        
+        This is a wrapper around scrape_player_data() that converts the list of
+        dictionaries to a pandas DataFrame for easier data manipulation.
+        
+        Returns:
+            pd.DataFrame: DataFrame containing player statistics
+        """
+        logger.info("Getting player stats as DataFrame")
+        
+        try:
+            # Get player data as list of dictionaries
+            player_data = self.scrape_player_data()
+            
+            # Convert to DataFrame
+            df = pd.DataFrame(player_data)
+            
+            logger.info(f"Converted {len(df)} player records to DataFrame")
+            return df
+            
+        except Exception as e:
+            logger.error(f"Error getting player stats: {str(e)}")
+            return pd.DataFrame()  # Return empty DataFrame on error
+
     def get_fantasy_prices(self, platform: str = 'draftkings') -> pd.DataFrame:
         """
         Get player prices from fantasy platforms.

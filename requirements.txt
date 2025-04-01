@@ -1,29 +1,41 @@
-flask==3.0.0
-pandas==2.1.4
-numpy==1.26.2
-requests==2.31.0
-beautifulsoup4==4.12.2
-scikit-learn==1.4.0
-pytest==7.4.3
-python-dotenv==1.0.0
-pulp==2.7.0  # Added for lineup optimization
-openai==1.12.0  # For OpenAI API integration
-tiktoken==0.5.2  # For token counting with OpenAI
-tenacity==8.2.3  # For retry logic
-pydantic==2.5.2  # For data validation
-dvc==3.59.1
-APScheduler==3.10.4
+# Core Python Dependencies
+python-dotenv>=0.19.0
+numpy>=1.21.0
+scikit-learn>=1.0.0
+requests>=2.26.0
+structlog>=21.1.0
 
-# Authentication dependencies
-flask-bcrypt==1.0.1  # For password hashing
-flask-login==0.6.3  # For user session management
-flask-limiter==3.12  # For rate limiting
-flask-wtf==1.2.2  # For forms and CSRF protection
-pyotp==2.9.0  # For two-factor authentication
-email_validator==2.1.0  # For email validation in WTForms
-itsdangerous==2.2.0  # For secure token generation
+# Machine Learning Layer
+-r ml_layer/requirements.txt
 
-# Supabase dependencies
-supabase-py==2.3.4  # Main Supabase client
-python-jose[cryptography]==4.0.0  # For JWT handling
-postgrest-py==0.15.0  # For Supabase database queries
+# API/AI Layer
+-r api_ai_layer/requirements.txt
+
+# Cloud AI Layer
+-r cloud_ai_layer/requirements.txt
+
+# Data Processing
+pandas>=1.3.0
+scipy>=1.7.0
+
+# Typing and Data Handling
+typing-extensions>=4.0.0
+dataclasses>=0.8; python_version < '3.7'
+
+# Caching and Performance
+cachetools>=5.0.0
+joblib>=1.1.0
+
+# Logging
+loguru>=0.5.3
+
+# Optional: Advanced data manipulation
+dask[complete]>=2021.9.0
+
+# Optional: Performance monitoring
+py-spy>=0.3.11
+
+# Development and Testing
+pytest>=6.2.0
+pytest-cov>=2.12.0
+pytest-mock>=3.6.0
